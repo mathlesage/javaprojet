@@ -1,127 +1,91 @@
-package Representation ;
+package Representation;
 import Univers;
 
 
-public abstract class Node{
+public class Node{
 
-    //Attribut de la classe Node
-    private String description;
-    private final int id_Node;
-    private static int nbr_Node = 0;
-    private Node nextNode1;
-    private Node nextNode2;
-    private Node nextNode3;
-    private Node nextNode4;
+    //Personnages Objet et Nourriture sont des varaibles qui sont passe par reference
+    // On pourra donc les modifie par la suite : c'est leurs reference qui est final
+    private final static Personnages p1;
+    private final static Personnages p2;
+    private final static Personnages p3;
+    private final static Personnages p4;
+    private final static Objet objet_possession;
+    private final static Nourriture nourriture_possession;
+    private static int nombre_journee = 0;
+
+    private String description_debut_journee = "";
+    private String description_expedition = "";
+    private String description_scenario  = "";
 
 
-    private final static Personnages perso1;
-    private final static Personnages perso2;
-    private final static Personnages perso3;
-    private final static Personnages perso4;
-    private final static Objet objet_possede;
-    private final static Nourriture nourriture_possede;
-
-    //Attention pas de constructeur par defaut...
-    //Gerer la redondance
-    public Node(String description,Node nextNode1,Node nextNode2,Node nextNode3,Node nextNode4){
-      this.description = description;
-      this.nbr_Node = nbr_Node + 1;
-      this.id_Node = nbr_Node;
-      this.tab_next_Node = args;
-      this.nextNode1 = nextNode1;
-      this.nextNode2 = nextNode2;
-      this.nextNode3 = nextNode3;
-      this.nextNode4 = nextNode4;
-
-    }
-    public Node(String description,Node nextNode1,Node nextNode2,Node nextNode3){
-      this.description = description;
-      this.nbr_Node = nbr_Node + 1;
-      this.id_Node = nbr_Node;
-      this.tab_next_Node = args;
-      this.nextNode1 = nextNode1;
-      this.nextNode2 = nextNode2;
-      this.nextNode3 = nextNode3;
-    }
-    public Node(String description,Node nextNode1,Node nextNode2){
-      this.description = description;
-      this.nbr_Node = nbr_Node + 1;
-      this.id_Node = nbr_Node;
-      this.tab_next_Node = args;
-      this.nextNode1 = nextNode1;
-      this.nextNode2 = nextNode2;
-    }
-    public Node(String description,Node nextNode1){
-      this.description = description;
-      this.nbr_Node = nbr_Node + 1;
-      this.id_Node = nbr_Node;
-      this.tab_next_Node = args;
-      this.nextNode1 = nextNode1;
-    }
-    public Node(String description,Node nextNode1,Node nextNode2,Node nextNode3,Node nextNode4,Personnages perso1, Personnages perso2,Personnages perso3,Personnages perso4,Objet objet_possede,Nourriture nourriture_possede){
-      this.description = description;
-      this.nbr_Node = nbr_Node + 1;
-      this.id_Node = nbr_Node;
-      this.tab_next_Node = args;
-      this.nextNode1 = nextNode1;
-      this.nextNode2 = nextNode2;
-      this.nextNode3 = nextNode3;
-      this.nextNode4 = nextNode4;
-      this.perso1 = perso1;
-      this.perso2 = perso2;
-      this.perso3 = perso3;
-      this.perso4 = perso4;
-      this.objet_possede = objet_possede;
-      this.nourriture_possede = nourriture_possede;
-    }
-    public Node(String description,Node nextNode1,Node nextNode2,Node nextNode3,Personnages perso1, Personnages perso2,Personnages perso3,Personnages perso4,Objet objet_possede,Nourriture nourriture_possede){
-      this.description = description;
-      this.nbr_Node = nbr_Node + 1;
-      this.id_Node = nbr_Node;
-      this.tab_next_Node = args;
-      this.nextNode1 = nextNode1;
-      this.nextNode2 = nextNode2;
-      this.nextNode3 = nextNode3;
-      this.perso1 = perso1;
-      this.perso2 = perso2;
-      this.perso3 = perso3;
-      this.perso4 = perso4;
-      this.objet_possede = objet_possede;
-      this.nourriture_possede = nourriture_possede;
-    }
-    public Node(String description,Node nextNode1,Node nextNode2,Personnages perso1, Personnages perso2,Personnages perso3,Personnages perso4,Objet objet_possede,Nourriture nourriture_possede){
-      this.description = description;
-      this.nbr_Node = nbr_Node + 1;
-      this.id_Node = nbr_Node;
-      this.tab_next_Node = args;
-      this.nextNode1 = nextNode1;
-      this.nextNode2 = nextNode2;
-      this.perso1 = perso1;
-      this.perso2 = perso2;
-      this.perso3 = perso3;
-      this.perso4 = perso4;
-      this.objet_possede = objet_possede;
-      this.nourriture_possede = nourriture_possede;
-    }
-    public Node(String description,Node nextNode1,Personnages perso1, Personnages perso2,Personnages perso3,Personnages perso4,Objet objet_possede,Nourriture nourriture_possede){
-      this.description = description;
-      this.nbr_Node = nbr_Node + 1;
-      this.id_Node = nbr_Node;
-      this.tab_next_Node = args;
-      this.nextNode1 = nextNode1;
-
-      this.perso1 = perso1;
-      this.perso2 = perso2;
-      this.perso3 = perso3;
-      this.perso4 = perso4;
-      this.objet_possede = objet_possede;
-      this.nourriture_possede = nourriture_possede;
+    //Constructeur : pas de constructeur par defaut.
+    //On ne l'appelera que une fois, pour indiquer les personnages choisi,
+    //et les objets/nourritures choisi par le joeur
+    public Node(Personnages p1,Personnages p2,Personnages p3,Personnages p4,Objet objet_possession,Nourriture nourriture_possession){
+      this.p1 = p1;
+      this.p2 = p2;
+      this.p3 = p3;
+      this.p4 = p4;
+      this.objet_possession = objet_possession;
+      this.nourriture_possession = nourriture_possession;
     }
 
 
-    public void display(){
-      System.out.println(this.description);
+
+    //Quel attributs va t-on changer ?
+    // 1 -> description_debut_journee
+    // 2 -> description_expedition
+    // 3 -> description_scenario
+    public void set_description(int n,String description){
+      switch(n){
+        case 1 :
+            this.description_debut_journee = description;
+            break;
+        case 2 :
+            this.description_expedition = description;
+            break;
+        case 3:
+            this.description_scenario = description;
+            break;
+      }
     }
-    public Node chooseNext();
+
+    public void set_nombre_journee(){
+      this.nombre_journee = this.nombre_journee + 1;
+    }
+
+    //A completer
+    private static int choix_scenario(Personnages p1,Personnages p2,Personnages p3,Personnages p4,Objet o,Nourriture n){
+      return 0;
+    }
+
+    //A completer avec les scenario qu'on veut
+    public void scenario(){
+      int numero_scenario = choix_scenario(this.p1,this.p2,this.p3,this.p4,this.objet_possession,this.nourriture_possession);
+
+      switch(n){
+        case 1:
+          break;
+        case 2:
+          break;
+      }
+    }
+
+    //A completer : en fonction des persos, et des volonte des personnages, on peut ramener qql chose a l'exterieur
+    public void Expedition(){
+    }
+
+
+    public void Nourir(){
+      //Qui veut tu nourir ?
+      //On affiche la nouriture disponible
+      //On recupere qui le joeur veut nourir
+      //On nourri en consequence
+    }
+
+
+    //Est ce que on fait une fonction qui fait le deroulement de une journee ou pas ????
+
 
 }
