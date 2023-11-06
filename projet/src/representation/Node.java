@@ -7,12 +7,12 @@ public class Node{
 
     //Personnages Objet et Nourriture sont des varaibles qui sont passe par reference
     // On pourra donc les modifie par la suite : c'est leurs reference qui est final
-    private static final Personnages p1;
-    private static final Personnages p2;
-    private static final Personnages p3;
-    private static final Personnages p4;
-    private static final  Objet objet_possession;
-    private static final Nourriture nourriture_possession;
+    private final Personnages p1;
+    private final Personnages p2;
+    private final Personnages p3;
+    private final Personnages p4;
+    private final  Objet objet_possession;
+    private final Nourriture nourriture_possession;
     private static  int nombre_journee = 0;
 
     private String description_debut_journee = "";
