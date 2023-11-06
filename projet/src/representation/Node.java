@@ -1,18 +1,19 @@
 package Representation;
-import Univers;
-
+import Univers.Personnages;
+import Univers.Objet;
+import Univers.Nourriture;
 
 public class Node{
 
     //Personnages Objet et Nourriture sont des varaibles qui sont passe par reference
     // On pourra donc les modifie par la suite : c'est leurs reference qui est final
-    private final static Personnages p1;
-    private final static Personnages p2;
-    private final static Personnages p3;
-    private final static Personnages p4;
-    private final static Objet objet_possession;
-    private final static Nourriture nourriture_possession;
-    private static int nombre_journee = 0;
+    private static final Personnages p1;
+    private static final Personnages p2;
+    private static final Personnages p3;
+    private static final Personnages p4;
+    private static final  Objet objet_possession;
+    private static final Nourriture nourriture_possession;
+    private static  int nombre_journee = 0;
 
     private String description_debut_journee = "";
     private String description_expedition = "";
@@ -64,7 +65,7 @@ public class Node{
     public void scenario(){
       int numero_scenario = choix_scenario(this.p1,this.p2,this.p3,this.p4,this.objet_possession,this.nourriture_possession);
 
-      switch(n){
+      switch(numero_scenario){
         case 1:
           break;
         case 2:
