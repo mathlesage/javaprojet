@@ -2,65 +2,118 @@ package Univers;
 import java.util.Random;
 
 
-/*
-Probleme : Lien conso_nourriture et sassiete ? -> Attention qd on fait appel a la fonction....
+/** Un personnage du jeu est un Personnages avec plusieurs attribus :
+des attributs generaux, des attributs specifiques et quelques autres.
+Le joueur commencera avec 4 joeurs de son choix. On a 8 types de
+personnages differents, chacun identifie par un numero.
+@author ABDELOUHAB Yacine
+@version 1
 */
-
 public class Personnages{
 
-    private boolean vivant = true;
+
+    /** 8 personnages differents : correpondances avec des chiffres utiles pour plus tard.
+        1 -> pere
+        2 -> mere
+        3 -> soeur
+        4 -> frere
+        5 -> medecin
+        6 -> athlete
+        7 -> enfant turbulant
+        8 -> cuisinière
+    */
     private String id;
-    /*
-      Attributs generaux : Si l'un d'entre eux passe sous zero,
-      ou proche de zero compromet reellement le personnage.
-    */
+
+
+    /** Personnages vivant ou pas*/
+    private boolean vivant = true;
+
+
+
+    /*--------------------
+    - ATTRIBUTS GENERAUX -
+    ---------------------*/
+
+    /** Attribut general : Hydratation*/
     private int barre_eau = 100;
+
+    /** Attribut general : Faim*/
     private int barre_nourriture = 100;
+
+    /** Attribut general : Mental*/
     private int barre_mentale = 100;
+
+    /** Attribut general : Energie*/
     private int barre_energie = 100;
-    private int barre_sante = 100; // moyenne des quatre superieurs
+
+    /** Attribut general : Moyenne des autre attributs*/
+    private int barre_sante = 100;
 
 
-    /*
-      Attributs specifique a chaque personnage du jeu
-    */
+
+
+    /*-------------------------------------------------
+    - ATTRIBUTS SPECIFIQUE a chaque personnage du jeu -
+    -------------------------------------------------*/
+    //NB : on ne met pasles attributs en final : pourront bouger tout au long du jeu
+
+
+    /** Attribut specifique au personnage */
     private int force;
+    /** Attribut specifique au personnage */
     private int conso_nourriture;
+    /** Attribut specifique au personnage */
     private int intelligence;
+    /** Attribut specifique au personnage */
     private int resistance;
+    /** Attribut specifique au personnage */
     private int agilite;
 
-    /*
-      Attributs maladie : on peut tomber malade, savoir qu'on a la maladie ou pas,
-      contaminer si on a un certain type de maladie...
 
-      4 Type de maladie
-          - 0 : Fatigue
-          - 1 : Depression
-          - 2 : Folie
-          - 3 : Virus
-          - 4 : Mutation
 
+
+
+    /*------------------------------------------------------------------------------ -
+    -  Attributs maladie : on peut tomber malade, savoir qu'on a la maladie ou pas,  -
+    -  contaminer si on a un certain type de maladie...                              -
+    -                                                                                -
+    -  4 Type de maladie                                                             -
+    -      - 0 : Fatigue                                                             -
+    -      - 1 : Depression                                                          -
+    -      - 2 : Folie                                                               -
+    -      - 3 : Virus                                                               -
+    -      - 4 : Mutation                                                            -
+    -                                                                                -
+    --------------------------------------------------------------------------------*/
+
+
+    /** Tableau de boolean permettant de savoir si on est malade ou pas, sachant que l'indice :
+        0 represente la Fatigue
+        1 represente la Depression
+        2 represente la Folie
+        3 represente la contamination par un Virus
+      - 4 represente la Mutation
     */
-
     private boolean [] tab_maladie = {false,false,false,false,false};
+
+    /** Permet de savoir depuis combien de temps on est malade.
+    On ne l'est pas eternellement.
+    */
     private int temps_malade_virus = 0;
+
+
+    //On laisse ? On considere qu'on est forcement contagieux si on a un virus dans le corps??
     private boolean contagieux = false;
 
 
-    /*************************************/
-    /****Instantiation d'un personnage****/
-    /**   Perso 1 -> pere               **/
-    /**   Perso 2 -> mere               **/
-    /**   Perso 3 -> soeur              **/
-    /**   Perso 4 -> frere              **/
-    /**   Perso 5 -> medecin            **/
-    /**   Perso 6 -> athlete            **/
-    /**   Perso 7 -> enfant turbulant   **/
-    /**   Perso 8 -> cuisinière         **/
-    /*************************************/
 
-    //On ne met pas de constructeur par defaut ici...
+
+
+
+
+    /**Seul constructeur. Il suffira juste d'indiquer le numero du Personnages.
+       Voir l'attribut id du personnage pour plus de renseignement.
+    */
     public Personnages(int type_personne){
 
       switch(type_personne){
@@ -140,18 +193,26 @@ public class Personnages{
     }
 
 
-    //Description Personnage
-    // Attributs specifique et Attributs Generaux
-    public void etat_Personnages(){
 
-      System.out.println(this.id +"\n\n" + "ATTRIBUTS GENERAUX :\n" + "Hydratation : "+this.barre_eau +"\nSassiete : "+this.barre_nourriture+"\nMental : "+this.barre_mentale+"\nEnergie : "+this.barre_energie+"\nSante Genral : "+this.barre_sante);
-      System.out.println("\n"+"ATTRIBUTS SPECIFIQUES :\n"+"Force : "+this.force+"\nConso_Nourriture : "+this.conso_nourriture+"\nIntelligence : "+this.intelligence+"\nResistance : "+this.resistance+"\nAgilite : "+this.agilite);
+    /**Donne une description des attribus generaux et specifique des personnages
+    */
+    public void toString(){
 
-
+      if(this.vivant == true){
+        System.out.println(this.id + "est vivant(e).\n\n" + "ATTRIBUTS GENERAUX :\n" + "Hydratation : "+this.barre_eau +"\nSassiete : "+this.barre_nourriture+"\nMental : "+this.barre_mentale+"\nEnergie : "+this.barre_energie+"\nSante Genral : "+this.barre_sante);
+        System.out.println("\n"+"ATTRIBUTS SPECIFIQUES :\n"+"Force : "+this.force+"\nConso_Nourriture : "+this.conso_nourriture+"\nIntelligence : "+this.intelligence+"\nResistance : "+this.resistance+"\nAgilite : "+this.agilite);
+      }
+      else{
+        System.out.println(this.id + "est mort(e).");
+      }
     }
 
 
-    //MAJ Obligatoire Chaque Jour qui Passe
+    /**MAJ Obligatoire chaque jour qui passe.
+       On a de plus en plus faim/soif le long de la journee.
+       On a moins d'energie.
+       Le mentale baisse.
+    */
     public void maj_naturelle_attributs_generaux_Personnages(){
       //maj tt les 1 jours
       if(this.vivant == true){
@@ -165,7 +226,11 @@ public class Personnages{
     }
 
 
-    //MAJ si le personnage Mange, Boit, Joue
+    /**MAJ lorsque :
+      Le personnage mange ou bois.
+      Fait une activite qui boost le mentale.
+      Autre contexte ?
+    */
     public void maj_contextuelle_attributs_generaux_Personnages(int eau,int nourriture,int mentale,int energie){
       this.barre_eau = this.barre_eau + eau;
       this.barre_nourriture = this.barre_nourriture + nourriture;
@@ -175,7 +240,8 @@ public class Personnages{
     }
 
 
-    //MAJ affectant attributs specifique
+    /**MAJ permettant de modifie les attributs specifique d'un personnage.
+    */
     public void maj_contextuelle_attributs_specifique_Personnages(int force,int conso_nourriture,int intelligence,int resistance,int agilite){
       this.force = force;
       this.conso_nourriture = conso_nourriture;
@@ -184,11 +250,15 @@ public class Personnages{
       this.agilite = agilite;
     }
 
-    //MAJ Contamination d'un personnage par un autre
+
+    /**MAJ Contamination d'un personnage par un autre.
+    */
     public void maj_contamination_virus_Personnages(){
       this.tab_maladie[3] = true;
       this.consequence_maladie_baisse_stat();
     }
+
+
 
     //MAJ Maladie
     public boolean maj_donnee_maladie_naturelle_Personnages(){
