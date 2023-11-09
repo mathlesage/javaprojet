@@ -214,6 +214,63 @@ public class Personnages{
        On a moins d'energie.
        Le mentale baisse.
     */
+
+
+
+    //Getters
+
+    public boolean get_vivant(){
+      return this.vivant;
+    }
+
+    public int get_barre_nourriture(){
+      return this.barre_nourriture;
+    }
+
+    public int get_barre_mentale(){
+      return this.barre_mentale;
+    }
+
+    public int get_barre_energie(){
+      return this.barre_energie;
+    }
+
+    public int get_barre_sante(){
+      return this.barre_sante;
+    }
+
+    public int get_force(){
+      return this.force;
+    }
+
+    public int get_conso_nourriture(){
+      return this.conso_nourriture;
+    }
+
+    public int get_intelligence(){
+      return this.intelligence;
+    }
+
+    public int get_resistance(){
+      return this.resistance;
+    }
+
+    public int get_agilite(){
+      return this.agilite;
+    }
+
+    public int get_temps_malade_virus(){
+      return this.temps_malade_virus;
+    }
+
+    public boolean get_en_expedition(){
+      return this.en_expedition;
+    }
+
+    public boolean contagieux(){
+      return this.contagieux;
+    }
+
     public void maj_naturelle_attributs_generaux_Personnages(){
       //maj tt les 1 jours
       if(this.vivant == true){
