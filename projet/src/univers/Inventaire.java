@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public abstract class  Inventaire {
     ArrayList<ArrayList<String>> inventaire = new ArrayList<ArrayList<String>>();
     public Inventaire(String o) {
-        if( "objet".equals(o)) {       
+        if( "objet".equals(o)) {
             ArrayList<String> obj=new ArrayList<String>();
             obj.add("Fusil");
             obj.add("0");
@@ -94,6 +94,7 @@ public abstract class  Inventaire {
 
     }
 }
+
         public int getQuantite(String nom){
             for(int i=0;i<inventaire.size();i++) {
                 if(nom.equals(inventaire.get(i).get(0))) {
@@ -102,7 +103,6 @@ public abstract class  Inventaire {
             }
             return 0;
         }
-
         public void setQuantite(String nom, int q) {
             for(int i=0;i<inventaire.size();i++) {
                 if(nom.equals(inventaire.get(i).get(0))) {
@@ -113,7 +113,7 @@ public abstract class  Inventaire {
                 }
             }
 
-        
+
 }
         public int getNourriture(String nom){
             for(int i=0;i<inventaire.size();i++) {

@@ -6,7 +6,6 @@ import java.util.Random;
 Probleme : Lien conso_nourriture et sassiete ? -> Attention qd on fait appel a la fonction....
 */
 
-
 public class Personnages{
 
     private boolean vivant = true;
@@ -140,6 +139,9 @@ public class Personnages{
       }
     }
 
+
+    //Description Personnage
+    // Attributs specifique et Attributs Generaux
     public void etat_Personnages(){
 
       System.out.println(this.id +"\n\n" + "ATTRIBUTS GENERAUX :\n" + "Hydratation : "+this.barre_eau +"\nSassiete : "+this.barre_nourriture+"\nMental : "+this.barre_mentale+"\nEnergie : "+this.barre_energie+"\nSante Genral : "+this.barre_sante);
@@ -148,6 +150,8 @@ public class Personnages{
 
     }
 
+
+    //MAJ Obligatoire Chaque Jour qui Passe
     public void maj_naturelle_attributs_generaux_Personnages(){
       //maj tt les 1 jours
       if(this.vivant == true){
@@ -160,6 +164,8 @@ public class Personnages{
       }
     }
 
+
+    //MAJ si le personnage Mange, Boit, Joue
     public void maj_contextuelle_attributs_generaux_Personnages(int eau,int nourriture,int mentale,int energie){
       this.barre_eau = this.barre_eau + eau;
       this.barre_nourriture = this.barre_nourriture + nourriture;
@@ -168,6 +174,8 @@ public class Personnages{
       this.barre_sante = (this.barre_nourriture + this.barre_eau + this.barre_mentale + this.barre_energie)/4;
     }
 
+
+    //MAJ affectant attributs specifique
     public void maj_contextuelle_attributs_specifique_Personnages(int force,int conso_nourriture,int intelligence,int resistance,int agilite){
       this.force = force;
       this.conso_nourriture = conso_nourriture;
@@ -176,11 +184,13 @@ public class Personnages{
       this.agilite = agilite;
     }
 
+    //MAJ Contamination d'un personnage par un autre
     public void maj_contamination_virus_Personnages(){
       this.tab_maladie[3] = true;
       this.consequence_maladie_baisse_stat();
     }
 
+    //MAJ Maladie
     public boolean maj_donnee_maladie_naturelle_Personnages(){
 
 
@@ -286,6 +296,9 @@ public class Personnages{
         return devient_fou_ou_pas;
     }
 
+
+
+    //Consequence des divers formes de maladie lors de leur apparition ou disparition
     private void consequence_fatigue(){
       maj_contextuelle_attributs_specifique_Personnages(-2,-2,-2,-2,-2);
     }
