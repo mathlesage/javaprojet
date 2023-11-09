@@ -1,4 +1,4 @@
-package Univers;
+package univers;
 import java.util.Random;
 
 

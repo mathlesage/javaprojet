@@ -1,4 +1,4 @@
-package Univers;
+package univers;
 
 public class Nourriture extends Inventaire{
     Nourriture() {
