@@ -1,5 +1,6 @@
 package univers;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public abstract class  Inventaire {
@@ -115,6 +116,20 @@ public abstract class  Inventaire {
 
 
 }
+        public void setQuantites() {
+            
+    for (ArrayList<String> element : inventaire) {
+    // 'element' représente chaque sous-liste dans l'inventaire
+
+        for (String valeur : element) {
+        // 'valeur' représente chaque chaîne de caractères dans la sous-liste actuelle
+            System.out.print(valeur + " ---> ");
+    }
+
+    System.out.println(); // Saut de ligne entre chaque sous-liste
+}
+}
+    
         public int getNourriture(String nom){
             for(int i=0;i<inventaire.size();i++) {
                 if(nom.equals(inventaire.get(i).get(0))) {

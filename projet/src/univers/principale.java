@@ -29,6 +29,7 @@ public class principale {
 		nourriture.setQuantite("Banane",-15);
 		b=nourriture.getQuantite("Banane");
 		System.out.println(b);
+		a.setQuantites();
 		
 
 }
