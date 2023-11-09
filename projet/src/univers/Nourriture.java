@@ -20,6 +20,4 @@ public class Nourriture extends Inventaire{
         return super.getEnergie(nom);
     
 }
-    public int setQuantites() {
-        return super.setQuantites();
 }
