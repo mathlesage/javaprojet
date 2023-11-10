@@ -4,7 +4,7 @@ import java.util.List;
 
 
 public abstract class  Inventaire {
-    ArrayList<ArrayList<String>> inventaire = new ArrayList<ArrayList<String>>();
+    private ArrayList<ArrayList<String>> inventaire = new ArrayList<ArrayList<String>>();
     public Inventaire(String o) {
         if( "objet".equals(o)) {
             ArrayList<String> obj=new ArrayList<String>();
