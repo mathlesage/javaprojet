@@ -110,6 +110,78 @@ public class Jour{
     //Pourra ramener de la nouriture des objets, etc...
     //On gere cela de maniere aleatoire, en fonction des attributs specifique des joueurs
     //En cours de construction
+    Scanner scan = new Scanner(System.in);
+    String input = "";
+    System.out.println("Veut tu emmener quelqun en expedition, pour ramener un objet ou de la nourriture? o/n ");
+    input = scan.nextLine(); // verifier si c'est bien o/n qui est entree
+
+    if(input.equals("n")){
+      return;
+    }
+
+    System.out.println("Tu pourras choisir au plus un objet a prendre, et un personnage.");
+
+
+    //Choix personnage
+    //Rappeler les attributs specifiques des perso ?
+
+    //Verifier qu'ils sont vivants, et qu'il ne sont pas en expedition
+    String choix_perso ="Tu peux chosir les personages suivant : \n";
+    int[] tab_aide_choix_perso = {0,0,0,0,0}; //changer attribut et faire un tableau de personnages ????
+    //On a pas 5 perso, mais 4. Pour ne pas s'embeter avec la gestion d'indice on rajoute une case de plus.
+
+
+    if(perso1.get_vivant() == true && perso1.get_en_expedition() == false){
+        choix_perso = choix_perso + "1 ---> " + perso1.get_id() + "\n";
+        tab_aide_choix_perso[1] = 1;
+    }
+
+    if(perso2.get_vivant() == true && perso2.get_en_expedition() == false){
+        choix_perso = choix_perso + "2 ---> " + perso2.get_id() + "\n";
+        tab_aide_choix_perso[2] = 1;
+    }
+
+    if(perso3.get_vivant() == true && perso3.get_en_expedition() == false){
+        choix_perso = choix_perso + "3 ---> " + perso3.get_id() + "\n";
+        tab_aide_choix_perso[3] = 1;
+    }
+
+    if(perso4.get_vivant() == true && perso4.get_en_expedition() == false){
+        choix_perso = choix_perso + "4---> " + perso4.get_id() + "\n";
+        tab_aide_choix_perso[4] = 1;
+    }
+
+
+    System.out.println(choix_perso);
+    System.out.println("Lequel choisi tu ?");
+
+    input = scan.nextLine(); //Verifier que il a entrer un numero valable grace au tableau...
+
+    while(tab_aide_choix_perso[Integer.parseInt(input)] != 1){
+      System.out.println("Impossible de choisir ce personnage !!!!");
+      System.out.println(choix_perso);
+      System.out.println("Lequel choisi tu ?");
+      input = scan.nextLine();
+    }
+
+    switch(Integer.parseInt(input)){
+      case 1 :
+        perso1.en_expedition();
+      case 2 :
+        perso2.en_expedition();
+      case 3 :
+        perso3.en_expedition();
+      case 4 :
+        perso4.en_expedition();
+    }
+
+    //Choix objet ?
+    //gerer le fait qu'on sache qui a pris quoi ?
+
+
+
+
+
   }
 
 
@@ -152,7 +224,7 @@ public class Jour{
     nourriture_possession.setQuantites();
 
 
-    if(perso1.get_vivant() == true ){
+    if(perso1.get_vivant() == true && perso1.get_en_expedition() == false ){
        while(true){
          System.out.print("Veux tu nourir "+perso1.get_id()+"? o/n");
          input = scanner.nextLine();
@@ -171,7 +243,7 @@ public class Jour{
 
 
     //ATTENTION REPLICATION DE CODE.......
-    if(perso2.get_vivant() == true ){
+    if(perso2.get_vivant() == true && perso2.get_en_expedition() == false ){
        while(true){
          System.out.print("Veux tu nourir "+perso2.get_id()+"? o/n");
          input = scanner.nextLine();
@@ -188,7 +260,7 @@ public class Jour{
        }
     }
 
-    if(perso3.get_vivant() == true ){
+    if(perso3.get_vivant() == true && perso3.get_en_expedition() == false){
        while(true){
          System.out.print("Veux tu nourir "+perso3.get_id()+"? o/n");
          input = scanner.nextLine();
@@ -205,7 +277,7 @@ public class Jour{
        }
     }
 
-    if(perso4.get_vivant() == true ){
+    if(perso4.get_vivant() == true && perso4.get_en_expedition() == false){
        while(true){
          System.out.print("Veux tu nourir "+perso4.get_id()+"? o/n");
          input = scanner.nextLine();
