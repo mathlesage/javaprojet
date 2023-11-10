@@ -1,6 +1,7 @@
-package Representation;
+package representation;
 import univers.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /** Un Jour constitue les elements dans la cave au moment d'une journee:
     -le personnage 1
@@ -90,13 +91,13 @@ public class Jour{
      Ces scenarios avec choix sont determines grace au parametre des personnages, des objets et nourriture qu'il possede.
   */
   private void selection_scenario_avec_choix(){
-
+      //Fonction en cours de constructions
+      //On devra ecrire, l'ensemble des scenario, et les stocke dans le tableau.
   }
 
   //Retourne deux scenario avec choix a absolument rejouer a un certain jour ainsi que le jour ou il faut les jouer
   private ArrayList<Integer> lancement_scenario_avec_choix(){
     return null;
-
   }
 
   //Retourne deux scenario impose a absolument rejouer a un certain jour ainsi que le jour ou il faut les jouer
@@ -105,17 +106,129 @@ public class Jour{
   }
 
   private void expedition(){
+    //Un personnage va en expedition
+    //Pourra ramener de la nouriture des objets, etc...
+    //On gere cela de maniere aleatoire, en fonction des attributs specifique des joueurs
+    //En cours de construction
   }
 
-  private void nourir(){
-    //Qui veut tu nourir ?
-    //On affiche la nouriture disponible
-    //On recupere qui le joeur veut nourir
-    //On nourri en consequence
+
+
+  private void nourir_perso(Personnages p1){
+      Scanner scan = new Scanner(System.in);
+      String input_nourriture = "";
+      String input_nombre = "";
+
+      System.out.println("Que veut tu donner à nourir ?");
+      input_nourriture = scan.nextLine();
+      System.out.println("Combien en veux tu donner ?");
+      System.out.println("Il y en a " + nourriture_possession.getNourriture(input_nourriture) + " de disponible.");
+      input_nombre = scan.nextLine();
+
+      while(Integer.parseInt(input_nombre)>nourriture_possession.getNourriture(input_nourriture)){
+        System.out.println("Pas assez de nourriture disponible ! Resaisir un nombre !!");
+        input_nombre = scan.nextLine();
+      }
+
+      nourriture_possession.setQuantite(input_nourriture,nourriture_possession.getNourriture(input_nourriture) - Integer.parseInt(input_nombre));
+
+      switch(input_nourriture){
+        case "Eau":
+          perso1.maj_contextuelle_attributs_generaux_Personnages(nourriture_possession.getNourriture("Eau"),0,0,nourriture_possession.getEnergie("Eau"));
+          break;
+        default:
+          perso1.maj_contextuelle_attributs_generaux_Personnages(0,nourriture_possession.getNourriture(input_nourriture),0,nourriture_possession.getEnergie(input_nourriture));
+      }
+
+      scan.close();
   }
+  private void nourir_cave(){
+    //En construction
+    // Il faut une certaine dose de nourriture pour nourir un personnage
+    // Ex : le pere doit manger plus que le frere
+    Scanner scanner = new Scanner(System.in);
+    String input = "";
+    System.out.print("Voici les nourritures disponibles.");
+    nourriture_possession.setQuantites();
+
+
+    if(perso1.get_vivant() == true ){
+       while(true){
+         System.out.print("Veux tu nourir "+perso1.get_id()+"? o/n");
+         input = scanner.nextLine();
+
+         //Verif qu'il a bien entree o ou n
+         while( !(input.equals("o") || input.equals("n")) ){
+           System.out.print("ATTENTION Repondre par o/n");
+           System.out.print("Veux tu nourir "+perso1.get_id()+"? o/n");
+           input = scanner.nextLine();
+           }
+
+         if(input.equals("n")){break;}
+         this.nourir_perso(this.perso1);
+       }
+    }
+
+
+    //ATTENTION REPLICATION DE CODE.......
+    if(perso2.get_vivant() == true ){
+       while(true){
+         System.out.print("Veux tu nourir "+perso2.get_id()+"? o/n");
+         input = scanner.nextLine();
+
+         //Verif qu'il a bien entree o ou n
+         while( !(input.equals("o") || input.equals("n")) ){
+           System.out.print("ATTENTION Repondre par o/n");
+           System.out.print("Veux tu nourir "+perso2.get_id()+"? o/n");
+           input = scanner.nextLine();
+           }
+
+         if(input.equals("n")){break;}
+         this.nourir_perso(this.perso2);
+       }
+    }
+
+    if(perso3.get_vivant() == true ){
+       while(true){
+         System.out.print("Veux tu nourir "+perso3.get_id()+"? o/n");
+         input = scanner.nextLine();
+
+         //Verif qu'il a bien entree o ou n
+         while( !(input.equals("o") || input.equals("n")) ){
+           System.out.print("ATTENTION Repondre par o/n");
+           System.out.print("Veux tu nourir "+perso3.get_id()+"? o/n");
+           input = scanner.nextLine();
+           }
+
+         if(input.equals("n")){break;}
+         this.nourir_perso(this.perso3);
+       }
+    }
+
+    if(perso4.get_vivant() == true ){
+       while(true){
+         System.out.print("Veux tu nourir "+perso4.get_id()+"? o/n");
+         input = scanner.nextLine();
+
+         //Verif qu'il a bien entree o ou n
+         while( !(input.equals("o") || input.equals("n")) ){
+           System.out.print("ATTENTION Repondre par o/n");
+           System.out.print("Veux tu nourir "+perso4.get_id()+"? o/n");
+           input = scanner.nextLine();
+           }
+
+         if(input.equals("n")){break;}
+         this.nourir_perso(this.perso4);
+       }
+    }
+
+    scanner.close();
+  }
+
+
 
   private void deroulement_du_jour(){
-
+    //En cours de construction
     perso1.maj_naturelle_attributs_generaux_Personnages();
     perso2.maj_naturelle_attributs_generaux_Personnages();
     perso3.maj_naturelle_attributs_generaux_Personnages();
@@ -126,7 +239,12 @@ public class Jour{
     ArrayList<Integer> set_prochain_scenario_impose =  lancement_scenario_impose();
     //On modifie les tableaux tab_scenario_choix_en_cours et tab_scenario_impose_en_cours
 
-    nourir();
+    perso1.maj_donnee_maladie_naturelle_Personnages();
+    perso2.maj_donnee_maladie_naturelle_Personnages();
+    perso3.maj_donnee_maladie_naturelle_Personnages();
+    perso4.maj_donnee_maladie_naturelle_Personnages();
+
+    nourir_cave();
     expedition();
     this.nombre_journee = this.nombre_journee+1;
   }
