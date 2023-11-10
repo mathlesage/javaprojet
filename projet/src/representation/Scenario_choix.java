@@ -27,8 +27,14 @@ public class Scenario_choix extends Scenario{
     private int totalintelligence;
     private int totalresistance;
     private int totalagilite;
-    public Scenario_choix(String histoire,int[] recompense1, int[] recompense2, int[] recompense3, int[] recompense4, int totalmental, int totalenergie,int totalsante,int totalforce, int totalintelligence, int totalresistance, int totalagilite){
+    public Scenario_choix(float variable_Aleatoire_debut,float variable_Aleatoire_fin,int jour_Necessaire_debut,int jour_Necessaire_fin,int nombre_Peronnage,int [] scenario_Necessaire,String histoire ,int[] recompense1, int[] recompense2, int[] recompense3, int[] recompense4, int totalmental, int totalenergie,int totalsante,int totalforce, int totalintelligence, int totalresistance, int totalagilite){
         super(histoire);
+        this.variable_Aleatoire_debut =variable_Aleatoire_debut;
+        this.variable_Aleatoire_fin =variable_Aleatoire_fin;
+        this.jour_Necessaire_debut =jour_Necessaire_debut;
+        this.jour_Necessaire_fin=jour_Necessaire_fin;
+        this.nombre_Peronnage=nombre_Peronnage;
+        this.scenario_Necessaire =scenario_Necessaire;
         this.recompense1=recompense1;
         this.recompense2=recompense2;
         this.recompense3=recompense3;
