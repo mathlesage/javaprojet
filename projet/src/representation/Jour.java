@@ -166,13 +166,13 @@ public class Jour{
 
     switch(Integer.parseInt(input)){
       case 1 :
-        perso1.en_expedition();
+        perso1.part_en_expedition();
       case 2 :
-        perso2.en_expedition();
+        perso2.part_en_expedition();
       case 3 :
-        perso3.en_expedition();
+        perso3.part_en_expedition();
       case 4 :
-        perso4.en_expedition();
+        perso4.part_en_expedition();
     }
 
     //Choix objet ?
