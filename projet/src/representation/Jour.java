@@ -2,6 +2,8 @@ package Representation;
 import univers.*;
 import java.util.ArrayList;
 
+
+
 /** Un Jour constitue les elements dans la cave au moment d'une journee:
     -le personnage 1
     -le personnage 2
@@ -46,7 +48,7 @@ public class Jour{
   private final Personnages perso4;
   private final Objet objet_possession;
   private final Nourriture nourriture_possession;
-
+  
 
 
   /**Tableau contenant l'ensemble des scenarios avec choix possible.
@@ -66,8 +68,13 @@ public class Jour{
   */
   private ArrayList<ArrayList<Scenario_impose>> tab_scenario_impose_en_cours = new ArrayList<ArrayList<Scenario_impose>>();
 
+  /**Tableau contenant les scenario passées */
+  
+  private ArrayList<Scenario_choix> scenarios_passe = new ArrayList<Scenario_choix>();
 
+     /**Tableau contenant l'indice des scenario passées */ 
 
+  private ArrayList<Integer> scenarios_indice_passe = new ArrayList<Integer>();
 
 
   /**Constructeur, il n'y a pas de constructeur par defaut.
@@ -90,9 +97,35 @@ public class Jour{
      Ces scenarios avec choix sont determines grace au parametre des personnages, des objets et nourriture qu'il possede.
   */
   private void selection_scenario_avec_choix(){
-
+    int nombre_de_vivant = 0;
+    if(perso1.get_vivant()){
+      nombre_de_vivant++;
+    }
+    if(perso2.get_vivant())
+    {
+      nombre_de_vivant++;
+    }
+    if(perso3.get_vivant()){
+      nombre_de_vivant++;
+    }
+    if (perso4.get_vivant()){ 
+      nombre_de_vivant++;
   }
-
+    double nombre_alatoire_entre_0_1=Math.random();
+    for (Scenario_choix scenario_choix : tab_scenario_choix) {
+      if(scenario_choix.getVariable_Aleatoire_debut()<nombre_alatoire_entre_0_1 && nombre_alatoire_entre_0_1<scenario_choix.getVariable_Aleatoire_fin() && nombre_de_vivant==scenario_choix.getNombre_Personnage() && nombre_journee<scenario_choix.getJour_Necessaire_fin() && nombre_journee>scenario_choix.getJour_Necessaire_debut() && scenarios_passe.contains(scenario_choix)){
+      //for(int a:scenario_choix.getScenario_Necessaire()){
+        //if (a.contains(scenarios_indice_passe) { 
+          
+        //}
+        //tab_scenario_choix.get(nombre_journee).add(scenario_choix);
+        break;
+      }
+        
+      }
+    }
+    
+  
   //Retourne deux scenario avec choix a absolument rejouer a un certain jour ainsi que le jour ou il faut les jouer
   private ArrayList<Integer> lancement_scenario_avec_choix(){
     return null;

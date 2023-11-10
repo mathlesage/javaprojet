@@ -1,5 +1,6 @@
 package Representation;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import univers.Objet;
@@ -14,7 +15,7 @@ public class Scenario_choix extends Scenario{
     private int jour_Necessaire_debut;
     private int jour_Necessaire_fin;
     private int nombre_Peronnage;
-    private int [] scenario_Necessaire;
+    private ArrayList<Integer> scenario_Necessaire;
 
     // Variable de chaque scenario
     private int[] recompense1 = new int[4];
@@ -27,7 +28,7 @@ public class Scenario_choix extends Scenario{
     private int totalintelligence;
     private int totalresistance;
     private int totalagilite;
-    public Scenario_choix(float variable_Aleatoire_debut,float variable_Aleatoire_fin,int jour_Necessaire_debut,int jour_Necessaire_fin,int nombre_Peronnage,int [] scenario_Necessaire,String histoire ,int[] recompense1, int[] recompense2, int[] recompense3, int[] recompense4, int totalmental, int totalenergie,int totalsante,int totalforce, int totalintelligence, int totalresistance, int totalagilite){
+    public Scenario_choix(float variable_Aleatoire_debut,float variable_Aleatoire_fin,int jour_Necessaire_debut,int jour_Necessaire_fin,int nombre_Peronnage,ArrayList<Integer> scenario_Necessaire,String histoire ,int[] recompense1, int[] recompense2, int[] recompense3, int[] recompense4, int totalmental, int totalenergie,int totalsante,int totalforce, int totalintelligence, int totalresistance, int totalagilite){
         super(histoire);
         this.variable_Aleatoire_debut =variable_Aleatoire_debut;
         this.variable_Aleatoire_fin =variable_Aleatoire_fin;
@@ -104,7 +105,7 @@ public int getNombre_Personnage() {
     return nombre_Peronnage;
 }
 
-public int[] getScenario_Necessaire() {
+public ArrayList<Integer> getScenario_Necessaire() {
     return scenario_Necessaire;
 }
 

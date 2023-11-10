@@ -14,7 +14,6 @@ public class principale {
 		a.setQuantite("Banane", 1);
 		b=a.getQuantite("Bache");
 		System.out.println(b);
-		
 		Nourriture nourriture=new Nourriture();
 		nourriture.setQuantite("Banane",-5);
 		b=nourriture.getQuantite("Banane");
@@ -53,14 +52,6 @@ public class principale {
         int totalAgilite = 90;
 
         // Créez une instance de Scenario_choix
-        Scenario_choix scenario = new Scenario_choix(variableDebut, variableFin, jourDebut, jourFin, nombrePersonnage,
-                scenarioNecessaire, "Une histoire intéressante", recompense1, recompense2, recompense3, new int[4],
-                totalMental, totalEnergie, totalSante, totalForce, totalIntelligence, totalResistance, totalAgilite);
-
-        // Appelez la méthode raconte_histoire
-        int[] resultatRecompense = scenario.raconte_histoire(perso1, perso2, perso3, perso4, objet);
-
-        // Affichez le résultat de la recompense
-        System.out.println("Résultat de la recompense : " + java.util.Arrays.toString(resultatRecompense));
+       
 }
 }
