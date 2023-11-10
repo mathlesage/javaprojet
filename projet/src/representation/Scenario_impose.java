@@ -31,6 +31,29 @@ public class Scenario_impose extends Scenario{
         this.objets = objets;    
         this.nom_Objet = nom_Objet;
     }
+    
+    public int getIndex_Evenement() {
+        return index_Evenement;
+    }
 
+    public Personnages getPersonnages() {
+        return personnages;
+    }
+
+    public Nourriture getNouritures() {
+        return nouritures;
+    }
+
+    public String getNom_Aliment() {
+        return nom_Aliment;
+    }
+
+    public Objet getObjets() {
+        return objets;
+    }
+
+    public String getNom_Objet() {
+        return nom_Objet;
+    }
 
 }
