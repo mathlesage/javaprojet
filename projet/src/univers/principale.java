@@ -25,10 +25,9 @@ public class principale {
 		b=nourriture.getNourriture("Banane");
 		System.out.println(b);
 		b=nourriture.getEnergie("Banane");
-		System.out.println(b);
-		nourriture.setQuantite("Banane",-15);
 		b=nourriture.getQuantite("Banane");
 		System.out.println(b);
+		a.setQuantites();
 		
 
 }

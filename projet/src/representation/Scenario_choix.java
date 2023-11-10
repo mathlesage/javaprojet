@@ -1,10 +1,12 @@
 package Representation;
-import univers.*;
+
 import java.util.Scanner;
 
+import univers.Objet;
+import univers.Personnages;
 
-public class Scenario_impose extends Scenario{
-    private int[] recompense1 = new int[4];
+public class Scenario_choix extends Scenario{
+        private int[] recompense1 = new int[4];
     private int[] recompense2 = new int[4];
     private int[] recompense3 = new int[4];
     private int totalmental;
@@ -14,7 +16,7 @@ public class Scenario_impose extends Scenario{
     private int totalintelligence;
     private int totalresistance;
     private int totalagilite;
-    public Scenario_impose(String histoire,int[] recompense1, int[] recompense2, int[] recompense3, int[] recompense4, int totalmental, int totalenergie,int totalsante,int totalforce, int totalintelligence, int totalresistance, int totalagilite){
+    public Scenario_choix(String histoire,int[] recompense1, int[] recompense2, int[] recompense3, int[] recompense4, int totalmental, int totalenergie,int totalsante,int totalforce, int totalintelligence, int totalresistance, int totalagilite){
         super(histoire);
         this.recompense1=recompense1;
         this.recompense2=recompense2;
@@ -57,4 +59,6 @@ public class Scenario_impose extends Scenario{
 
 }
 }
+
+    
 }
