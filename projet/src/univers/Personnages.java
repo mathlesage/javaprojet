@@ -209,14 +209,6 @@ public class Personnages{
     }
 
 
-    /**MAJ Obligatoire chaque jour qui passe.
-       On a de plus en plus faim/soif le long de la journee.
-       On a moins d'energie.
-       Le mentale baisse.
-    */
-
-
-
     //Getters
 
     public boolean get_vivant(){
@@ -271,6 +263,14 @@ public class Personnages{
       return this.contagieux;
     }
 
+
+
+
+    /**MAJ Obligatoire chaque jour qui passe.
+    On a de plus en plus faim/soif le long de la journee.
+    On a moins d'energie.
+    Le mentale baisse.
+    */
     public void maj_naturelle_attributs_generaux_Personnages(){
       //maj tt les 1 jours
       if(this.vivant == true){
