@@ -6,7 +6,18 @@ import univers.Objet;
 import univers.Personnages;
 
 public class Scenario_choix extends Scenario{
-        private int[] recompense1 = new int[4];
+
+
+    // Condition necessaire pour que le scenario s'invoque
+    private float variable_Aleatoire_debut;
+    private float variable_Aleatoire_fin;
+    private int jour_Necessaire_debut;
+    private int jour_Necessaire_fin;
+    private int nombre_Peronnage;
+    private int [] scenario_Necessaire;
+
+    // Variable de chaque scenario
+    private int[] recompense1 = new int[4];
     private int[] recompense2 = new int[4];
     private int[] recompense3 = new int[4];
     private int totalmental;
@@ -29,6 +40,8 @@ public class Scenario_choix extends Scenario{
         this.totalresistance=totalresistance;
         this.totalagilite=totalagilite;
     }
+
+
     public int[] raconte_histoire(Personnages personnages1, Personnages personnages2, Personnages personnages3, Personnages personnages4, Objet objet) {
     super.getHistoire();
     String reponse;
@@ -47,17 +60,46 @@ public class Scenario_choix extends Scenario{
     }while(reponse.equals("oui") && reponse.equals("non"));
     if (reponse.equals("non")){
         return recompense1;
+        //Recomponse s'il refuse le scenario
     }
     else
     {
+        
         if(totalmental <= familleMental && totalenergie <= familleEnergie && totalsante <= familleSante && totalforce <= familleForce && totalintelligence <= familleIntelligence && totalresistance <= familleResistance && totalagilite <= familleAgilite){
             return recompense3;
+            //Recomponse si les stats des perso sont suffisant
     }else
     {
         return recompense2;
+         //Recomponse si les stats des perso sont insuffisante
     }
 
 }
+}
+
+//getter des conditions nescessaire pour que les scenarios soit proposer
+public float getVariable_Aleatoire_debut() {
+    return variable_Aleatoire_debut;
+}
+
+public float getVariable_Aleatoire_fin() {
+    return variable_Aleatoire_fin;
+}
+
+public int getJour_Necessaire_debut() {
+    return jour_Necessaire_debut;
+}
+
+public int getJour_Necessaire_fin() {
+    return jour_Necessaire_fin;
+}
+
+public int getNombre_Personnage() {
+    return nombre_Peronnage;
+}
+
+public int[] getScenario_Necessaire() {
+    return scenario_Necessaire;
 }
 
     
