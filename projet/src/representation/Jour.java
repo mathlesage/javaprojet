@@ -1,4 +1,4 @@
-package representation;
+package Representation;
 import univers.*;
 import java.util.ArrayList;
 import java.util.Scanner;

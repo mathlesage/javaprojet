@@ -235,6 +235,9 @@ public class Personnages{
       return this.force;
     }
 
+    public String get_id(){
+      return this.id;
+    }
     public int get_conso_nourriture(){
       return this.conso_nourriture;
     }
