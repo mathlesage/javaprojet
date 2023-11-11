@@ -67,6 +67,13 @@ public class Jour{
   */
   private ArrayList<ArrayList<Scenario_impose>> tab_scenario_impose_en_cours = new ArrayList<ArrayList<Scenario_impose>>();
 
+  /**Tableau contenant les scenario passées */
+  
+  private ArrayList<Scenario_choix> scenarios_passe = new ArrayList<Scenario_choix>();
+
+     /**Tableau contenant l'indice des scenario passées */ 
+
+  private ArrayList<Integer> scenarios_indice_passe = new ArrayList<Integer>();
 
 
 
@@ -90,10 +97,49 @@ public class Jour{
      les scenarios qui seront jouer a un certain jour.
      Ces scenarios avec choix sont determines grace au parametre des personnages, des objets et nourriture qu'il possede.
   */
-  private void selection_scenario_avec_choix(){
-      //Fonction en cours de constructions
-      //On devra ecrire, l'ensemble des scenario, et les stocke dans le tableau.
-  }
+  private void selection_scenario_avec_choix() {
+    // Fonction en cours de construction
+    // On devra écrire l'ensemble des scénarios et les stocker dans le tableau.
+
+    int nombre_de_vivant = 0;
+
+    if (perso1.get_vivant()) {
+        nombre_de_vivant++;
+    }
+    if (perso2.get_vivant()) {
+        nombre_de_vivant++;
+    }
+    if (perso3.get_vivant()) {
+        nombre_de_vivant++;
+    }
+    if (perso4.get_vivant()) {
+        nombre_de_vivant++;
+    }
+
+    double nombre_aleatoire_entre_0_1 = Math.random();
+
+    for (Scenario_choix scenario_choix : tab_scenario_choix) {
+        if (scenario_choix.getVariable_Aleatoire_debut() < nombre_aleatoire_entre_0_1 &&
+                nombre_aleatoire_entre_0_1 < scenario_choix.getVariable_Aleatoire_fin() &&
+                nombre_de_vivant == scenario_choix.getNombre_Personnage() &&
+                nombre_journee < scenario_choix.getJour_Necessaire_fin() &&
+                nombre_journee > scenario_choix.getJour_Necessaire_debut() &&
+                scenarios_passe.contains(scenario_choix)) {
+
+            for (int a : scenario_choix.getScenario_Necessaire()) {
+                if (scenarios_indice_passe.contains(a)) {
+                  ArrayList<Scenario_choix> nouvelleListe = new ArrayList<>();
+                  nouvelleListe.add(scenario_choix);
+                  tab_scenario_choix_en_cours.add(nouvelleListe);
+                  //il manque un truc 
+                }
+            }
+        }
+    }
+}
+
+
+  
 
   //Retourne deux scenario avec choix a absolument rejouer a un certain jour ainsi que le jour ou il faut les jouer
   private ArrayList<Integer> lancement_scenario_avec_choix(){
