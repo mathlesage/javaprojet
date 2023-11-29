@@ -3,12 +3,12 @@ import univers.*;
 
 
 public class Scenario_impose extends Scenario{
-    int index_Evenement;
-    Personnages personnages;
-    Nourriture nouritures;
-    String nom_Aliment;
-    Objet objets;
-    String nom_Objet;
+    private int index_Evenement;
+    private Personnages personnages;
+    private Nourriture nouritures;
+    private String nom_Aliment;
+    private Objet objets;
+    private String nom_Objet;
 
     public Scenario_impose(String histoire, int index_Evenement, Personnages personnages)
     {
