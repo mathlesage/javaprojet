@@ -1,8 +1,9 @@
 package univers;
 
 public class Nourriture extends Inventaire{
-    Nourriture() {
-        super("nourriture");
+    public Nourriture() {
+        int r=0;
+        Un_alimentant fusil=new Un_alimentant();
     }
     public int getQuantite(String nom) {
         return super.getQuantite(nom);
