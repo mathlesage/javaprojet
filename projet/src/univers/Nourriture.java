@@ -2,7 +2,7 @@ package univers;
 
 import java.util.ArrayList;
 
-public class Nourriture extends Inventaire{
+public class Nourriture implements Inventaire{
     private ArrayList<Un_aliment> inventaire = new ArrayList<Un_aliment>();
     public Nourriture() {
         int r=0;
@@ -24,13 +24,17 @@ public class Nourriture extends Inventaire{
 
     public int getNourriture(String nom) {
         for(Un_aliment aliment : inventaire){
-            if(nom.equals(aliment.getnom())){
+            String no=aliment.getnom();
+            if(nom.equals(no)){
                 return aliment.getnourrissant();
             }
         }
         return 0;
     
 }
+
+
+
 
     public int getEnergie(String nom) {
         for(Un_aliment aliment : inventaire){
@@ -51,4 +55,36 @@ public void getQuantites() {
         System.out.println(); // Saut de ligne entre chaque sous-liste
 }
 
-}}
+}
+    public int getQuantite(String nom){
+    for(Un_aliment obj : inventaire) {
+        if(nom.equals(obj.getnom().toString())) {
+            return obj.getquantite();
+        }
+    }
+    return -1;
+}
+
+
+public void setQuantite(String nom, int q) {
+    for(Un_aliment obj : inventaire) {
+        if(nom.equals(obj.getnom())) {
+            obj.setQuantite(q);
+        }
+    }
+
+
+}
+
+
+public void getQuantites() {
+            
+    for (Un_aliment obj : inventaire) {
+
+        System.out.print(obj.getnom());
+        System.out.print(" ---> ");
+        System.out.print(obj.getquantite());
+        System.out.println(); // Saut de ligne entre chaque sous-liste
+}
+}
+}

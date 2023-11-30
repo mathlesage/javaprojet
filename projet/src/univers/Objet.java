@@ -2,8 +2,8 @@ package univers;
 
 import java.util.ArrayList;
 
-public class  Objet extends Inventaire {
-    private ArrayList<Un_objet> inventaire = new ArrayList<Un_objet>();
+public class  Objet implements Inventaire {
+    protected ArrayList<Un_objet> inventaire = new ArrayList<Un_objet>();
     public Objet() {Un_objet fusil = new Un_objet(NomObjet.FUSIL, 0);
         inventaire.add(fusil);
         
@@ -43,11 +43,38 @@ public class  Objet extends Inventaire {
         Un_objet pile = new Un_objet(NomObjet.PILE, 0);
         inventaire.add(pile);
     }
-    public int getQuantite(String nom) {
-        return super.getQuantite(nom);
+
+
+    public int getQuantite(String nom){
+        for(Un_objet obj : inventaire) {
+            if(nom.equals(obj.getnom())) {
+                return obj.getquantite();
+            }
+        }
+        return -1;
 }
     public void setQuantite(String nom, int q) {
-        super.setQuantite(nom, q);
+        for(Un_objet obj : inventaire) {
+            if(nom.equals(obj.getnom())) {
+                obj.setQuantite(q);
+            }
+        }
+
+
 }
+
+    public void getQuantites() {
+        
+    for (Un_objet obj : inventaire) {
+
+        System.out.print(obj.getnom());
+        System.out.print(" ---> ");
+        System.out.print(obj.getquantite());
+        System.out.println(); // Saut de ligne entre chaque sous-liste
+}
+}
+
+
+
     
 }
