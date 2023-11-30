@@ -23,34 +23,14 @@ public abstract class  Inventaire {
 
 }
 
-        public void setQuantites() {
+        public void getQuantites() {
             
         for (Un_objet obj : inventaire) {
 
             System.out.print(obj.getnom());
             System.out.print(" ---> ");
-            System.out.print(obj.getquantit());
+            System.out.print(obj.getquantite());
             System.out.println(); // Saut de ligne entre chaque sous-liste
     }
-
-
 }
-
-    
-        public int getNourriture(String nom){
-            for(int i=0;i<inventaire.size();i++) {
-                if(nom.equals(inventaire.get(i).get(0))) {
-                    return Integer.parseInt(inventaire.get(i).get(2));
-                }
-            }
-            return 0;
-        }
-        public int getEnergie(String nom){
-            for(int i=0;i<inventaire.size();i++) {
-                if(nom.equals(inventaire.get(i).get(0))) {
-                    return Integer.parseInt(inventaire.get(i).get(3));
-                }
-            }
-            return 0;
-        }
 }

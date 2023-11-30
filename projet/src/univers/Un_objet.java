@@ -11,8 +11,8 @@ public class Un_objet {
     
 }
     // le getter de la variable nom
-    public NomObjet getnom() {
-        return this.nom;
+    public String getnom() {
+        return this.nom.getNom();
 }
     // le getter de la variable quantité
     public int getquantite() {
