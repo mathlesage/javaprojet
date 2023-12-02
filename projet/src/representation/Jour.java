@@ -143,14 +143,86 @@ public class Jour{
 
   //Retourne deux scenario avec choix a absolument rejouer a un certain jour ainsi que le jour ou il faut les jouer
   private ArrayList<Integer> lancement_scenario_avec_choix(){
-
+    
     return null;
   }
 
   //Retourne deux scenario impose a absolument rejouer a un certain jour ainsi que le jour ou il faut les jouer
-  private ArrayList<Integer> lancement_scenario_impose(){
+  private ArrayList<Integer> lancement_scenario_impose(ChanceNode node) {
+    //Raconte l'histoire du scénario
+    System.out.println(node.getHistoire());
+    int id_scenario = node.getIndex_Evenement();
+    
+      switch(id_scenario) {
+        
+        case 1:
+        // Retirer un objet id 1
+          node.getObjets().setQuantite(node.getNom_Objet(),-1 );
+          break;
+        case 2:
+        // retire tout les objets : id 2
+        int quantite_objet=node.getObjets().getQuantite(node.getNom_Objet());
+        node.getObjets().setQuantite(node.getNom_Objet(),quantite_objet );
+        break;
+        case 3:
+        //rajouter un objet
+        node.getObjets().setQuantite(node.getNom_Objet(),1 );
+        break;
+
+        case 101:
+        //rajouter un aliment 1 fois : id 101
+        node.getNouritures().setQuantite(node.getNom_Aliment(), 1);
+        break;
+        
+        case 102:
+        //rajouter un aliment 2 fois : id 102
+        node.getNouritures().setQuantite(node.getNom_Aliment(), 2);
+        break;
+
+        case 103:
+        //rajouter un aliment 3 fois id 103
+         node.getNouritures().setQuantite(node.getNom_Aliment(), 3);
+         break;
+
+         case 105:
+         //doubler la quantiter d'un aliment : id 105
+         int quantite_nourriture=node.getNouritures().getQuantite(node.getNom_Objet());
+         node.getNouritures().setQuantite(node.getNom_Aliment(), quantite_nourriture);
+         break;
+         case 111:
+        //enlever un aliment 1 fois : id 111
+        node.getNouritures().setQuantite(node.getNom_Aliment(), -1);
+        break;
+        
+        case 112:
+        //enlever un aliment 2 fois : id 112
+        node.getNouritures().setQuantite(node.getNom_Aliment(), -2);
+        break;
+
+        case 113:
+        //enlever un aliment 3 fois id 113
+         node.getNouritures().setQuantite(node.getNom_Aliment(), -3);
+         break;
+         
+         case 115:
+         //enlever toute la quantiter d'un aliment : id 115
+         quantite_nourriture=node.getNouritures().getQuantite(node.getNom_Objet())*-1;
+         node.getNouritures().setQuantite(node.getNom_Aliment(), quantite_nourriture);
+         break;
+
+         
+         //Par la suite je vais faire les personnages j'attends juste mon amie Yacine 
+
+
+         
+        
+        
+    }
     return null;
+    
   }
+  
+
 
   private void expedition(){
     //Un personnage va en expedition

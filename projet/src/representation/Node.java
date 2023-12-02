@@ -4,8 +4,8 @@ public abstract class Node {
     public Node(String histoire) {
     this.histoire = histoire;
     }
-    public void getHistoire(){
-        System.out.println(histoire);
+    public String getHistoire(){
+        return (histoire);
     }
 
 }

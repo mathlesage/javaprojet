@@ -12,7 +12,7 @@ public class principale {
              System.out.println(objet.getQuantite("Fusil"));
 
 
-
+            
             Un_aliment pate=new Un_aliment(NomObjet.PATE,0,1,3,0);
             pate.setQuantite(3);
             System.out.println(pate.getquantite());

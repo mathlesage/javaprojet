@@ -1,5 +1,5 @@
 package Representation;
-
+import java.util.Random;
 import java.util.Scanner;
 
 import univers.Objet;

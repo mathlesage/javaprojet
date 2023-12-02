@@ -20,12 +20,13 @@ public class Un_objet {
 }
     /* Le setter de la variable quantité avec une vérification que la variable soit bien
         > 0*/
-    public void setQuantite(int quantite) { 
-        int nouv_quantite = quantite+this.quantite;
-        if (nouv_quantite < 0) {
-            throw new IllegalArgumentException("La quantité ne peut pas être négatif.");
-        }
+public void setQuantite(int quantite) { 
+    int nouv_quantite = quantite + this.quantite;
+    if (nouv_quantite < 0) {
+        this.quantite = 0; // Définit la quantité à zéro si la somme est négative
+    } else {
         this.quantite = nouv_quantite;
     }
-
 }
+}
+

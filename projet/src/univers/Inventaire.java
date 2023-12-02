@@ -1,5 +1,4 @@
 package univers;
-import java.util.ArrayList;
 
 
 public interface Inventaire {
