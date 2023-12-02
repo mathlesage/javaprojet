@@ -1,7 +1,7 @@
 package Representation;
-public abstract class Scenario {
+public abstract class Node {
     private String histoire;
-    public Scenario(String histoire) {
+    public Node(String histoire) {
     this.histoire = histoire;
     }
     public void getHistoire(){

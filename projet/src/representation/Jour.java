@@ -52,24 +52,24 @@ public class Jour{
 
   /**Tableau contenant l'ensemble des scenarios avec choix possible.
   */
-  private static ArrayList<Scenario_choix> tab_scenario_choix = new ArrayList<Scenario_choix>();
+  private static ArrayList<DecisionNode> tab_DecisionNode = new ArrayList<DecisionNode>();
   /**Tableau contenant l'ensemble des scenarios imposes possible.
   */
-  private static ArrayList<Scenario_impose> tab_scenario_impose = new ArrayList<Scenario_impose>();
+  private static ArrayList<ChanceNode> tab_scenario_impose = new ArrayList<ChanceNode>();
 
   /**Tableau contenant à l'indice i, les i-eme scenario avec choix que l'on va jouer au i-eme jour
      On le construit petit a petit.
   */
-  private ArrayList<ArrayList<Scenario_choix>> tab_scenario_choix_en_cours = new ArrayList<ArrayList<Scenario_choix>>();
+  private ArrayList<ArrayList<DecisionNode>> tab_DecisionNode_en_cours = new ArrayList<ArrayList<DecisionNode>>();
 
   /**Tableau contenant à l'indice i, les i-eme scenario impose que l'on va jouer au i-eme jour
      On le construit petit a petit.
   */
-  private ArrayList<ArrayList<Scenario_impose>> tab_scenario_impose_en_cours = new ArrayList<ArrayList<Scenario_impose>>();
+  private ArrayList<ArrayList<ChanceNode>> tab_scenario_impose_en_cours = new ArrayList<ArrayList<ChanceNode>>();
 
   /**Tableau contenant les scenario passées */
   
-  private ArrayList<Scenario_choix> scenarios_passe = new ArrayList<Scenario_choix>();
+  private ArrayList<DecisionNode> scenarios_passe = new ArrayList<DecisionNode>();
 
      /**Tableau contenant l'indice des scenario passées */ 
 
@@ -93,7 +93,7 @@ public class Jour{
 
 
   /**Parmis les scenarios avec choix disponible, il faudra chaque jour jouer un ou plusieurs scenario.
-     Cette methode va modifier l'attribut tab_scenario_choix_en_cours, en rajoutant,
+     Cette methode va modifier l'attribut tab_DecisionNode_en_cours, en rajoutant,
      les scenarios qui seront jouer a un certain jour.
      Ces scenarios avec choix sont determines grace au parametre des personnages, des objets et nourriture qu'il possede.
   */
@@ -118,19 +118,19 @@ public class Jour{
 
     double nombre_aleatoire_entre_0_1 = Math.random();
 
-    for (Scenario_choix scenario_choix : tab_scenario_choix) {
-        if (scenario_choix.getVariable_Aleatoire_debut() < nombre_aleatoire_entre_0_1 &&
-                nombre_aleatoire_entre_0_1 < scenario_choix.getVariable_Aleatoire_fin() &&
-                nombre_de_vivant == scenario_choix.getNombre_Personnage() &&
-                nombre_journee < scenario_choix.getJour_Necessaire_fin() &&
-                nombre_journee > scenario_choix.getJour_Necessaire_debut() &&
-                scenarios_passe.contains(scenario_choix)) {
+    for (DecisionNode DecisionNode : tab_DecisionNode) {
+        if (DecisionNode.getVariable_Aleatoire_debut() < nombre_aleatoire_entre_0_1 &&
+                nombre_aleatoire_entre_0_1 < DecisionNode.getVariable_Aleatoire_fin() &&
+                nombre_de_vivant == DecisionNode.getNombre_Personnage() &&
+                nombre_journee < DecisionNode.getJour_Necessaire_fin() &&
+                nombre_journee > DecisionNode.getJour_Necessaire_debut() &&
+                scenarios_passe.contains(DecisionNode)) {
 
-            for (int a : scenario_choix.getScenario_Necessaire()) {
+            for (int a : DecisionNode.getScenario_Necessaire()) {
                 if (scenarios_indice_passe.contains(a)) {
-                  ArrayList<Scenario_choix> nouvelleListe = new ArrayList<>();
-                  nouvelleListe.add(scenario_choix);
-                  tab_scenario_choix_en_cours.add(nouvelleListe);
+                  ArrayList<DecisionNode> nouvelleListe = new ArrayList<>();
+                  nouvelleListe.add(DecisionNode);
+                  tab_DecisionNode_en_cours.add(nouvelleListe);
                   //il manque un truc 
                 }
             }
@@ -143,6 +143,7 @@ public class Jour{
 
   //Retourne deux scenario avec choix a absolument rejouer a un certain jour ainsi que le jour ou il faut les jouer
   private ArrayList<Integer> lancement_scenario_avec_choix(){
+
     return null;
   }
 
@@ -267,7 +268,7 @@ public class Jour{
     Scanner scanner = new Scanner(System.in);
     String input = "";
     System.out.print("Voici les nourritures disponibles.");
-    nourriture_possession.setQuantites();
+    nourriture_possession.getQuantites();
 
 
     if(perso1.get_vivant() == true && perso1.get_en_expedition() == false ){
@@ -352,10 +353,10 @@ public class Jour{
     perso3.maj_naturelle_attributs_generaux_Personnages();
     perso4.maj_naturelle_attributs_generaux_Personnages();
 
-    selection_scenario_avec_choix(); //On rempli l'attribut tab_scenario_choix_en_cours de scenario avec choix a jouer
-    ArrayList<Integer> set_prochain_scenario_choix = lancement_scenario_avec_choix();
+    selection_scenario_avec_choix(); //On rempli l'attribut tab_DecisionNode_en_cours de scenario avec choix a jouer
+    ArrayList<Integer> set_prochain_DecisionNode = lancement_scenario_avec_choix();
     ArrayList<Integer> set_prochain_scenario_impose =  lancement_scenario_impose();
-    //On modifie les tableaux tab_scenario_choix_en_cours et tab_scenario_impose_en_cours
+    //On modifie les tableaux tab_DecisionNode_en_cours et tab_scenario_impose_en_cours
 
     perso1.maj_donnee_maladie_naturelle_Personnages();
     perso2.maj_donnee_maladie_naturelle_Personnages();

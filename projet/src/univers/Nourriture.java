@@ -45,17 +45,7 @@ public class Nourriture implements Inventaire{
         return 0;
     
 }
-public void getQuantites() {
-            
-    for (Un_objet obj : inventaire) {
 
-        System.out.print(obj.getnom());
-        System.out.print(" ---> ");
-        System.out.print(obj.getquantite());
-        System.out.println(); // Saut de ligne entre chaque sous-liste
-}
-
-}
     public int getQuantite(String nom){
     for(Un_aliment obj : inventaire) {
         if(nom.equals(obj.getnom().toString())) {

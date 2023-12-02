@@ -5,7 +5,7 @@ import java.util.Scanner;
 import univers.Objet;
 import univers.Personnages;
 
-public class Scenario_choix extends Scenario{
+public class DecisionNode extends Node{
 
 
     // Condition necessaire pour que le scenario s'invoque
@@ -27,7 +27,7 @@ public class Scenario_choix extends Scenario{
     private int totalintelligence;
     private int totalresistance;
     private int totalagilite;
-    public Scenario_choix(float variable_Aleatoire_debut,float variable_Aleatoire_fin,int jour_Necessaire_debut,int jour_Necessaire_fin,int nombre_Peronnage,int [] scenario_Necessaire,String histoire ,int[] recompense1, int[] recompense2, int[] recompense3, int[] recompense4, int totalmental, int totalenergie,int totalsante,int totalforce, int totalintelligence, int totalresistance, int totalagilite){
+    public DecisionNode(float variable_Aleatoire_debut,float variable_Aleatoire_fin,int jour_Necessaire_debut,int jour_Necessaire_fin,int nombre_Peronnage,int [] scenario_Necessaire,String histoire ,int[] recompense1, int[] recompense2, int[] recompense3, int[] recompense4, int totalmental, int totalenergie,int totalsante,int totalforce, int totalintelligence, int totalresistance, int totalagilite){
         super(histoire);
         this.variable_Aleatoire_debut =variable_Aleatoire_debut;
         this.variable_Aleatoire_fin =variable_Aleatoire_fin;
