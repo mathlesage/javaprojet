@@ -427,7 +427,7 @@ public class Jour{
 
     selection_scenario_avec_choix(); //On rempli l'attribut tab_DecisionNode_en_cours de scenario avec choix a jouer
     ArrayList<Integer> set_prochain_DecisionNode = lancement_scenario_avec_choix();
-    ArrayList<Integer> set_prochain_scenario_impose =  lancement_scenario_impose();
+    //ArrayList<Integer> set_prochain_scenario_impose =  lancement_scenario_impose();
     //On modifie les tableaux tab_DecisionNode_en_cours et tab_scenario_impose_en_cours
 
     perso1.maj_donnee_maladie_naturelle_Personnages();
