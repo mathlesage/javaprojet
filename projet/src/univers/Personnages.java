@@ -4,32 +4,20 @@ import java.util.Random;
 
 /** Un personnage du jeu est un Personnages avec plusieurs attribus :
 des attributs generaux, des attributs specifiques et quelques autres.
-Le joueur commencera avec 4 joeurs de son choix. On a 8 types de
+Le joueur commencera avec 4 joueurs de son choix. On a 8 types de
 personnages differents, chacun identifie par un numero.
 @author ABDELOUHAB Yacine
-@version 1
+@version 2
 */
 public class Personnages{
 
+    private Personnages_du_jeu perso;
 
-    /** 8 personnages differents : correpondances avec des chiffres utiles pour plus tard.
-        1 -> pere
-        2 -> mere
-        3 -> soeur
-        4 -> frere
-        5 -> medecin
-        6 -> athlete
-        7 -> enfant turbulant
-        8 -> cuisinière
-    */
-    private String id;
-
-
-    /** Personnages vivant ou pas*/
-    private boolean vivant = true;
-
-
-
+    /** Indique si le personnage est en expedition ou pas.
+     */
+    private boolean en_expedition = false;
+ 
+    
     /*--------------------
     - ATTRIBUTS GENERAUX -
     ---------------------*/
@@ -69,58 +57,29 @@ public class Personnages{
     /** Attribut specifique au personnage */
     private int agilite;
 
-
-
-
-
-    /*------------------------------------------------------------------------------ -
-    -  Attributs maladie : on peut tomber malade, savoir qu'on a la maladie ou pas,  -
-    -  contaminer si on a un certain type de maladie...                              -
-    -                                                                                -
-    -  4 Type de maladie                                                             -
-    -      - 0 : Fatigue                                                             -
-    -      - 1 : Depression                                                          -
-    -      - 2 : Folie                                                               -
-    -      - 3 : Virus                                                               -
-    -      - 4 : Mutation                                                            -
-    -                                                                                -
-    --------------------------------------------------------------------------------*/
-
-
-    /** Tableau de boolean permettant de savoir si on est malade ou pas, sachant que l'indice :
-        0 represente la Fatigue
-        1 represente la Depression
-        2 represente la Folie
-        3 represente la contamination par un Virus
-      - 4 represente la Mutation
-    */
-    private boolean [] tab_maladie = {false,false,false,false,false};
-
-    /** Permet de savoir depuis combien de temps on est malade.
-    On ne l'est pas eternellement.
-    */
+    /** Etat global du personnage : resume de la barre sante et si il est vivant ou pas*/
+    private Etat_Personnages etat_global = Etat_Personnages.Vigoureux;
+    
+    /** Personnage malade ou pas ?*/
+    private Etat_Personnages etat_malade = Etat_Personnages.PasMalade;
+    /** Etat mentale du personnage : Si Fou debloque evenement incontrole*/
+    private Etat_Personnages etat_mentale = Etat_Personnages.Heureux;
+    
+    /** Etat de fatigue du personnage*/
+    private Etat_Personnages etat_energie = Etat_Personnages.Repose;
     private int temps_malade_virus = 0;
 
 
-    //On laisse ? On considere qu'on est forcement contagieux si on a un virus dans le corps??
-    private boolean contagieux = false;
-
-
-    /** Indique si le personnage est en expedition ou pas.
+  
+    
+    /**Un seul Constructeur : quel personnage choisis t on?
     */
-    private boolean en_expedition = false;
+    public Personnages(Personnages_du_jeu perso){
 
+      switch(perso){
 
-
-    /**Seul constructeur. Il suffira juste d'indiquer le numero du Personnages.
-       Voir l'attribut id du personnage pour plus de renseignement.
-    */
-    public Personnages(int type_personne){
-
-      switch(type_personne){
-
-        case 1:
-          this.id = "Papa";
+        case Pere:
+          this.perso = perso;
           this.force = 8 ;
           this.conso_nourriture = 8;
           this.intelligence = 5;
@@ -128,8 +87,8 @@ public class Personnages{
           this.agilite = 3;
           break;
 
-        case 2:
-          this.id = "Maman";
+        case Mere:
+          this.perso = perso ;
           this.force = 6;
           this.conso_nourriture = 4;
           this.intelligence = 8;
@@ -137,8 +96,8 @@ public class Personnages{
           this.agilite = 6;
           break;
 
-        case 3:
-          this.id = "Soeur";
+        case Soeur:
+          this.perso = perso;
           this.force = 3;
           this.conso_nourriture = 2;
           this.intelligence = 5;
@@ -146,8 +105,8 @@ public class Personnages{
           this.agilite = 5;
           break;
 
-        case 4:
-          this.id = "Frere";
+        case Frere:
+          this.perso = perso;
           this.force = 4;
           this.conso_nourriture = 3;
           this.intelligence = 6;
@@ -155,8 +114,8 @@ public class Personnages{
           this.agilite = 10;
           break;
 
-        case 5:
-          this.id = "Medecin";
+        case Medecin:
+          this.perso = perso;
           this.force = 6;
           this.conso_nourriture = 6 ;
           this.intelligence = 8;
@@ -164,8 +123,8 @@ public class Personnages{
           this.agilite = 5;
           break;
 
-        case 6:
-          this.id = "Athlete";
+        case Athlete:
+          this.perso = perso;
           this.force = 10;
           this.conso_nourriture = 8;
           this.intelligence = 6;
@@ -173,8 +132,8 @@ public class Personnages{
           this.agilite = 10;
           break;
 
-        case 7:
-          this.id = "Cousin";
+        case Cousin:
+          this.perso = perso;
           this.force = 5;
           this.conso_nourriture = 3;
           this.intelligence = 5;
@@ -182,8 +141,8 @@ public class Personnages{
           this.agilite = 7;
           break;
 
-        case 8:
-          this.id = "Cuisiniere";
+        case Cuisiniere:
+          this.perso = perso;
           this.force = 7;
           this.conso_nourriture = 8;
           this.intelligence = 5;
@@ -199,20 +158,23 @@ public class Personnages{
     */
     public void to_String(){
 
-      if(this.vivant == true){
-        System.out.println(this.id + "est vivant(e).\n\n" + "ATTRIBUTS GENERAUX :\n" + "Hydratation : "+this.barre_eau +"\nSassiete : "+this.barre_nourriture+"\nMental : "+this.barre_mentale+"\nEnergie : "+this.barre_energie+"\nSante Genral : "+this.barre_sante);
+      if(this.etat_global != Etat_Personnages.Mort){
+        System.out.println(this.perso.getPrenom() + " est vivant(e).\n" + this.etat_global.name() + "\n" + this.etat_malade.name() + "\n" + this.etat_mentale.name() ); 
+        System.out.println(	"\nATTRIBUTS GENERAUX :\n" + "Hydratation : "+this.barre_eau +"\nSassiete : "+this.barre_nourriture+"\nMental : "+this.barre_mentale+"\nEnergie : "+this.barre_energie+"\nSante Genral : "+this.barre_sante);
         System.out.println("\n"+"ATTRIBUTS SPECIFIQUES :\n"+"Force : "+this.force+"\nConso_Nourriture : "+this.conso_nourriture+"\nIntelligence : "+this.intelligence+"\nResistance : "+this.resistance+"\nAgilite : "+this.agilite);
-      }
+       }
       else{
-        System.out.println(this.id + "est mort(e).");
+        System.out.println(this.perso.getPrenom() + "est mort(e).");
       }
     }
 
 
     //Getters
-
     public boolean get_vivant(){
-      return this.vivant;
+      if(this.etat_global != Etat_Personnages.Mort) {
+    	  return true;
+      }
+      return false;
     }
 
     public int get_barre_nourriture(){
@@ -230,14 +192,19 @@ public class Personnages{
     public int get_barre_sante(){
       return this.barre_sante;
     }
+    
+    public int get_barre_eau(){
+        return this.barre_eau;
+      }
 
     public int get_force(){
       return this.force;
     }
 
-    public String get_id(){
-      return this.id;
+    public Personnages_du_jeu get_perso(){
+      return this.perso;
     }
+    
     public int get_conso_nourriture(){
       return this.conso_nourriture;
     }
@@ -262,10 +229,21 @@ public class Personnages{
       return this.en_expedition;
     }
 
-    public boolean contagieux(){
-      return this.contagieux;
+    public Etat_Personnages get_etat_global() {
+    	return this.etat_global;
     }
-
+    public Etat_Personnages get_etat_malade() {
+    	return this.etat_malade;
+    }
+    public Etat_Personnages get_etat_mentale() {
+    	return this.etat_mentale;
+    }
+    public Etat_Personnages get_etat_energie() {
+    	return this.etat_energie;
+    }
+ 
+    
+    
 
 
 
@@ -273,16 +251,45 @@ public class Personnages{
     On a de plus en plus faim/soif le long de la journee.
     On a moins d'energie.
     Le mentale baisse.
+    On met a jour l'attribut etat_global
     */
     public void maj_naturelle_attributs_generaux_Personnages(){
-      //maj tt les 1 jours
-      if(this.vivant == true){
+      //maj a faire tt les 1 jours en fin de journee
+      if(this.etat_global != Etat_Personnages.Mort){
           this.barre_nourriture = this.barre_nourriture - 20; // 5 jour sans manger max
           this.barre_eau =  this.barre_eau - 33; // 3 jour sans boire max
           this.barre_mentale = this.barre_mentale - 25;
-          this.barre_energie = (this.barre_nourriture <= 50) ? this.barre_energie - 25 : this.barre_energie - 10 ;
+          this.barre_energie = (this.barre_nourriture <= 50) ? this.barre_energie - 25 : this.barre_energie - 10 ; // perd bcp d'energie si faim
           this.barre_sante = (this.barre_nourriture + this.barre_eau + this.barre_mentale + this.barre_energie)/4;
-
+      }
+     
+  
+      //Meurt si un des attributs generaux passe sous ou egal zero.
+      if(this.barre_nourriture <= 0 || this.barre_eau<=0 || this.barre_mentale<= 0 || this.barre_energie<=0) {
+    	  this.barre_nourriture = Math.max(0, this.barre_nourriture);
+    	  this.barre_eau = Math.max(0, this.barre_eau);
+    	  this.barre_mentale = Math.max(0, this.barre_mentale);
+    	  this.barre_energie = Math.max(0, this.barre_energie);
+    	  this.barre_sante = 0;
+    	  this.etat_global = Etat_Personnages.Mort;
+      }
+      
+      if( !(this.barre_sante <= this.etat_global.getBorne_Sup() && this.barre_sante >= this.etat_global.getBorne_Inf()  ) ) {
+    	  if(this.barre_sante >= 80 && this.barre_sante <= 100 ){
+    		  this.etat_global = Etat_Personnages.Vigoureux;
+    	  }
+    	  else if(this.barre_sante >= 65 && this.barre_sante <= 79 ){
+    		  this.etat_global = Etat_Personnages.Sain;
+    	  }
+    	  else if(this.barre_sante >= 50 && this.barre_sante <= 64 ){
+    		  this.etat_global = Etat_Personnages.Stable;
+    	  }
+    	  else if(this.barre_sante >= 31 && this.barre_sante <= 49 ){
+    		  this.etat_global = Etat_Personnages.Affaibli;
+    	  }
+    	  else if(this.barre_sante >= 1 && this.barre_sante <= 30 ){
+    		  this.etat_global = Etat_Personnages.Vulnerable;
+    	  }
       }
     }
 
@@ -293,6 +300,8 @@ public class Personnages{
       Autre contexte ?
     */
     public void maj_contextuelle_attributs_generaux_Personnages(int eau,int nourriture,int mentale,int energie){
+      
+    	
       this.barre_eau = this.barre_eau + eau;
       this.barre_nourriture = this.barre_nourriture + nourriture;
       this.barre_mentale = this.barre_mentale + mentale;
@@ -304,130 +313,121 @@ public class Personnages{
     /**MAJ permettant de modifie les attributs specifique d'un personnage.
     */
     public void maj_contextuelle_attributs_specifique_Personnages(int force,int conso_nourriture,int intelligence,int resistance,int agilite){
-      this.force = force;
-      this.conso_nourriture = conso_nourriture;
-      this.intelligence = intelligence;
-      this.resistance = resistance;
-      this.agilite = agilite;
+      
+      if(force < 0) {
+    	  this.force = 0;
+      }
+      else {
+    	  this.force = force;
+      }
+      
+      if(conso_nourriture < 0) {
+    	  this.conso_nourriture = 0;
+      }
+      else {
+    	  this.conso_nourriture = conso_nourriture;
+      }
+      
+      if(intelligence < 0) {
+    	  this.intelligence = 0;
+      }
+      else {
+    	  this.intelligence = intelligence;
+      }
+      
+      if(resistance < 0) {
+    	  this.resistance = 0;
+      }
+      else {
+    	  this.resistance = resistance;
+      }
+ 
+      if(agilite < 0) {
+    	  this.agilite = 0;
+      }
+      else {
+    	  this.agilite = agilite;
+      }
+
     }
 
 
     /**MAJ Contamination d'un personnage par un autre.
     */
     public void maj_contamination_virus_Personnages(){
-      this.tab_maladie[3] = true;
-      this.consequence_maladie_baisse_stat();
+      if(this.etat_malade == Etat_Personnages.PasMalade ) {
+          this.etat_malade = Etat_Personnages.Malade;
+          this.consequence_maladie_baisse_stat();
+      }
     }
 
 
-
     //MAJ Maladie
-    public boolean maj_donnee_maladie_naturelle_Personnages(){
+    public void maj_donnee_etat_naturelle_Personnages(){
 
-
-        /*******************************************************************
-        * Changement Naturelle de la maladie                               *
-        * Si le personnage est malade, on fait les modifications necessaire*
-        * Attention, la personne peut mourir. Verifier ensuite si c'est le *
-        * cas...                                                           *
-        *                                                                  *
-        * On ne s'atarde pas dans cette fonction sur la Mutation car       *
-        *     - Depend FORTEMENT des evenements et des choix du joeur      *
-        *     - Permet de debloquer certains evenement                     *
-        *                                                                  *
-        *******************************************************************/
-
-        /*********************************************************************
-        Une personne peut atteindre le stade de folie, si elle atteint ce stade,
-        la fonction renvoie TRUE, sinon FALSE.
-        La folie engendre une cascade d'evenement negatif et incontrolable.
-        *********************************************************************/
-
-
-        /********************************************************************
-        * Rappel : dans l'attribut tab_maladie, les indices représentent :  *
-        * 0->Fatigue                                                        *
-        * 1->Depression                                                     *
-        * 2->Fou                                                            *
-        * 3->Virus                                                          *
-        * 4->Mutation                                                       *
-        ********************************************************************/
-
-
-
-
-        /*****************************************************************
-        GESTION FATIGUE :  CONSEQUENCE => BAISSE DES ATTRIBUTS SPECIFIQUES
-        ******************************************************************/
-
-        //Attention on doit faire attention, on applique la consequence qu'une seul fois !!!!
-        //En effet, si fatigué pls jours d'affilé, on doit pas baisser les stat indefiniment..
-        if(this.barre_energie < 25 && tab_maladie[0]==false){
-          tab_maladie[0] = true;
-          this.consequence_fatigue();
+    	
+    	/**************
+        GESTION Energie
+        ***************/
+    	
+    	//Si energie basse baisse des stat generales
+        if( !(this.barre_energie <= this.etat_energie.getBorne_Sup() || this.barre_energie >= this.etat_energie.getBorne_Inf()  ) ) {
+      	  if(this.barre_energie >= 30 && this.barre_energie <= 100 ){
+      		  this.etat_energie = Etat_Personnages.Repose;
+      		  this.consequence_fin_fatigue();
+      	  }
+      	  else if(this.barre_sante >= 0 && this.barre_sante <= 29 ){
+      		  this.etat_global = Etat_Personnages.Fatigue;
+      		  this.consequence_fatigue();
+      	  }
         }
-        //Si individu n'est plus malade, faire la maj tableau donnee...
-        else if(this.barre_energie >= 25 && tab_maladie[0]==true){
-          this.consequence_fin_fatigue();
-          tab_maladie[0] = false;
-        }
-
-
+    	
+  
 
         /**************
         GESTION MENTALE
         ***************/
-        boolean devient_fou_ou_pas = false;
-
-        if(this.barre_mentale < 50){
-
-          if(this.barre_mentale >= 25 && tab_maladie[1] == false){
-            //On commence a entrer dans la zone de folie
-            //Baisse des attributs specifique
-            tab_maladie[1] = true ;
-            tab_maladie[2] = false ;
-            this.consequence1_folie();
+        
+        
+       
+        if( !(this.barre_mentale <= this.etat_mentale.getBorne_Sup() && this.barre_mentale >= this.etat_mentale.getBorne_Inf()  ) ) {
+        	  if(this.barre_mentale >= 50 && this.barre_mentale <= 100 ){
+        		  this.etat_mentale = Etat_Personnages.Heureux;
+        		  this.fin_consequence_depression();
+        	  }
+        	  else if(this.barre_mentale >= 25 && this.barre_mentale <= 49 ){
+        		  this.etat_mentale = Etat_Personnages.Depressif;
+        		  this.consequence_depression();
+        	  }
+        	  else if(this.barre_mentale >= 0 && this.barre_mentale <= 24 ){
+        		  this.etat_mentale = Etat_Personnages.Fou;
+        		  //debloque necessairement des evenements catastrophique
+        	  }
           }
 
-          if(this.barre_mentale < 25 && tab_maladie[2] == false){
-            //On est rentré dans la folie
-            tab_maladie[2] = true ;
-            devient_fou_ou_pas = this.consequence2_folie();
-          }
-        }
-
-        else if(this.barre_mentale >= 50 && tab_maladie[1] == true){
-          this.fin_consequence_folie();
-          tab_maladie[1] = false ;
-          tab_maladie[2] = false ;
-        }
-
+        
+        
+        
+        
 
         /**************
         GESTION   VIRUS
         ***************/
-
-        //On ne peut etre malade plus de 5 jours consecutifs
-
-        if(this.tab_maladie[3] == true){
-
-            //On a depasse 5 jours de maladie
+        
+        if(this.etat_malade == Etat_Personnages.Malade ) {
+        	//On a depasse 5 jours de maladie
             this.temps_malade_virus = this.temps_malade_virus + 1;
             if(this.temps_malade_virus > 5){
 
               this.temps_malade_virus = 0;
-              this.tab_maladie[3] = false;
+              this.etat_malade = Etat_Personnages.PasMalade;
               this.consequence_maladie_guerison_augmente_stat();
             }
-
             else{
-              this.consequence_maladie(); //Va t-il mourir ? //Va t-il guerir tout seul ? //Va t-il contaminer qql?
-            }
+                this.consequence_maladie(); //Va t-il mourir ? //Va t-il guerir tout seul ?
+              }
         }
-        return devient_fou_ou_pas;
-    }
-
-
+    }    
 
     //Consequence des divers formes de maladie lors de leur apparition ou disparition
     private void consequence_fatigue(){
@@ -437,46 +437,26 @@ public class Personnages{
       maj_contextuelle_attributs_specifique_Personnages(2,2,2,2,2);
     }
 
-    private void consequence1_folie(){
+    private void consequence_depression(){
       /*
       Diminution de l'intelligence et de l'agilite
       */
       maj_contextuelle_attributs_specifique_Personnages(0,0,-4,0,-4);
     }
-    private void fin_consequence_folie(){
+    private void fin_consequence_depression(){
       maj_contextuelle_attributs_specifique_Personnages(0,0,4,0,4);
     }
-    private boolean consequence2_folie(){
-        /*
-         1 chance sur 4 de devenir fou
-        */
 
-        Random r = new Random();
-        int n = r.nextInt(4);
-
-        if(n==0){
-          return true;
-        }
-        return false;
-    }
 
     private void consequence_maladie(){
 
-      //A t-il contamine une personne ?
-      // Peut etre : proba de 1/7
-
-      Random r = new Random();
-      int n = r.nextInt(7);
-
-      if(n==0){
-        this.contagieux = true;
-      }
-
       //Peut on guerir ?
       // Oui avec proba = 1/(6-nombre_de_jour_malade)
-      n = r.nextInt(6-this.temps_malade_virus);
-
+      Random r = new Random();
+      int n = r.nextInt(6-this.temps_malade_virus);
+    
       if(n==0){
+    	this.etat_malade = Etat_Personnages.PasMalade;
         this.consequence_maladie_guerison_augmente_stat();
         return;
       }
@@ -485,10 +465,9 @@ public class Personnages{
       //Oui avec proba = 1/(10-nombre_de_jour_malade)
       n = r.nextInt(10-this.temps_malade_virus);
       if(n==0){
-        this.vivant = true;
+        this.etat_global = Etat_Personnages.Mort;
         return;
       }
-
     }
     private void consequence_maladie_baisse_stat(){
         /***********************************************************************************
@@ -515,4 +494,7 @@ public class Personnages{
       this.en_expedition = false;
     }
 
+    public void set_temps_malade_virus(int n) {
+    	this.temps_malade_virus = n;
+    }
 }
