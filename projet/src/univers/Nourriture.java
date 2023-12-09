@@ -1,80 +1,93 @@
 package univers;
 
-import java.util.ArrayList;
 
-public class Nourriture implements Inventaire{
-    private ArrayList<Un_aliment> inventaire = new ArrayList<Un_aliment>();
+/**
+  Classe Nourriture, permet de connaitre le nombre des differents aliments present dans la cave ou pas.
+  @author ABDELOUHAB Yacine QUATREBOEUFS Matheo
+*/
+public class Nourriture extends Objet{
+
     public Nourriture() {
-        int r=0;
-        Un_aliment banane=new Un_aliment(NomObjet.BANANE,r,3,2,0);
+
+        Un_element banane=new Un_element(Elements_du_jeu.BANANE,0);
         inventaire.add(banane);
 
-        Un_aliment pate=new Un_aliment(NomObjet.PATE,r,1,3,0);
+        Un_element pate=new Un_element(Elements_du_jeu.PATE,0);
         inventaire.add(pate);
 
-        Un_aliment friandise=new Un_aliment(NomObjet.FRANDISE,r,3,1,0);
+        Un_element friandise=new Un_element(Elements_du_jeu.FRANDISE,0);
         inventaire.add(friandise);
 
-        Un_aliment eau=new Un_aliment(NomObjet.EAU,r,0,0,3);
+        Un_element eau=new Un_element(Elements_du_jeu.EAU,0);
         inventaire.add(eau);
 
-        Un_aliment soda=new Un_aliment(NomObjet.SODA,r,3,0,2);
+        Un_element soda=new Un_element(Elements_du_jeu.SODA,0);
         inventaire.add(soda);
     }
 
-    public int getNourriture(String nom) {
-        for(Un_aliment aliment : inventaire){
-            String no=aliment.getnom();
-            if(nom.equals(no)){
-                return aliment.getnourrissant();
+    	@Override
+    public int getQuantite(String nom) throws IllegalArgumentException{
+      try{
+        return super.getQuantite(nom);
+      }
+      catch(IllegalArgumentException e){
+        throw new IllegalArgumentException("Aliment inexistant !");
+      }
+    }
+    	
+    	
+    	@Override
+    public void setQuantite(String nom, int q) throws IllegalArgumentException,ArithmeticException{
+      try{
+        super.setQuantite(nom,q);
+      }
+      catch(IllegalArgumentException e){
+        throw new IllegalArgumentException("Aliment inexistant !");
+      }
+      catch(ArithmeticException e){
+        throw new ArithmeticException(e.getMessage());
+      }
+
+    }
+
+    public int getNourrissant(String nom) throws IllegalArgumentException {
+
+        boolean verif = false;
+        for(Un_element aliment : inventaire){
+            if(nom.equals(aliment.getNom())){
+                return aliment.getNourrissant();
             }
         }
-        return 0;
-    
-}
+        if(!verif){
+          throw new IllegalArgumentException("Aliment Inexistant !");
+        }
+        return -1; //Probleme non gere
+      }
 
+    public int getEnergie(String nom) throws IllegalArgumentException{
 
-
-
-    public int getEnergie(String nom) {
-        for(Un_aliment aliment : inventaire){
-            if(nom.equals(aliment.getnom())){
+        boolean verif = false;
+        for(Un_element aliment : inventaire){
+            if(nom.equals(aliment.getNom())){
                 return aliment.getEnergie();
             }
         }
-        return 0;
-    
-}
-
-    public int getQuantite(String nom){
-    for(Un_aliment obj : inventaire) {
-        if(nom.equals(obj.getnom().toString())) {
-            return obj.getquantite();
+        if(!verif){
+          throw new IllegalArgumentException("Aliment Inexistant !");
         }
-    }
-    return -1;
+        return -1; //Probleme non gere
 }
 
-
-public void setQuantite(String nom, int q) {
-    for(Un_aliment obj : inventaire) {
-        if(nom.equals(obj.getnom())) {
-            obj.setQuantite(q);
+    public int getHydratation(String nom) throws IllegalArgumentException{
+        boolean verif = false;
+        for(Un_element aliment : inventaire){
+            if(nom.equals(aliment.getNom())){
+                return aliment.getHydratation();
+            }
         }
+        if(!verif){
+          throw new IllegalArgumentException("Aliment Inexistant !");
+        }
+        return -1; //Probleme non gere
     }
-
-
-}
-
-
-public void getQuantites() {
-            
-    for (Un_aliment obj : inventaire) {
-
-        System.out.print(obj.getnom());
-        System.out.print(" ---> ");
-        System.out.print(obj.getquantite());
-        System.out.println(); // Saut de ligne entre chaque sous-liste
-}
-}
 }
