@@ -191,10 +191,14 @@ public class Jour {
       if (condition_1 && condition_2 && condition_3 && condition_4 && condition_5 && tousPresent
           && id_peronnage_necessaire && objet_Necessaire) {
         {
+          // Créeation de liste pour pas générer des beugs
           while (tab_DecisionNode_en_cours.size() <= jours + 1) {
             tab_DecisionNode_en_cours.add(new ArrayList<>());
           }
+          // Rajoute le déscison node qui remplie tous les critères et stop la fonction
+          // pour en rajouter qu'un seul
           tab_DecisionNode_en_cours.get(jours).add(DecisionNode.getId());
+          return;
         }
       }
     }
