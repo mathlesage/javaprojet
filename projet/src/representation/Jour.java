@@ -145,7 +145,6 @@ public class Jour {
       boolean condition_3 = nombre_de_vivant == DecisionNode.getNombre_Personnage();
       boolean condition_4 = nombre_journee < DecisionNode.getJour_Necessaire_fin();
       boolean condition_5 = nombre_journee > DecisionNode.getJour_Necessaire_debut();
-      boolean condition_6 = scenarios_passe.contains(DecisionNode);
 
       boolean tousPresent = true;
 
@@ -172,7 +171,8 @@ public class Jour {
       if (DecisionNode.get_id_peronnage_necessaire() != -1) {
         id_peronnage_necessaire = false;
         for (Personnages personne : personnages) {
-          if (personne.get_perso().getIdentifiant() == DecisionNode.get_id_peronnage_necessaire()) {
+          if (personne.get_perso().getIdentifiant() == DecisionNode.get_id_peronnage_necessaire()
+              && personne.get_vivant()) {
             id_peronnage_necessaire = true;
           }
         }
@@ -188,13 +188,17 @@ public class Jour {
 
         }
       }
-      if (condition_1 && condition_2 && condition_3 && condition_4 && condition_5 && condition_6 && tousPresent
+      if (condition_1 && condition_2 && condition_3 && condition_4 && condition_5 && tousPresent
           && id_peronnage_necessaire && objet_Necessaire) {
         {
+          // Créeation de liste pour pas générer des beugs
           while (tab_DecisionNode_en_cours.size() <= jours + 1) {
             tab_DecisionNode_en_cours.add(new ArrayList<>());
           }
-          tab_DecisionNode_en_cours.get(jours + 1).add(DecisionNode.getId());
+          // Rajoute le déscison node qui remplie tous les critères et stop la fonction
+          // pour en rajouter qu'un seul
+          tab_DecisionNode_en_cours.get(jours).add(DecisionNode.getId());
+          return;
         }
       }
     }
