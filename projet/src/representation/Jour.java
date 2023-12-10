@@ -47,12 +47,16 @@ public class Jour {
   // Personnages Objet et Nourriture sont des variables qui sont passe par
   // reference
   // On pourra donc les modifie par la suite : c'est leurs reference qui est final
+  private int jours;
   private final Personnages perso1;
   private final Personnages perso2;
   private final Personnages perso3;
   private final Personnages perso4;
   private final Objet objet_possession;
   private final Nourriture nourriture_possession;
+  // list des personnages (Yacine je te laisse les ajouter je sais pas comment
+  // marche final avec une instance)
+  private ArrayList<Personnages> personnages;
 
   /**
    * Tableau contenant l'ensemble des scenarios avec choix possible.
@@ -79,7 +83,7 @@ public class Jour {
 
   /** Tableau contenant les scenario passées */
 
-  private ArrayList<DecisionNode> scenarios_passe = new ArrayList<DecisionNode>();
+  private ArrayList<Integer> scenarios_passe = new ArrayList<Integer>();
 
   /** Tableau contenant l'indice des scenario passées */
 
@@ -99,6 +103,7 @@ public class Jour {
     this.perso4 = p4;
     this.objet_possession = objet_possession;
     this.nourriture_possession = nourriture_possession;
+    this.jours = 0;
   }
 
   /**
@@ -113,8 +118,9 @@ public class Jour {
     // Fonction en cours de construction
     // On devra écrire l'ensemble des scénarios et les stocker dans le tableau.
 
-    int nombre_de_vivant = 0;
+    int nombre_de_vivant = 0; // Initialisation du compteur de personnages vivants
 
+    // Vérifie si chaque personnage est vivant et incrémente le compteur
     if (perso1.get_vivant()) {
       nombre_de_vivant++;
     }
@@ -128,23 +134,67 @@ public class Jour {
       nombre_de_vivant++;
     }
 
+    // Génère un nombre aléatoire entre 0 et 1
     double nombre_aleatoire_entre_0_1 = Math.random();
 
+    // Parcours des nœuds de décision dans le tableau tab_DecisionNode
     for (DecisionNode DecisionNode : tab_DecisionNode) {
-      if (DecisionNode.getVariable_Aleatoire_debut() < nombre_aleatoire_entre_0_1 &&
-          nombre_aleatoire_entre_0_1 < DecisionNode.getVariable_Aleatoire_fin() &&
-          nombre_de_vivant == DecisionNode.getNombre_Personnage() &&
-          nombre_journee < DecisionNode.getJour_Necessaire_fin() &&
-          nombre_journee > DecisionNode.getJour_Necessaire_debut() &&
-          scenarios_passe.contains(DecisionNode)) {
+      // Vérifie si les conditions sont remplies pour ce DecisionNode spécifique
+      boolean condition_1 = DecisionNode.getVariable_Aleatoire_debut() < nombre_aleatoire_entre_0_1;
+      boolean condition_2 = nombre_aleatoire_entre_0_1 < DecisionNode.getVariable_Aleatoire_fin();
+      boolean condition_3 = nombre_de_vivant == DecisionNode.getNombre_Personnage();
+      boolean condition_4 = nombre_journee < DecisionNode.getJour_Necessaire_fin();
+      boolean condition_5 = nombre_journee > DecisionNode.getJour_Necessaire_debut();
+      boolean condition_6 = scenarios_passe.contains(DecisionNode);
 
-        for (int a : DecisionNode.getScenario_Necessaire()) {
-          if (scenarios_indice_passe.contains(a)) {
-            ArrayList<DecisionNode> nouvelleListe = new ArrayList<>();
-            nouvelleListe.add(DecisionNode);
-            tab_DecisionNode_en_cours.add(nouvelleListe);
-            // il manque un truc
+      boolean tousPresent = true;
+
+      for (int nombre : scenarios_passe) {
+        boolean trouve = false;
+
+        // Vérifie si l'élément du premier tableau est présent dans le deuxième tableau
+        for (int valeur : DecisionNode.getScenario_Necessaire()) {
+          if (nombre == valeur) {
+            trouve = true;
+            break; // Sort de la boucle une fois qu'il est trouvé
           }
+        }
+
+        // Si l'élément du premier tableau n'est pas trouvé dans le deuxième tableau, on
+        // modifie le booléen
+        if (!trouve) {
+          tousPresent = false;
+          break; // On arrête la boucle, on a trouvé un élément manquant
+        }
+      }
+      boolean id_peronnage_necessaire = true;
+      // si aucun personnage n'est necessaire
+      if (DecisionNode.get_id_peronnage_necessaire() != -1) {
+        id_peronnage_necessaire = false;
+        for (Personnages personne : personnages) {
+          if (personne.get_perso().getIdentifiant() == DecisionNode.get_id_peronnage_necessaire()) {
+            id_peronnage_necessaire = true;
+          }
+        }
+      }
+      boolean objet_Necessaire = true;
+      if (DecisionNode.getObjetnecessaire() != null) {
+        objet_Necessaire = false;
+
+        for (String nom_objet_posseder : objet_possession.getObjetsposseder()) {
+          if (DecisionNode.getObjetnecessaire().equals(nom_objet_posseder)) {
+            objet_Necessaire = true;
+          }
+
+        }
+      }
+      if (condition_1 && condition_2 && condition_3 && condition_4 && condition_5 && condition_6 && tousPresent
+          && id_peronnage_necessaire && objet_Necessaire) {
+        {
+          while (tab_DecisionNode_en_cours.size() <= jours + 1) {
+            tab_DecisionNode_en_cours.add(new ArrayList<>());
+          }
+          tab_DecisionNode_en_cours.get(jours + 1).add(DecisionNode.getId());
         }
       }
     }

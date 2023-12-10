@@ -17,16 +17,26 @@ public class DecisionNode extends Node {
     private int nombre_Peronnage;
     private int[] scenario_Necessaire;
     private int id_peronnage_necessaire;
+    private String nom_Objet_Necessaire;
     // Variable de chaque scenario
     private int totalmental;
+    // Le total de l'energie de la famille doit être supèrieur à ca
     private int totalenergie;
+    // Le total de la santé de la famille doit être supèrieur à ca
     private int totalsante;
+    // Le total de la force de la famille doit être supèrieur à ca
     private int totalforce;
+    // Le total de l'intelligence de la famille doit être supèrieur à ca
     private int totalintelligence;
+    // Le total de la résistance de la famille doit être supèrieur à ca
     private int totalresistance;
+    // Le total de l'agilité de la famille doit être supèrieur à ca
     private int totalagilite;
+    // Récompense 1 si on refuse le scénarios
     private Map<String, ArrayList<IntPair>> dico1;
+    // Récompense 2 si on accepte le scénarios mais les stats sont insuffisantes
     private Map<String, ArrayList<IntPair>> dico2;
+    // Récompense 3 si on accepte le scénarios et les stats sont suffisantes
     private Map<String, ArrayList<IntPair>> dico3;
     // Mettre -1 si on veut une histoire sur la famille sinon mettre le numero du
     // personnage
@@ -52,6 +62,7 @@ public class DecisionNode extends Node {
         this.totalintelligence = totalintelligence;
         this.totalresistance = totalresistance;
         this.totalagilite = totalagilite;
+
         this.dico1 = dico1;
         this.dico2 = dico2;
         this.dico3 = dico3;
@@ -62,6 +73,7 @@ public class DecisionNode extends Node {
     public void raconte_histoire(ArrayList<Personnages> personnagesList, Objet objet,
             ArrayList<ArrayList<Integer>> decisionNodes,
             ArrayList<ArrayList<Integer>> chanceNodes, int j) {
+        // Si on veut faire un scénario sur un personnage unique on peut sinon mettre -1
         if (numero_perso > -1) {
             if (personnagesList.get(numero_perso).get_vivant()) {
                 histoire = personnagesList.get(numero_perso).get_perso().getPrenom() + histoire;
@@ -80,7 +92,7 @@ public class DecisionNode extends Node {
         int familleIntelligence = 0;
         int familleResistance = 0;
         int familleAgilite = 0;
-
+        // Additionne chaque statistics de la famille pour ensuite les comparer
         for (Personnages personnage : personnagesList) {
             familleMental += personnage.get_barre_mentale();
             familleEnergie += personnage.get_barre_energie();
@@ -141,8 +153,12 @@ public class DecisionNode extends Node {
         return scenario_Necessaire;
     }
 
-    public int id_peronnage_necessaire() {
-        return id_peronnage_necessaire();
+    public int get_id_peronnage_necessaire() {
+        return id_peronnage_necessaire;
+    }
+
+    public String getObjetnecessaire() {
+        return nom_Objet_Necessaire;
     }
 
 }
