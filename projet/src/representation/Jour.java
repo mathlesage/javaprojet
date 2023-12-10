@@ -171,7 +171,8 @@ public class Jour {
       if (DecisionNode.get_id_peronnage_necessaire() != -1) {
         id_peronnage_necessaire = false;
         for (Personnages personne : personnages) {
-          if (personne.get_perso().getIdentifiant() == DecisionNode.get_id_peronnage_necessaire()) {
+          if (personne.get_perso().getIdentifiant() == DecisionNode.get_id_peronnage_necessaire()
+              && personne.get_vivant()) {
             id_peronnage_necessaire = true;
           }
         }
