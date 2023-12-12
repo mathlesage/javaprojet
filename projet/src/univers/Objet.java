@@ -86,10 +86,12 @@ public class Objet implements Inventaire {
   public void getQuantites() {
 
     for (Un_element obj : inventaire) {
-      System.out.print(obj.getNom());
-      System.out.print(" ---> ");
-      System.out.print(obj.getQuantite());
-      System.out.println(); // Saut de ligne entre chaque sous-liste
+	    if(obj.getQuantite() > 0) {
+	    	System.out.print(obj.getNom());
+	        System.out.print(" ---> ");
+	        System.out.print(obj.getQuantite());
+	        System.out.println(); // Saut de ligne entre chaque sous-liste
+	    }
     }
   }
 
@@ -103,6 +105,15 @@ public class Objet implements Inventaire {
     }
 
     return objetsQuantitePositive;
+  }
+  
+  public boolean get_objet_dispo() {
+	  for(Un_element e : this.inventaire) {
+		  if(e.getQuantite() > 0) {
+			  return true;
+		  }
+	  }
+	  return false;
   }
 
 }
