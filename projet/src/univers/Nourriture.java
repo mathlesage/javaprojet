@@ -90,4 +90,15 @@ public class Nourriture extends Objet{
         }
         return -1; //Probleme non gere
     }
+    
+    
+    public boolean get_nourriture_dispo() {
+  	  for(Un_element e : inventaire) {
+  		  if(e.getQuantite() > 0) {
+  			  return true;
+  		  }
+  	  }
+  	  return false;
+    }
+
 }
