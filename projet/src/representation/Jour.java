@@ -1,7 +1,8 @@
-package representation;
+package Representation;
 
 import univers.*;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -78,7 +79,6 @@ public class Jour {
    */
   private ArrayList<ArrayList<Integer>> tab_scenario_impose_en_cours = new ArrayList<ArrayList<Integer>>();
 
-
   /** Tableau contenant l'indice des scenario passées */
 
   private ArrayList<Integer> scenarios_indice_passe = new ArrayList<Integer>();
@@ -89,8 +89,7 @@ public class Jour {
    * les nourritures,
    * choisi, par le joueur.
    */
-  
- 
+
   public Jour(Personnages p1, Personnages p2, Personnages p3, Personnages p4, Objet objet_possession,
       Nourriture nourriture_possession) {
     this.perso1 = p1;
@@ -275,59 +274,54 @@ public class Jour {
 
   }
 
-  
   private void expedition() {
     // Un personnage va en expedition
     // Pourra ramener de la nouriture des objets, etc...
 
-	  
-	  
-    //On verifie d'abord qu'on peut effectivement aller en expedition
-	 int verif1 = 1;
-	 int verif2 = 1;
-	 int verif3 = 1;
-     int verif4 = 1;
-     int nbr_boucle = 1;
-     int verif_courant = 1;
-     
-	 for(Personnages p : this.personnages) {
-		 if(p.get_vivant() == false || p.get_en_expedition()==true) {
-			 verif_courant = 0;
-		 }
-		 else {
-			 verif_courant = 1;
-		 }
-		
-		 switch(nbr_boucle){
-		 	case 1:
-		 		verif1 = verif_courant;
-		 	case 2 :
-		 		verif2 = verif_courant;
-		 	case 3 :
-		 		verif3 = verif_courant;
-		 	case 4 :
-		 		verif4 = verif_courant;	
-		 }
-		 nbr_boucle = nbr_boucle + 1;	 
-	 }
-	 
-	 if(verif1 + verif2 + verif3 + verif4 == 0) {
-		 return;
-	 }
-	 
-	 
-	 //On peut emmener qql en expedition. Est ce que le joeur veut ?
+    // On verifie d'abord qu'on peut effectivement aller en expedition
+    int verif1 = 1;
+    int verif2 = 1;
+    int verif3 = 1;
+    int verif4 = 1;
+    int nbr_boucle = 1;
+    int verif_courant = 1;
+
+    for (Personnages p : this.personnages) {
+      if (p.get_vivant() == false || p.get_en_expedition() == true) {
+        verif_courant = 0;
+      } else {
+        verif_courant = 1;
+      }
+
+      switch (nbr_boucle) {
+        case 1:
+          verif1 = verif_courant;
+        case 2:
+          verif2 = verif_courant;
+        case 3:
+          verif3 = verif_courant;
+        case 4:
+          verif4 = verif_courant;
+      }
+      nbr_boucle = nbr_boucle + 1;
+    }
+
+    if (verif1 + verif2 + verif3 + verif4 == 0) {
+      return;
+    }
+
+    // On peut emmener qql en expedition. Est ce que le joeur veut ?
     Scanner scan = new Scanner(System.in);
     String input = "";
     System.out.println("Veut tu emmener quelqun en expedition, pour ramener un objet ou de la nourriture? o/n ");
     input = scan.nextLine();
-    
-    //verifie qu'on a bien entree o ou n
-    while( ! (input.equals("n") || input.equals("o")) ) {
-    	System.out.println("Entre o pour oui ou n pour non!!!!");
-    	input = scan.nextLine();
+
+    // verifie qu'on a bien entree o ou n
+    while (!(input.equals("n") || input.equals("o"))) {
+      System.out.println("Entre o pour oui ou n pour non!!!!");
+      input = scan.nextLine();
     }
-   
+
     if (input.equals("n")) {
       scan.close();
       return;
@@ -335,8 +329,6 @@ public class Jour {
 
     System.out.println("Tu pourras choisir au plus un objet a prendre, et un personnage.");
 
-    
-    
     // Choix personnage
     // Rappeler les attributs specifiques des perso ?
 
@@ -383,76 +375,129 @@ public class Jour {
       case 1:
         perso1.part_en_expedition();
         perso_expedition = this.perso1;
+        break;
       case 2:
         perso2.part_en_expedition();
         perso_expedition = this.perso2;
+        break;
       case 3:
         perso3.part_en_expedition();
         perso_expedition = this.perso3;
+        break;
       case 4:
         perso4.part_en_expedition();
         perso_expedition = this.perso4;
+        break;
+      default:
+        perso_expedition = this.perso1;
     }
-     
-    
+
     // Choix objet ?
-    
+
     Elements_du_jeu e_expedition = null;
     // On verifie qu'il peut en choisir un...
-    if(objet_possession.get_objet_dispo() == true) {
-    	System.out.println("Voici les objets ainsi que leurs quantites : \n");
-        this.objet_possession.getQuantites();
-        
-        System.out.println("Veux tu prendre un objet avec toi ? o/n");
+    if (objet_possession.get_objet_dispo() == true) {
+      System.out.println("Voici les objets ainsi que leurs quantites : \n");
+      this.objet_possession.getQuantites();
+
+      System.out.println("Veux tu prendre un objet avec toi ? o/n");
+      input = scan.nextLine();
+      while (!(input.equals("n") || input.equals("o"))) {
+        System.out.println("Entre o pour oui ou n pour non!!!!");
         input = scan.nextLine();
-        while( ! (input.equals("n") || input.equals("o")) ) {
-        	System.out.println("Entre o pour oui ou n pour non!!!!");
-        	input = scan.nextLine();
+      }
+
+      if (input.equals("o")) {
+        System.out.println("Quel objet veut tu prendre ? Ecrit son nom. (Premiere lettre en majuscule !)");
+        input = scan.nextLine();
+
+        boolean verif = false;
+        while (!verif) {
+          for (Elements_du_jeu obj : Elements_du_jeu.values()) {
+            if (input.equals(obj.getNom())) {
+              e_expedition = obj;
+              objet_possession.setQuantite(obj.getNom(), objet_possession.getQuantite(obj.getNom()) - 1);
+              verif = true;
+              break;
+            }
+          }
+          if (!verif) {
+            System.out.println("Nom inccorect. Ressaisir l'objet. (Premiere lettre en majuscule !)");
+            input = scan.nextLine();
+          }
         }
-        
-        if(input.equals("o")){
-        	System.out.println("Quel objet veut tu prendre ? Ecrit son nom. (Premiere lettre en majuscule !)");
-        	input = scan.nextLine();
-        	
-        	boolean verif = false;
-        	while(!verif) {
-        		for(Elements_du_jeu obj : Elements_du_jeu.values()) {
-            		if( input.equals(obj.getNom())){
-            			e_expedition = obj;
-            			objet_possession.setQuantite(obj.getNom(), objet_possession.getQuantite(obj.getNom()) - 1  );
-            			verif = true;
-            			break;
-            		}
-            	}
-        		if(!verif) {
-        			System.out.println("Nom inccorect. Ressaisir l'objet. (Premiere lettre en majuscule !)");
-        			input = scan.nextLine();
-        		}
-        	}
-        		
-        }
-        else {
-        	System.out.println("Pas d'Objet pris. Expedition realise sans objet. Bon courage.");
-        }    
+
+      } else {
+        System.out.println("Pas d'Objet pris. Expedition realise sans objet. Bon courage.");
+      }
+    } else {
+      System.out.println("Pas d'Objet disponible. Expedition realise sans objet. Bon courage.");
     }
-    else {
-    	System.out.println("Pas d'Objet disponible. Expedition realise sans objet. Bon courage.");
+    int point_perso = (perso_expedition.get_barre_energie() * (perso_expedition.get_force()
+        + perso_expedition.get_intelligence() + perso_expedition.get_agilite() + perso_expedition.get_resistance()));
+    int point_arm = 0;
+    if (e_expedition == null) {
+      point_arm = 0;
+    } else {
+      point_arm = e_expedition.getPoint() * 40;
     }
-    
-    
-    //Perso choisi ---> perso_expedition, la fonction s'arrete si pas de perso
-    //Objet pris -----> e_expedition Null si rien pris
-    
-    //gestion de l'expedition en tant que tel
-    //Faire avec Matheo : on a dit on le fait avec les scenario
-    
-    
-    
-    
-    
+    Random random = new Random();
+    int min = 1;
+    int max = 4000;
+    int randomNumber = random.nextInt(max - min + 1) + min;
+    int notetoal = randomNumber + point_arm + point_perso;
+    // Supposons que notetoal est une variable de type int déjà définie
+
+    if (notetoal < 600) {
+
+    } else if (notetoal < 12000) {
+
+    } else if (notetoal < 1800) {
+
+    } else if (notetoal < 2400) {
+
+    } else if (notetoal < 3000) {
+
+    } else if (notetoal < 3600) {
+
+    } else if (notetoal < 4200) {
+
+    } else if (notetoal < 4800) {
+
+    } else if (notetoal < 5400) {
+
+    } else if (notetoal < 6000) {
+
+    } else if (notetoal < 6600) {
+
+    } else if (notetoal < 7200) {
+
+    } else if (notetoal < 7800) {
+
+    } else if (notetoal < 8400) {
+
+    } else if (notetoal < 9000) {
+
+    } else if (notetoal < 9600) {
+
+    } else if (notetoal < 10200) {
+
+    } else if (notetoal < 10800) {
+
+    } else if (notetoal < 11400) {
+
+    } else if (notetoal < 12000) {
+
+    }
+
+    // Perso choisi ---> perso_expedition, la fonction s'arrete si pas de perso
+    // Objet pris -----> e_expedition Null si rien pris
+
+    // gestion de l'expedition en tant que tel
+    // Faire avec Matheo : on a dit on le fait avec les scenario
+
     scan.close();
   }
-
 
   private void nourir_perso(Personnages p1) {
     Scanner scan = new Scanner(System.in);
@@ -460,27 +505,25 @@ public class Jour {
     String input_nombre = "";
 
     System.out.println("Que veut tu donner à nourir ?");
-    
-    //On verifie juste que la nourriture existe
+
+    // On verifie juste que la nourriture existe
     boolean verif = false;
-    while(!verif){
-    	input_nourriture = scan.nextLine();
-    	try {
-        	nourriture_possession.getQuantite(input_nourriture);
-        	verif = true;
-        }
-        catch(IllegalArgumentException e) {
-        	e.getMessage();
-        	System.out.println("Ressaisir le nom.");
-        	verif = false;
-        }	
+    while (!verif) {
+      input_nourriture = scan.nextLine();
+      try {
+        nourriture_possession.getQuantite(input_nourriture);
+        verif = true;
+      } catch (IllegalArgumentException e) {
+        e.getMessage();
+        System.out.println("Ressaisir le nom.");
+        verif = false;
+      }
     }
-    
+
     System.out.println("Combien en veux tu donner ?");
     System.out.println("Il y en a " + nourriture_possession.getQuantite(input_nourriture) + " de disponible.");
     input_nombre = scan.nextLine();
 
-    
     while (Integer.parseInt(input_nombre) > nourriture_possession.getQuantite(input_nourriture)) {
       System.out.println("Pas assez de nourriture disponible ! Resaisir un nombre !!");
       input_nombre = scan.nextLine();
@@ -502,91 +545,74 @@ public class Jour {
     scan.close();
   }
 
-  private void nourir_cave(){
+  private void nourir_cave() {
     // Il faut une certaine dose de nourriture pour nourir un personnage
     // Ex : le pere doit manger plus que le frere
-	//Variable a ajuster ensuite
-	  
-	 
-	
-	  
-	  
-	  
-	  
-	  
-	if(!nourriture_possession.get_nourriture_dispo()){
-		System.out.println("Plus de nourriture de disponible. On ne peut nourrir personne !!!");
-		return;
-	}
-	
-	System.out.print("Voici l'etat des personnages.");
-	for(Personnages p : personnages){
-		p.to_String();
-	}
-	
-	System.out.print("Voici les nourritures disponibles.");
-    nourriture_possession.getQuantites();
-    
-    
-    System.out.println("On va choisir les personnages a nourir. (Donner le numero de la personne que vous voulez nourir)");
-    
-    int[] tab_a_nourir = {0,0,0,0,0};
-    
-    for(int i = 1;i<= 4 ;i++) {
-    	if(personnages.get(i-1).get_vivant() && personnages.get(i-1).get_en_expedition() == false) {
-    		System.out.println(i + "------>" + personnages.get(i-1).get_perso().name()  );
-    		tab_a_nourir[i-1] = 1;
-    	}
+    // Variable a ajuster ensuite
+
+    if (!nourriture_possession.get_nourriture_dispo()) {
+      System.out.println("Plus de nourriture de disponible. On ne peut nourrir personne !!!");
+      return;
     }
-    
+
+    System.out.print("Voici l'etat des personnages.");
+    for (Personnages p : personnages) {
+      p.to_String();
+    }
+
+    System.out.print("Voici les nourritures disponibles.");
+    nourriture_possession.getQuantites();
+
+    System.out
+        .println("On va choisir les personnages a nourir. (Donner le numero de la personne que vous voulez nourir)");
+
+    int[] tab_a_nourir = { 0, 0, 0, 0, 0 };
+
+    for (int i = 1; i <= 4; i++) {
+      if (personnages.get(i - 1).get_vivant() && personnages.get(i - 1).get_en_expedition() == false) {
+        System.out.println(i + "------>" + personnages.get(i - 1).get_perso().name());
+        tab_a_nourir[i - 1] = 1;
+      }
+    }
+
     Scanner scanner = new Scanner(System.in);
     String input = "";
     boolean verif = true;
-    while(nourriture_possession.get_nourriture_dispo() && verif) {
-    	
-    	System.out.println("Inserer le numero du personnages que vous voulez nourrir :  ");
-    	input = scanner.nextLine() ;
-    	
-    	//verifier que num ok avec tab_a_nourir
-    	nourir_perso(personnages.get(Integer.parseInt(input)));
-    	
-    	
-    	System.out.println("Veux tu nourir quelqu'un d'autre ? o/n ");
-    	input = scanner.nextLine() ;
-    	
-    	//verifier que bien o ou n
-    	
-    	if(input.equals("n")) {
-    		verif = false;
-    	}	
+    while (nourriture_possession.get_nourriture_dispo() && verif) {
+
+      System.out.println("Inserer le numero du personnages que vous voulez nourrir :  ");
+      input = scanner.nextLine();
+
+      // verifier que num ok avec tab_a_nourir
+      nourir_perso(personnages.get(Integer.parseInt(input)));
+
+      System.out.println("Veux tu nourir quelqu'un d'autre ? o/n ");
+      input = scanner.nextLine();
+
+      // verifier que bien o ou n
+
+      if (input.equals("n")) {
+        verif = false;
+      }
     }
-   
-    if(nourriture_possession.get_nourriture_dispo()) {
-    	System.out.println("Plus de nourriture disponible.");
+
+    if (nourriture_possession.get_nourriture_dispo()) {
+      System.out.println("Plus de nourriture disponible.");
     }
 
     scanner.close();
   }
 
-  
-
-  
   private void deroulement_du_jour() {
-    
-	  
-	for(Personnages p : personnages) {
-		
-	} 
-	
-	  
-	  
-	  
-	  
-	  
-	for(Personnages p : personnages) {
-	   	p.maj_naturelle_attributs_generaux_Personnages();
-   }
-	
+
+    for (Personnages p : personnages) {
+
+    }
+
+    for (Personnages p : personnages) {
+      p.maj_naturelle_attributs_generaux_Personnages();
+    }
+
     selection_scenario_avec_choix(); // On rempli l'attribut tab_DecisionNode_en_cours de scenario avec choix a jouer
     ArrayList<Integer> set_prochain_DecisionNode = lancement_scenario_avec_choix();
     // ArrayList<Integer> set_prochain_scenario_impose =
@@ -594,11 +620,9 @@ public class Jour {
     // On modifie les tableaux tab_DecisionNode_en_cours et
     // tab_scenario_impose_en_cours
 
-    
-    for(Personnages p : personnages) {
-    	p.maj_donnee_etat_naturelle_Personnages();
+    for (Personnages p : personnages) {
+      p.maj_donnee_etat_naturelle_Personnages();
     }
-    
 
     nourir_cave();
     expedition();
