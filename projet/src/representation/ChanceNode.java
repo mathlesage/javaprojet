@@ -28,12 +28,11 @@ public class ChanceNode extends Node {
     }
 
     // modifie un aliment
-    public ChanceNode(String histoire0, String histoire1, int index_Evenement, Nourriture nouritures,
-            String nom_Alimentint, int id, Map<String, ArrayList<IntPair>> dico) {
-        super((nom_Alimentint + " " + ((Math.random() < 0.5) ? histoire0 : histoire1)), id, dico);
+    public ChanceNode(String histoire0, String histoire1, int index_Evenement, String nom_Alimentint, int id) {
+        super((nom_Alimentint + " " + ((Math.random() < 0.5) ? histoire0 : histoire1)), id, null);
         this.index_Evenement = index_Evenement;
-        this.nouritures = nouritures;
-        this.nom_Aliment = nom_Aliment;
+
+        this.nom_Aliment = nom_Alimentint;
     }
 
     // modifie un objet
