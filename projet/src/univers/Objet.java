@@ -51,8 +51,6 @@ public class Objet implements Inventaire {
     Un_element lampe = new Un_element(Elements_du_jeu.LAMPE, 0);
     inventaire.add(lampe);
 
-    Un_element pile = new Un_element(Elements_du_jeu.PILE, 0);
-    inventaire.add(pile);
   }
 
   public int getQuantite(String nom) throws IllegalArgumentException {
@@ -61,6 +59,7 @@ public class Objet implements Inventaire {
         return obj.getQuantite();
       }
     }
+
     throw new IllegalArgumentException("Objet inexistant ! ");
   }
 
@@ -86,12 +85,12 @@ public class Objet implements Inventaire {
   public void getQuantites() {
 
     for (Un_element obj : inventaire) {
-	    if(obj.getQuantite() > 0) {
-	    	System.out.print(obj.getNom());
-	        System.out.print(" ---> ");
-	        System.out.print(obj.getQuantite());
-	        System.out.println(); // Saut de ligne entre chaque sous-liste
-	    }
+      if (obj.getQuantite() > 0) {
+        System.out.print(obj.getNom());
+        System.out.print(" ---> ");
+        System.out.print(obj.getQuantite());
+        System.out.println(); // Saut de ligne entre chaque sous-liste
+      }
     }
   }
 
@@ -106,14 +105,14 @@ public class Objet implements Inventaire {
 
     return objetsQuantitePositive;
   }
-  
+
   public boolean get_objet_dispo() {
-	  for(Un_element e : this.inventaire) {
-		  if(e.getQuantite() > 0) {
-			  return true;
-		  }
-	  }
-	  return false;
+    for (Un_element e : this.inventaire) {
+      if (e.getQuantite() > 0) {
+        return true;
+      }
+    }
+    return false;
   }
 
 }

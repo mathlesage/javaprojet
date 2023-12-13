@@ -114,8 +114,6 @@ public class Jour {
    * des objets et nourriture qu'il possede.
    */
   private void selection_scenario_avec_choix() {
-    // Fonction en cours de construction
-    // On devra écrire l'ensemble des scénarios et les stocker dans le tableau.
 
     int nombre_de_vivant = 0; // Initialisation du compteur de personnages vivants
 
@@ -603,18 +601,39 @@ public class Jour {
     scanner.close();
   }
 
-  private void deroulement_du_jour() {
-
+  private boolean deroulement_du_jour() {
+    int personnages_en_vie = 0;
     for (Personnages p : personnages) {
-
+      if (p.get_vivant()) {
+        personnages_en_vie++;
+      }
+    }
+    if (personnages_en_vie == 0) {
+      return false;
     }
 
     for (Personnages p : personnages) {
       p.maj_naturelle_attributs_generaux_Personnages();
     }
+    System.out.println("Jours :" + nombre_journee);
 
+    for (int ChanceNode_lancement : tab_scenario_impose_en_cours.get(nombre_journee)) {
+      for (ChanceNode ch : tab_scenario_impose) {
+        if (ch.getId() == ChanceNode_lancement) {
+          lancement_scenario_impose(ch);
+        }
+      }
+    }
     selection_scenario_avec_choix(); // On rempli l'attribut tab_DecisionNode_en_cours de scenario avec choix a jouer
-    ArrayList<Integer> set_prochain_DecisionNode = lancement_scenario_avec_choix();
+    for (int DecisionNodelancement : tab_DecisionNode_en_cours.get(nombre_journee)) {
+      for (DecisionNode de : tab_DecisionNode) {
+        if (de.getId() == DecisionNodelancement) {
+          de.raconte_histoire(personnages, objet_possession, tab_DecisionNode_en_cours, tab_DecisionNode_en_cours,
+              personnages_en_vie);
+        }
+      }
+    }
+
     // ArrayList<Integer> set_prochain_scenario_impose =
     // lancement_scenario_impose();
     // On modifie les tableaux tab_DecisionNode_en_cours et
@@ -627,6 +646,8 @@ public class Jour {
     nourir_cave();
     expedition();
     nombre_journee = nombre_journee + 1;
+
+    return true;
   }
 
 }
