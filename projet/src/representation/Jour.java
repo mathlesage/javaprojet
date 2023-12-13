@@ -1,5 +1,4 @@
-package Representation;
-
+package representation;
 import univers.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -59,11 +58,11 @@ public class Jour {
   /**
    * Tableau contenant l'ensemble des scenarios avec choix possible.
    */
-  private static ArrayList<DecisionNode> tab_DecisionNode = new ArrayList<DecisionNode>();
+  private ArrayList<DecisionNode> tab_DecisionNode;
   /**
    * Tableau contenant l'ensemble des scenarios imposes possible.
    */
-  private static ArrayList<ChanceNode> tab_scenario_impose = new ArrayList<ChanceNode>();
+  private ArrayList<ChanceNode> tab_scenario_impose;
 
   /**
    * Tableau contenant à l'indice i, les i-eme scenario avec choix que l'on va
@@ -91,7 +90,7 @@ public class Jour {
    */
 
   public Jour(Personnages p1, Personnages p2, Personnages p3, Personnages p4, Objet objet_possession,
-      Nourriture nourriture_possession) {
+      Nourriture nourriture_possession,ArrayList<DecisionNode> tab_DecisionNode,ArrayList<ChanceNode> tab_scenario_impose) {
     this.perso1 = p1;
     this.perso2 = p2;
     this.perso3 = p3;
@@ -103,6 +102,9 @@ public class Jour {
     this.personnages.add(this.perso2);
     this.personnages.add(this.perso3);
     this.personnages.add(this.perso4);
+    this.tab_DecisionNode = tab_DecisionNode;
+    this.tab_scenario_impose = tab_scenario_impose;
+      
   }
 
   /**
@@ -139,30 +141,33 @@ public class Jour {
       // Vérifie si les conditions sont remplies pour ce DecisionNode spécifique
       boolean condition_1 = DecisionNode.getVariable_Aleatoire_debut() < nombre_aleatoire_entre_0_1;
       boolean condition_2 = nombre_aleatoire_entre_0_1 < DecisionNode.getVariable_Aleatoire_fin();
-      boolean condition_3 = nombre_de_vivant == DecisionNode.getNombre_Personnage();
+      boolean condition_3 = nombre_de_vivant >= DecisionNode.getNombre_Personnage();
       boolean condition_4 = nombre_journee < DecisionNode.getJour_Necessaire_fin();
       boolean condition_5 = nombre_journee > DecisionNode.getJour_Necessaire_debut();
 
       boolean tousPresent = true;
+      if(DecisionNode.getScenario_Necessaire() != null) {
+    	  for (int nombre : scenarios_indice_passe) {
+    	        boolean trouve = false;
 
-      for (int nombre : scenarios_indice_passe) {
-        boolean trouve = false;
+    	        // Vérifie si l'élément du premier tableau est présent dans le deuxième tableau
+    	        for (int valeur : DecisionNode.getScenario_Necessaire()) {
+    	          if (nombre == valeur) {
+    	            trouve = true;
+    	            break; // Sort de la boucle une fois qu'il est trouvé
+    	          }
+    	        }
 
-        // Vérifie si l'élément du premier tableau est présent dans le deuxième tableau
-        for (int valeur : DecisionNode.getScenario_Necessaire()) {
-          if (nombre == valeur) {
-            trouve = true;
-            break; // Sort de la boucle une fois qu'il est trouvé
-          }
-        }
-
-        // Si l'élément du premier tableau n'est pas trouvé dans le deuxième tableau, on
-        // modifie le booléen
-        if (!trouve) {
-          tousPresent = false;
-          break; // On arrête la boucle, on a trouvé un élément manquant
-        }
+    	        // Si l'élément du premier tableau n'est pas trouvé dans le deuxième tableau, on
+    	        // modifie le booléen
+    	        if (!trouve) {
+    	          tousPresent = false;
+    	          break; // On arrête la boucle, on a trouvé un élément manquant
+    	        }
+    	      }
       }
+      
+      
       boolean id_peronnage_necessaire = true;
       // si aucun personnage n'est necessaire
       if (DecisionNode.get_id_peronnage_necessaire() != -1) {
