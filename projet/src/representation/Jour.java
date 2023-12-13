@@ -1,4 +1,4 @@
-package Representation;
+package representation;
 
 import univers.*;
 import java.util.ArrayList;
@@ -78,9 +78,6 @@ public class Jour {
    */
   private ArrayList<ArrayList<Integer>> tab_scenario_impose_en_cours = new ArrayList<ArrayList<Integer>>();
 
-  /** Tableau contenant les scenario passées */
-
-  private ArrayList<Integer> scenarios_passe = new ArrayList<Integer>();
 
   /** Tableau contenant l'indice des scenario passées */
 
@@ -151,7 +148,7 @@ public class Jour {
 
       boolean tousPresent = true;
 
-      for (int nombre : scenarios_passe) {
+      for (int nombre : scenarios_indice_passe) {
         boolean trouve = false;
 
         // Vérifie si l'élément du premier tableau est présent dans le deuxième tableau
@@ -451,6 +448,8 @@ public class Jour {
     
     
     
+    
+    
     scan.close();
   }
 
@@ -573,7 +572,15 @@ public class Jour {
 
   
   private void deroulement_du_jour() {
-    // En cours de construction
+    
+	  
+	for(Personnages p : personnages) {
+		
+	} 
+	
+	  
+	  
+	  
 	  
 	  
 	for(Personnages p : personnages) {
