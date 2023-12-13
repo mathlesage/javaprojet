@@ -4,7 +4,7 @@ import univers.*;
 import java.util.Scanner;
 import principal.*;
 
-public class Principal {
+public class Principale{
 	
 	public static Personnages [] choix_perso() {
 		
@@ -45,43 +45,49 @@ public class Principal {
 			System.out.println("Choix du personnage numero "+i+" :");
 			System.out.println(affichage);
 			System.out.print("Saisie le nombre correspondant au personnage que tu selectionnes : ");
-			
+				
+				
 			while(true) {
 				input = scan.nextLine();
-				valeur = Integer.parseInt(input);
-				if(valeur<= 8 && valeur>= 1 && tab_aide_choix[valeur] == 0 ) {
-					tab_aide_choix[valeur] = 1;
-					switch(Integer.parseInt(input)) {
-					case 1 :
-						tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Pere) ;
-						break;
-					case 2 :
-						tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Mere) ;
-						break;
-					case 3 :
-						tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Soeur) ;
-						break;
-					case 4 :
-						tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Frere) ;
-						break;
-					case 5 :
-						tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Medecin) ;
-						break;
-					case 6 :
-						tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Athlete) ;
-						break;
-					case 7 :
-						tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Cousin) ;
-						break;
-					case 8 :
-						tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Cuisiniere) ;
-						break;
+				try {
+					valeur = Integer.parseInt(input);
+					if(!(valeur<= 8 && valeur>= 1 && tab_aide_choix[valeur] == 0 )) {
+						System.out.print("Personnage deja choisi ou inexistant ! Ressaisir : ");
+						continue;
 					}
-					
 					break;
 				}
-				System.out.print("Valeur incorect ou personnage deja choisi ! Ressaisir : ");
-			}	
+				catch(Exception e) {
+						System.out.print("Valeur incorect !!! Ressaisir : ");
+				}		
+			}
+				
+							
+			tab_aide_choix[valeur] = 1;
+			switch(valeur) {
+				case 1 :
+					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Pere) ;						break;
+				case 2 :
+					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Mere) ;
+					break;
+				case 3 :
+					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Soeur) ;						break;
+				case 4 :
+					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Frere) ;
+					break;
+				case 5 :
+					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Medecin) ;
+					break;
+				case 6 :
+					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Athlete) ;
+					break;
+				case 7 :
+					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Cousin) ;
+					break;
+				case 8 :
+					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Cuisiniere) ;
+					break;
+				}	
 		}
 		scan.close();
 		return tab_aide_perso;
@@ -102,8 +108,6 @@ public class Principal {
 
 	public static void main(String[] args) {
 		lancement_du_jeu();
-		
-		
 	}
 	
 	
