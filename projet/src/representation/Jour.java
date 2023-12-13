@@ -601,7 +601,7 @@ public class Jour {
     scanner.close();
   }
 
-  private boolean deroulement_du_jour() {
+  public boolean deroulement_du_jour() {
     int personnages_en_vie = 0;
     for (Personnages p : personnages) {
       if (p.get_vivant()) {
