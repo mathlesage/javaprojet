@@ -37,7 +37,7 @@ public class Nourriture extends Objet{
     	
     	
     	@Override
-    public void setQuantite(String nom, int q) throws IllegalArgumentException,ArithmeticException{
+    public void setQuantite(String nom, int q) throws IllegalArgumentException{
       try{
         super.setQuantite(nom,q);
       }

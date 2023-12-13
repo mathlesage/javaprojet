@@ -63,7 +63,7 @@ public class Objet implements Inventaire {
     throw new IllegalArgumentException("Objet inexistant ! ");
   }
 
-  public void setQuantite(String nom, int q) throws IllegalArgumentException, ArithmeticException {
+  public void setQuantite(String nom, int q) throws IllegalArgumentException {
 
     boolean verif = false;
     for (Un_element obj : inventaire) {
@@ -71,7 +71,7 @@ public class Objet implements Inventaire {
         try {
           obj.setQuantite(q);
         } catch (ArithmeticException e) {
-          throw new ArithmeticException(e.getMessage());
+          obj.setQuantite(0);
         }
         verif = true;
       }
