@@ -92,6 +92,25 @@ public class ListeChancenode {
         ChanceNode chance39 = new ChanceNode("Ajout de trois nouvelles bouteilles d'eau, enrichissant les réserves.",
                 "L'acquisition de trois nouvelles bouteilles d'eau enrichit les réserves.", 39, 9, "Eau");
 
+        ChanceNode chance41 = new ChanceNode("Une canette de soda a disparu, réduisant les réserves.",
+                "Une canette de soda manque.", 41, 1, "Soda");
+        ChanceNode chance42 = new ChanceNode(
+                "Deux canettes de soda manquent désormais, épuisant davantage les réserves.",
+                "La disparition de deux canettes de soda accentue la pénurie de réserves.", 42, 2, "Soda");
+        ChanceNode chance43 = new ChanceNode(
+                "Trois canettes de soda ont disparu, amplifiant la tension dans la lutte pour les ressources.",
+                "La perte de trois canettes de soda intensifie le poids de la privation.", 43, 3, "Soda");
+        ChanceNode chance45 = new ChanceNode("Perte de toutes les canettes de soda, créant un vide dans les réserves.",
+                "Toutes les canettes de soda ont été perdues, laissant un vide dans les réserves.", 45, 5, "Soda");
+        ChanceNode chance46 = new ChanceNode("Doublement des réserves de sodas, offrant un répit dans les provisions.",
+                "Le stock de sodas a doublé, apportant un soulagement aux réserves.", 46, 6, "Soda");
+        ChanceNode chance47 = new ChanceNode("Ajout d'une canette de soda, renforçant les réserves.",
+                "L'acquisition d'une nouvelle canette de soda renforce les réserves.", 47, 7, "Soda");
+        ChanceNode chance48 = new ChanceNode("Ajout de deux canettes de soda renforçant les réserves.",
+                "L'acquisition de deux nouvelles canettes de soda consolide les réserves.", 48, 8, "Soda");
+        ChanceNode chance49 = new ChanceNode("Ajout de trois nouvelles canettes de soda, enrichissant les réserves.",
+                "L'acquisition de trois nouvelles canettes de soda enrichit les réserves.", 49, 9, "Soda");
+
         liste.add(chance1);
         liste.add(chance2);
         liste.add(chance3);
@@ -116,6 +135,22 @@ public class ListeChancenode {
         liste.add(chance27);
         liste.add(chance28);
         liste.add(chance29);
+        liste.add(chance31);
+        liste.add(chance32);
+        liste.add(chance33);
+        liste.add(chance35);
+        liste.add(chance36);
+        liste.add(chance37);
+        liste.add(chance38);
+        liste.add(chance39);
+        liste.add(chance41);
+        liste.add(chance42);
+        liste.add(chance43);
+        liste.add(chance45);
+        liste.add(chance46);
+        liste.add(chance47);
+        liste.add(chance48);
+        liste.add(chance49);
 
     }
 
@@ -159,6 +194,19 @@ public class ListeChancenode {
      * 37 : Ajout d'une bouteille d'eau.
      * 38 : Ajout de deux bouteilles d'eau.
      * 39 : Ajout de trois nouvelles bouteilles d'eau.
+     * 
+     * 41 : Perte d'une canette de soda.
+     * 42 : Perte de deux canettes de soda.
+     * 43 : Disparition de trois canettes de soda.
+     * 45 : Perte de toutes les canettes de soda.
+     * 46 : Doublement des réserves de sodas.
+     * 47 : Ajout d'une canette de soda.
+     * 48 : Ajout de deux canettes de soda.
+     * 49 : Ajout de trois nouvelles canettes de soda.
+     * 
+     * 
+     * 
+     * 
      * 
      */
 }
