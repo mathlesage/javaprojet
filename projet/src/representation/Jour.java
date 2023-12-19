@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 /**
  * Un Jour constitue les elements dans la cave au moment d'une journee:
- * -le personnage 1
+ * -le personnage 11
  * -le personnage 2
  * -le personnage 3
  * -le personnage 4
@@ -90,7 +90,9 @@ public class Jour {
    */
 
   public Jour(Personnages p1, Personnages p2, Personnages p3, Personnages p4, Objet objet_possession,
-      Nourriture nourriture_possession,ArrayList<DecisionNode> tab_DecisionNode,ArrayList<ChanceNode> tab_scenario_impose) {
+      Nourriture nourriture_possession, ArrayList<DecisionNode> tab_DecisionNode,
+      ArrayList<ChanceNode> tab_scenario_impose) {
+
     this.perso1 = p1;
     this.perso2 = p2;
     this.perso3 = p3;
@@ -104,7 +106,7 @@ public class Jour {
     this.personnages.add(this.perso4);
     this.tab_DecisionNode = tab_DecisionNode;
     this.tab_scenario_impose = tab_scenario_impose;
-      
+
   }
 
   /**
@@ -146,28 +148,28 @@ public class Jour {
       boolean condition_5 = nombre_journee > DecisionNode.getJour_Necessaire_debut();
 
       boolean tousPresent = true;
-      if(DecisionNode.getScenario_Necessaire() != null) {
-    	  for (int nombre : scenarios_indice_passe) {
-    	        boolean trouve = false;
+      if (DecisionNode.getScenario_Necessaire() != null) {
+        for (int nombre : scenarios_indice_passe) {
+          boolean trouve = false;
 
-    	        // Vérifie si l'élément du premier tableau est présent dans le deuxième tableau
-    	        for (int valeur : DecisionNode.getScenario_Necessaire()) {
-    	          if (nombre == valeur) {
-    	            trouve = true;
-    	            break; // Sort de la boucle une fois qu'il est trouvé
-    	          }
-    	        }
+          // Vérifie si l'élément du premier tableau est présent dans le deuxième tableau
+          for (int valeur : DecisionNode.getScenario_Necessaire()) {
+            if (nombre == valeur) {
+              trouve = true;
+              break; // Sort de la boucle une fois qu'il est trouvé
+            }
+          }
 
-    	        // Si l'élément du premier tableau n'est pas trouvé dans le deuxième tableau, on
-    	        // modifie le booléen
-    	        if (!trouve) {
-    	          tousPresent = false;
-    	          break; // On arrête la boucle, on a trouvé un élément manquant
-    	        }
-    	      }
+          // Si l'élément du premier tableau n'est pas trouvé dans le deuxième tableau, on
+          // modifie le booléen
+          if (!trouve) {
+            tousPresent = false;
+            break; // On arrête la boucle, on a trouvé un élément manquant
+          }
+        }
       }
-      
-      
+
+
       boolean id_peronnage_necessaire = true;
       // si aucun personnage n'est necessaire
       if (DecisionNode.get_id_peronnage_necessaire() != -1) {
@@ -214,13 +216,13 @@ public class Jour {
   private void lancement_scenario_impose(ChanceNode node) {
     // Raconte l'histoire du scénario
     System.out.println(node.getHistoire());
-    int id_scenario = node.getIndex_Evenement();
+    int index_scenario = node.getIndex_Evenement();
 
-    switch (id_scenario) {
+    switch (index_scenario) {
 
       case 1:
         // Retirer un objet id 1
-        node.getObjets().setQuantite(node.getNom_Objet(), -1);
+        nourriture_possession.setQuantite(node.getNom_Aliment(), 1);
         break;
       case 2:
         // retire tout les objets : id 2
@@ -607,10 +609,20 @@ public class Jour {
   }
 
   public boolean deroulement_du_jour() {
+    ArrayList<Integer> vide = new ArrayList<Integer>();
+    vide.add(3);
+    tab_scenario_impose_en_cours.add(vide);
+    tab_scenario_impose_en_cours.add(vide);
+    tab_scenario_impose_en_cours.add(vide);
+    tab_DecisionNode_en_cours.add(vide);
+    tab_DecisionNode_en_cours.add(vide);
+    tab_DecisionNode_en_cours.add(vide);
+
     int personnages_en_vie = 0;
     for (Personnages p : personnages) {
       if (p.get_vivant()) {
         personnages_en_vie++;
+
       }
     }
     if (personnages_en_vie == 0) {
@@ -619,18 +631,23 @@ public class Jour {
 
     for (Personnages p : personnages) {
       p.maj_naturelle_attributs_generaux_Personnages();
-    }
-    System.out.println("Jours :" + nombre_journee);
 
+    }
+    tab_scenario_impose_en_cours.get(nombre_journee).add(3);
+    System.out.println("Jours :" + nombre_journee);
+    System.out.println(tab_scenario_impose_en_cours.get(nombre_journee));
     for (int ChanceNode_lancement : tab_scenario_impose_en_cours.get(nombre_journee)) {
+      System.out.println("3");
       for (ChanceNode ch : tab_scenario_impose) {
         if (ch.getId() == ChanceNode_lancement) {
           lancement_scenario_impose(ch);
         }
       }
     }
+    System.out.println("5");
     selection_scenario_avec_choix(); // On rempli l'attribut tab_DecisionNode_en_cours de scenario avec choix a jouer
     for (int DecisionNodelancement : tab_DecisionNode_en_cours.get(nombre_journee)) {
+
       for (DecisionNode de : tab_DecisionNode) {
         if (de.getId() == DecisionNodelancement) {
           de.raconte_histoire(personnages, objet_possession, tab_DecisionNode_en_cours, tab_DecisionNode_en_cours,

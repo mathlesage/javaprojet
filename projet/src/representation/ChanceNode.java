@@ -15,9 +15,10 @@ public class ChanceNode extends Node {
     private String nom_Aliment;
     private Objet objets;
     private String nom_Objet;
+    private int numero_perso;
 
     // Deux récit différent avec 1 chance sur 2 de tomber sur l'un ou l'autre
-    // modifie un personnage
+    // modifie un personnage ammener de nouveau scénario
     public ChanceNode(String histoire0, String histoire1, int id, Personnages personnages,
             Map<String, ArrayList<IntPair>> dico, int index_Evenement) {
 
@@ -27,16 +28,16 @@ public class ChanceNode extends Node {
 
     }
 
-    // modifie un aliment
-    public ChanceNode(String histoire0, String histoire1, int index_Evenement, Nourriture nouritures,
-            String nom_Alimentint, int id, Map<String, ArrayList<IntPair>> dico) {
+    // modifie un aliment ammener de nouveau scénario
+    public ChanceNode(String histoire0, String histoire1, int index_Evenement, String nom_Alimentint, int id,
+            Map<String, ArrayList<IntPair>> dico) {
         super((nom_Alimentint + " " + ((Math.random() < 0.5) ? histoire0 : histoire1)), id, dico);
         this.index_Evenement = index_Evenement;
-        this.nouritures = nouritures;
-        this.nom_Aliment = nom_Aliment;
+
+        this.nom_Aliment = nom_Alimentint;
     }
 
-    // modifie un objet
+    // modifie un objet et ammener de nouveau scénario
     public ChanceNode(String histoire0, String histoire1, int index_Evenement, Objet objets, String nom_Objet, int id,
             Map<String, ArrayList<IntPair>> dico) {
 
@@ -45,6 +46,19 @@ public class ChanceNode extends Node {
         this.index_Evenement = index_Evenement;
         this.objets = objets;
         this.nom_Objet = nom_Objet;
+    }
+
+    public ChanceNode(String histoire0, String histoire1, int id, int index_Evenement, int numero_perso) {
+        super(((Math.random() < 0.5) ? histoire0 : histoire1), id);
+        this.index_Evenement = index_Evenement;
+        this.numero_perso = numero_perso;
+    }
+
+    // Scénarios qui changent un aliments
+    public ChanceNode(String histoire0, String histoire1, int id, int index_Evenement, String nom_Aliment) {
+        super(((Math.random() < 0.5) ? histoire0 : histoire1), id);
+        this.index_Evenement = index_Evenement;
+        this.nom_Aliment = nom_Aliment;
     }
 
     // Renvoie l'index evenement
@@ -75,6 +89,10 @@ public class ChanceNode extends Node {
     // renvoie le nom de l'objet
     public String getNom_Objet() {
         return nom_Objet;
+    }
+
+    public int getNum_perso() {
+        return numero_perso;
     }
 
 }

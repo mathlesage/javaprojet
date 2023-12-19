@@ -1,13 +1,16 @@
 package principal;
 import univers.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
-import representation.*;
 
-public class Principale{
-	
-	public static Personnages [] choix_perso() {
-		
+import Representation.*;
+
+public class Principale {
+
+	public static Personnages[] choix_perso() {
+
+
 		Scanner scan = new Scanner(System.in);
 		String input = "";
 		int valeur = 0;
@@ -45,87 +48,94 @@ public class Principale{
 			System.out.println("Choix du personnage numero "+i+" :");
 			System.out.println(affichage);
 			System.out.print("Saisie le nombre correspondant au personnage que tu selectionnes : ");
-				
-				
-			while(true) {
+
+			while (true) {
+
 				input = scan.nextLine();
 				try {
 					valeur = Integer.parseInt(input);
-					if(!(valeur<= 8 && valeur>= 1 && tab_aide_choix[valeur] == 0 )) {
+					if (!(valeur <= 8 && valeur >= 1 && tab_aide_choix[valeur] == 0)) {
 						System.out.print("Personnage deja choisi ou inexistant ! Ressaisir : ");
 						continue;
 					}
 					break;
+				} catch (Exception e) {
+					System.out.print("Valeur incorect !!! Ressaisir : ");
 				}
-				catch(Exception e) {
-						System.out.print("Valeur incorect !!! Ressaisir : ");
-				}		
 			}
-				
-							
+
 			tab_aide_choix[valeur] = 1;
-			switch(valeur) {
-				case 1 :
-					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Pere) ;						break;
-				case 2 :
-					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Mere) ;
+			switch (valeur) {
+				case 1:
+					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Pere);
 					break;
-				case 3 :
-					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Soeur) ;						break;
-				case 4 :
-					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Frere) ;
+				case 2:
+					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Mere);
 					break;
-				case 5 :
-					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Medecin) ;
+				case 3:
+					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Soeur);
 					break;
-				case 6 :
-					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Athlete) ;
+				case 4:
+					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Frere);
 					break;
-				case 7 :
-					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Cousin) ;
+				case 5:
+					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Medecin);
 					break;
-				case 8 :
-					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Cuisiniere) ;
+				case 6:
+					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Athlete);
 					break;
-				}	
+				case 7:
+					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Cousin);
+					break;
+
+				case 8:
+					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Cuisiniere);
+					break;
+			}
+
 		}
 		scan.close();
 		return tab_aide_perso;
 	}
-	
-	public static void lancement_du_jeu(){
-		
-		//Message du debut
-		System.out.println("En plein repas de famille, le monde sombra dans le chaos.\nLa 3ème guerre mondiale éclata, ne laissant qu'un refuge:\nLe bunker, avec seulement 4 places.\n\n =========Qui choisi tu ?========= \nPatrick : le père sage,\nStéphanie : la mère protectrice,\nSarah : l'esprit vif,\nMathéo : le frère courageux,\nPaul : le médecin,\nAmine : l'athlète,\nYacine : le cousin rusé,\nou Guilianetta : la cuisinière ingénieuse.\n\nQuatres personnes de ton choix vont affronter l'impensable.\nDans cette lutte pour la survie, chaque choix peseront lourd, chaque pas les rapprocheront du salut ou de la perte !");
+
+
+	public static void lancement_du_jeu() {
+
+		// Message du debut
+		System.out.println(
+				"En plein repas de famille, le monde sombra dans le chaos.\nLa 3ème guerre mondiale éclata, ne laissant qu'un refuge:\nLe bunker, avec seulement 4 places.\n\n =========Qui choisi tu ?========= \nPatrick : le père sage,\nStéphanie : la mère protectrice,\nSarah : l'esprit vif,\nMathéo : le frère courageux,\nPaul : le médecin,\nAmine : l'athlète,\nYacine : le cousin rusé,\nou Guilianetta : la cuisinière ingénieuse.\n\nQuatres personnes de ton choix vont affronter l'impensable.\nDans cette lutte pour la survie, chaque choix peseront lourd, chaque pas les rapprocheront du salut ou de la perte !");
+
 		try {
-			Thread.sleep(10000);
+			Thread.sleep(0000);
 		} catch (InterruptedException e) {
 			
 		}
-		
-		
-		//Choix des personnages
-		Personnages [] tab_aide_perso = choix_perso();
-		
-		
-		//Objet de depart : Objet present deja dans la cave.
+
+
+		// Choix des personnages
+		Personnages[] tab_aide_perso = choix_perso();
+
+		// Objet de depart : Objet present deja dans la cave.
 		Objet objet_cave = new Objet();
-		objet_cave.setQuantite("Carte a jouer",1);
-		
-		//Nourriture de depart : Nourriture deja dans la cave.
+		objet_cave.setQuantite("Carte a jouer", 1);
+
+		// Nourriture de depart : Nourriture deja dans la cave.
 		Nourriture nourriture_cave = new Nourriture();
-		nourriture_cave.setQuantite("Pate",5);
-		nourriture_cave.setQuantite("Eau",5);
-	
-		
-		//Instance de Jour
-		Jour j = new Jour(tab_aide_perso[1],tab_aide_perso[2],tab_aide_perso[3],tab_aide_perso[4],objet_cave,nourriture_cave);
-		
-		
-		while(true) {
+		nourriture_cave.setQuantite("Pate", 5);
+		nourriture_cave.setQuantite("Eau", 5);
+		listescenario listescene = new listescenario();
+		ArrayList<DecisionNode> lalala = listescene.getListe();
+		// Instance de Jour
+		ListeChancenode listeChancenode = new ListeChancenode();
+		ArrayList<ChanceNode> chanceNodes = listeChancenode.getListe();
+		Jour j = new Jour(tab_aide_perso[1], tab_aide_perso[2], tab_aide_perso[3], tab_aide_perso[4], objet_cave,
+				nourriture_cave, lalala, chanceNodes);
+
+		while (true) {
 			j.deroulement_du_jour();
 		}
-		
+
+
 	}
 	
 

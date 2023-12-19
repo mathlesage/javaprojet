@@ -9,10 +9,23 @@ public abstract class Node {
     protected String histoire;
     protected Map<String, ArrayList<IntPair>> dico;
 
+    // Crée une histoire avec suite qui est contenue dans Map<String,
+    // ArrayList<IntPair>> dico
     public Node(String histoire, int id, Map<String, ArrayList<IntPair>> dico) {
         this.id = id;
         this.histoire = histoire;
         this.dico = dico;
+    }
+
+    // Crée une histoire sans suite
+    public Node(String histoire, int id) {
+        this.id = id;
+        this.histoire = histoire;
+        ArrayList<IntPair> list1 = new ArrayList<>();
+        list1.add(new IntPair(0, 0));
+        list1.add(new IntPair(0, 0));
+        this.dico = new HashMap<String, ArrayList<IntPair>>();
+        dico.put("null", list1);
     }
 
     public String getHistoire() {
@@ -25,6 +38,11 @@ public abstract class Node {
 
     public void prochain_Scenario(ArrayList<ArrayList<Integer>> decisionNodes,
             ArrayList<ArrayList<Integer>> chanceNodes, int j) {
+
+        if (dico.containsKey("null")) {
+            return;
+        }
+
         ArrayList<IntPair> decision = dico.get("decision");
         ArrayList<IntPair> chance = dico.get("chance");
 
