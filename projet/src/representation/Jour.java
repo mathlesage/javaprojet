@@ -1,5 +1,4 @@
-package Representation;
-
+package representation;
 import univers.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -93,6 +92,7 @@ public class Jour {
   public Jour(Personnages p1, Personnages p2, Personnages p3, Personnages p4, Objet objet_possession,
       Nourriture nourriture_possession, ArrayList<DecisionNode> tab_DecisionNode,
       ArrayList<ChanceNode> tab_scenario_impose) {
+
     this.perso1 = p1;
     this.perso2 = p2;
     this.perso3 = p3;
@@ -168,6 +168,7 @@ public class Jour {
           }
         }
       }
+
 
       boolean id_peronnage_necessaire = true;
       // si aucun personnage n'est necessaire
@@ -616,6 +617,7 @@ public class Jour {
     tab_DecisionNode_en_cours.add(vide);
     tab_DecisionNode_en_cours.add(vide);
     tab_DecisionNode_en_cours.add(vide);
+
     int personnages_en_vie = 0;
     for (Personnages p : personnages) {
       if (p.get_vivant()) {
