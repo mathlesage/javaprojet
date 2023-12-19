@@ -215,13 +215,13 @@ public class Jour {
   private void lancement_scenario_impose(ChanceNode node) {
     // Raconte l'histoire du scénario
     System.out.println(node.getHistoire());
-    int id_scenario = node.getIndex_Evenement();
+    int index_scenario = node.getIndex_Evenement();
 
-    switch (id_scenario) {
+    switch (index_scenario) {
 
       case 1:
         // Retirer un objet id 1
-        node.getObjets().setQuantite(node.getNom_Objet(), -1);
+        nourriture_possession.setQuantite(node.getNom_Aliment(), 1);
         break;
       case 2:
         // retire tout les objets : id 2
@@ -609,10 +609,13 @@ public class Jour {
 
   public boolean deroulement_du_jour() {
     ArrayList<Integer> vide = new ArrayList<Integer>();
-    vide.add(1);
+    vide.add(3);
     tab_scenario_impose_en_cours.add(vide);
     tab_scenario_impose_en_cours.add(vide);
     tab_scenario_impose_en_cours.add(vide);
+    tab_DecisionNode_en_cours.add(vide);
+    tab_DecisionNode_en_cours.add(vide);
+    tab_DecisionNode_en_cours.add(vide);
     int personnages_en_vie = 0;
     for (Personnages p : personnages) {
       if (p.get_vivant()) {
@@ -628,7 +631,7 @@ public class Jour {
       p.maj_naturelle_attributs_generaux_Personnages();
 
     }
-    tab_scenario_impose_en_cours.get(nombre_journee).add(2);
+    tab_scenario_impose_en_cours.get(nombre_journee).add(3);
     System.out.println("Jours :" + nombre_journee);
     System.out.println(tab_scenario_impose_en_cours.get(nombre_journee));
     for (int ChanceNode_lancement : tab_scenario_impose_en_cours.get(nombre_journee)) {

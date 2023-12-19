@@ -7,11 +7,14 @@ public class ListeChancenode {
     private ArrayList<ChanceNode> liste = new ArrayList<ChanceNode>();
 
     public ListeChancenode() {
-        ChanceNode chance = new ChanceNode("Blablabla", "bloubloublou", 2, "Banane", 2);
+
+        // Modifier une banane
+        ChanceNode chance = new ChanceNode("blblblbbl", "blblblblb", 3, 1, "Pate");
         liste.add(chance);
     }
 
     public ArrayList<ChanceNode> getListe() {
         return liste;
     }
+
 }
