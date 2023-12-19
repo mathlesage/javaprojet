@@ -37,17 +37,13 @@ public class Nourriture extends Objet{
     	
     	
     	@Override
-    public void setQuantite(String nom, int q) throws IllegalArgumentException,ArithmeticException{
+    public void setQuantite(String nom, int q) throws IllegalArgumentException{
       try{
         super.setQuantite(nom,q);
       }
       catch(IllegalArgumentException e){
         throw new IllegalArgumentException("Aliment inexistant !");
       }
-      catch(ArithmeticException e){
-        throw new ArithmeticException(e.getMessage());
-      }
-
     }
 
     public int getNourrissant(String nom) throws IllegalArgumentException {
