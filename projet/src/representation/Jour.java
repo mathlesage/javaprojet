@@ -635,7 +635,7 @@ public class Jour {
 
   public boolean deroulement_du_jour() {
     ArrayList<Integer> vide = new ArrayList<Integer>();
-    vide.add(3);
+    vide.add(1);
     tab_scenario_impose_en_cours.add(vide);
     tab_scenario_impose_en_cours.add(vide);
     tab_scenario_impose_en_cours.add(vide);
@@ -644,10 +644,10 @@ public class Jour {
     tab_DecisionNode_en_cours.add(vide);
 
     int personnages_en_vie = 0;
+    System.out.println(personnages.size());
     for (Personnages p : personnages) {
       if (p.get_vivant()) {
         personnages_en_vie++;
-
       }
     }
     if (personnages_en_vie == 0) {
