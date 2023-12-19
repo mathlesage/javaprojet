@@ -1,4 +1,5 @@
-package representation;
+package Representation;
+
 import univers.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -169,7 +170,6 @@ public class Jour {
         }
       }
 
-
       boolean id_peronnage_necessaire = true;
       // si aucun personnage n'est necessaire
       if (DecisionNode.get_id_peronnage_necessaire() != -1) {
@@ -217,21 +217,46 @@ public class Jour {
     // Raconte l'histoire du scénario
     System.out.println(node.getHistoire());
     int index_scenario = node.getIndex_Evenement();
+    int nombre_nourriture;
 
     switch (index_scenario) {
 
       case 1:
-        // Retirer un objet id 1
-        nourriture_possession.setQuantite(node.getNom_Aliment(), 1);
+        // Retirer un aliment index : 1
+        nourriture_possession.setQuantite(node.getNom_Aliment(), -1);
         break;
       case 2:
-        // retire tout les objets : id 2
-        int quantite_objet = node.getObjets().getQuantite(node.getNom_Objet());
-        node.getObjets().setQuantite(node.getNom_Objet(), quantite_objet);
+        // Retirer deux aliment index : 2
+        nourriture_possession.setQuantite(node.getNom_Aliment(), -2);
         break;
       case 3:
-        // rajouter un objet
-        node.getObjets().setQuantite(node.getNom_Objet(), 1);
+        // retire 3 aliments : index : 3
+        nourriture_possession.setQuantite(node.getNom_Aliment(), -3);
+        break;
+
+      case 5:
+        // retire tout les aliments : index : 5
+        nombre_nourriture = nourriture_possession.getQuantite(node.getNom_Aliment()) * -1;
+        nourriture_possession.setQuantite(node.getNom_Aliment(), nombre_nourriture);
+        break;
+
+      case 6:
+        // doubler la quantité : index : 6
+        nombre_nourriture = nourriture_possession.getQuantite(node.getNom_Aliment());
+        nourriture_possession.setQuantite(node.getNom_Aliment(), nombre_nourriture);
+        break;
+      case 7:
+        // Ajouter une quantité indexx : 7
+
+        nourriture_possession.setQuantite(node.getNom_Aliment(), 1);
+        break;
+      case 8:
+        // Ajouter deux aliment index : 8
+        nourriture_possession.setQuantite(node.getNom_Aliment(), 2);
+        break;
+      case 9:
+        // Ajouter 3 aliments : index : 9
+        nourriture_possession.setQuantite(node.getNom_Aliment(), 3);
         break;
 
       case 101:
