@@ -441,6 +441,10 @@ public class Jour {
 
     // On verifie d'abord qu'on peut effectivement aller en expedition
 
+	  
+	  
+	  
+	  
     System.out.println("\n\n");
     System.out.println("==============================================================\n");
 
@@ -448,6 +452,19 @@ public class Jour {
         + "          		   Expedition ! \n"
         + "		==================================\n" + "\u001B[0m");
 
+    
+/*
+	  try {
+	  Thread.sleep(2000);
+	  } catch (InterruptedException e) {
+	  
+	  }
+*/
+    
+    
+    
+    
+    //On verifie qu'on peut emmener qql en expedition
     int verif1 = 1;
     int verif2 = 1;
     int verif3 = 1;
@@ -476,14 +493,16 @@ public class Jour {
     }
 
     if (verif1 + verif2 + verif3 + verif4 == 0) {
+      System.out.println("\u001B[34m"+"Aucun Personnage Dispo !"+"\u001B[0m");
       System.out.println("==============================================================\n");
       return;
     }
-
+        
+       
     // On peut emmener qql en expedition. Est ce que le joeur veut ?
     Scanner scan = new Scanner(System.in);
     String input = "";
-    System.out.println("\u001B[34m"
+    System.out.print("\u001B[34m"
         + "Veut tu emmener quelqun en expedition, pour ramener un objet ou de la nourriture? o/n " + "\u001B[0m");
 
     input = scan.nextLine();
@@ -499,7 +518,7 @@ public class Jour {
       return;
     }
 
-    System.out.println("Tu pourras choisir au plus un objet a prendre, et un personnage.");
+    System.out.println("\u001B[34m" + "Tu pourras choisir au plus un objet a prendre, et un personnage."+ "\u001B[0m ");
 
     // Choix personnage
     // Rappeler les attributs specifiques des perso ?
@@ -531,17 +550,34 @@ public class Jour {
     }
 
     System.out.println(choix_perso);
-    System.out.println("Lequel choisi tu ?");
+    System.out.print("\u001B[34m" + "Lequel choisi tu ? " + "\u001B[0m ");
 
-    input = scan.nextLine(); // Verifier que il a entrer un numero valable grace au tableau...
-
-    while (tab_aide_choix_perso[Integer.parseInt(input)] != 1) {
-      System.out.println("Impossible de choisir ce personnage !!!!");
-      System.out.println(choix_perso);
-      System.out.println("Lequel choisi tu ?");
-      input = scan.nextLine();
+    
+    while(true) {
+    	
+        input = scan.nextLine(); // Verifier que il a entrer un numero valable grace au tableau...
+        try {
+        	
+        	if(!(Integer.parseInt(input) >= 1 && Integer.parseInt(input)<=4)) {
+        		System.out.print("\u001B[31m" + "Personnage Inexistant ! Ressaisir : " + "\u001B[0m");
+        		continue;
+        	}
+        	if(tab_aide_choix_perso[Integer.parseInt(input)] != 1) {
+        		System.out.print("\u001B[31m" + "Impossible de choisir ce personnage ! Ressaisir : " + "\u001B[0m");
+        		continue;
+        	}
+        }
+        catch(NumberFormatException e) {
+        	System.out.print("\u001B[31m" + "Erreur de saisie ! Ressaisir : " + "\u001B[0m");
+        	continue;
+        }
+        catch(Exception e) {
+        	System.out.print("\u001B[31m" + "Erreur! Ressaisir : " + "\u001B[0m");
+        	continue;
+        }
+        break;  
     }
-
+    
     Personnages perso_expedition;
     switch (Integer.parseInt(input)) {
       case 1:
@@ -569,41 +605,62 @@ public class Jour {
     Elements_du_jeu e_expedition = null;
     // On verifie qu'il peut en choisir un...
     if (objet_possession.get_objet_dispo() == true) {
-      System.out.println("Voici les objets ainsi que leurs quantites : \n");
+    	
+    	
+      System.out.println("\u001B[34m" + "			========Inventaire Objet========" + "\u001B[0m");
       this.objet_possession.getQuantites();
 
-      System.out.println("Veux tu prendre un objet avec toi ? o/n");
+      
+/*
+   	  try {
+   	  Thread.sleep(2000);
+   	  } catch (InterruptedException e) {
+   	  
+   	  }
+*/
+     
+      
+      
+      System.out.print("\u001B[34m" +  "Veux tu prendre un objet avec toi ? o/n " + "\u001B[0m");
       input = scan.nextLine();
       while (!(input.equals("n") || input.equals("o"))) {
-        System.out.println("Entre o pour oui ou n pour non!!!!");
+        System.out.print("\u001B[31m" + "Entre o pour oui ou n pour non!!!! " + "\u001B[0m");
         input = scan.nextLine();
       }
 
       if (input.equals("o")) {
-        System.out.println("Quel objet veut tu prendre ? Ecrit son nom. (Premiere lettre en majuscule !)");
+        System.out.print("\u001B[34m" + "Quel objet veut tu prendre ? Ecrit son nom. (Premiere lettre en majuscule !) " + "\u001B[0m");
         input = scan.nextLine();
 
         boolean verif = false;
         while (!verif) {
-          for (Elements_du_jeu obj : Elements_du_jeu.values()) {
-            if (input.equals(obj.getNom())) {
-              e_expedition = obj;
-              objet_possession.setQuantite(obj.getNom(), -1);
-              verif = true;
-              break;
-            }
-          }
+        	
+	       try {
+	           for (Elements_du_jeu obj : Elements_du_jeu.values()) {
+	               if (input.equals(obj.getNom()) && this.objet_possession.getQuantite(obj.getNom()) != 0 ) {
+	                 e_expedition = obj;
+	                 objet_possession.setQuantite(obj.getNom(), -1);
+	                 verif = true;
+	                 break;
+	               }
+	             }
+	        	
+	       }
+	       catch(Exception e){
+	    	   
+	       }
           if (!verif) {
-            System.out.println("Nom inccorect. Ressaisir l'objet. (Premiere lettre en majuscule !)");
+            System.out.print("\u001B[31m" + "Nom incorect. Ressaisir l'objet. (Premiere lettre en majuscule !) : " + "\u001B[0m");
             input = scan.nextLine();
           }
         }
 
       } else {
-        System.out.println("Pas d'Objet pris. Expedition realise sans objet. Bon courage.");
+    	  
+        System.out.println("\u001B[34m" + "Pas d'Objet pris. Expedition realise sans objet. Bon courage." + "\u001B[0m");
       }
     } else {
-      System.out.println("Pas d'Objet disponible. Expedition realise sans objet. Bon courage.");
+      System.out.println("\u001B[34m" + "Pas d'Objet disponible. Expedition realise sans objet. Bon courage."+ "\u001B[0m");
     }
     int point_perso = (perso_expedition.get_barre_energie() * (perso_expedition.get_force()
         + perso_expedition.get_intelligence() + perso_expedition.get_agilite() + perso_expedition.get_resistance()));
@@ -720,17 +777,16 @@ public class Jour {
     }
 
     nourriture_possession.setQuantite(input_nourriture, -Integer.parseInt(input_nombre));
-
-    switch (input_nourriture) {
-      case "Eau":
-        perso1.maj_contextuelle_attributs_generaux_Personnages(nourriture_possession.getQuantite("Eau"), 0, 0,
-            nourriture_possession.getEnergie("Eau"));
-        break;
-      default:
-        perso1.maj_contextuelle_attributs_generaux_Personnages(0, nourriture_possession.getQuantite(input_nourriture),
-            0, nourriture_possession.getEnergie(input_nourriture));
+    
+    
+    for(Elements_du_jeu e : Elements_du_jeu.values()) {
+    	if(e.getNom().equals(input_nourriture)) {
+    		p1.maj_contextuelle_attributs_generaux_Personnages(e.getHydratation() * Integer.parseInt(input_nombre)
+    				, (int) (e.getNourrissant() * (1.0 / p1.get_conso_nourriture()))
+    				,0
+    				,e.getEnergie());
+    	}
     }
-
   }
 
   private void nourir_cave() {
@@ -767,7 +823,7 @@ public class Jour {
     }
 
     System.out.println("\u001B[34m" + "			======Inventaire Nourriture======" + "\u001B[0m");
-    nourriture_possession.getQuantites();
+    this.nourriture_possession.getQuantites();
 
     System.out.println("\n\n" + "\u001B[34m"
         + "On va choisir les personnages a nourir. (Donner le numero de la personne que vous voulez nourir)"
@@ -833,7 +889,7 @@ public class Jour {
 
         if (Integer.parseInt(input) > 0 && tab_aide_verif[Integer.parseInt(input)] == 0) {
           throw new IllegalArgumentException(
-              "\u001B[31m" + "Personnage Mort, on ne peut pas le nourir !" + "\u001B[0m");
+              "\u001B[31m" + "Personnage Indisponible, on ne peut pas le nourir !" + "\u001B[0m");
         }
       } catch (NumberFormatException e) {
         System.out.println("\u001B[31m" + "Erreur dans la saisie !" + "\u001B[0m");
@@ -878,7 +934,17 @@ public class Jour {
     if (!(nourriture_possession.get_nourriture_dispo())) {
       System.out.println("\u001B[34m" + "Attention plus de nourriture disponible !" + "\u001B[0m");
     }
-
+    
+    
+    
+    System.out.println("\n\n\n");
+    System.out.println("	    ==========Mise a jour effectuee==========\n\n");
+    System.out.println("\u001B[34m" + "			======Inventaire Nourriture======" + "\u001B[0m");
+    nourriture_possession.getQuantites();
+    System.out.println("\n");
+    for (Personnages p : personnages) {
+      p.to_String_Generaux();
+    }
     System.out.println("==============================================================\n");
 
   }

@@ -166,7 +166,7 @@ public class Personnages {
           + this.barre_nourriture + "\nMental : " + this.barre_mentale + "\nEnergie : " + this.barre_energie
           + "\nSante General : " + this.barre_sante);
     } else {
-      System.out.println(this.perso.getPrenom() + "est mort(e).");
+      System.out.println(this.perso.getPrenom() + " est mort(e).");
     }
     System.out.println("------------------------------");
     System.out.println();
@@ -183,7 +183,7 @@ public class Personnages {
           + this.conso_nourriture + "\nIntelligence : " + this.intelligence + "\nResistance : " + this.resistance
           + "\nAgilite : " + this.agilite);
     } else {
-      System.out.println(this.perso.getPrenom() + "est mort(e).");
+      System.out.println(this.perso.getPrenom() + " est mort(e).");
     }
     System.out.println("------------------------------");
     System.out.println();
@@ -318,11 +318,11 @@ public class Personnages {
    * Autre contexte ?
    */
   public void maj_contextuelle_attributs_generaux_Personnages(int eau, int nourriture, int mentale, int energie) {
-
-    this.barre_eau = this.barre_eau + eau;
-    this.barre_nourriture = this.barre_nourriture + nourriture;
-    this.barre_mentale = this.barre_mentale + mentale;
-    this.barre_energie = this.barre_energie + energie;
+	  
+	this.barre_eau = (this.barre_eau + eau > 100) ? 100 : this.barre_eau + eau;
+    this.barre_nourriture = (this.barre_nourriture + nourriture > 100) ? 100 : this.barre_nourriture + nourriture;
+    this.barre_mentale = (this.barre_mentale + mentale > 100) ? 100 : this.barre_mentale + mentale;
+    this.barre_mentale = (this.barre_energie + energie > 100) ? 100 : this.barre_energie + energie; 
     this.barre_sante = (this.barre_nourriture + this.barre_eau + this.barre_mentale + this.barre_energie) / 4;
   }
 
@@ -338,8 +338,8 @@ public class Personnages {
       this.force = force;
     }
 
-    if (conso_nourriture < 0) {
-      this.conso_nourriture = 0;
+    if (conso_nourriture < 1) { //j'utilise en faisant une division 
+      this.conso_nourriture = 1;
     } else {
       this.conso_nourriture = conso_nourriture;
     }
