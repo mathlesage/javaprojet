@@ -542,4 +542,8 @@ public class Personnages {
 
   }
 
+  public void tuer_personnage() {
+	  this.etat_global = Etat_Personnages.Mort;
+  }
+  
 }
