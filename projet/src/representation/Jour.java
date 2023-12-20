@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Iterator;
 
 /**
  * Un Jour constitue les elements dans la cave au moment d'une journee:
@@ -146,8 +147,8 @@ public class Jour {
       boolean condition_1 = DecisionNode.getVariable_Aleatoire_debut() < nombre_aleatoire_entre_0_1;
       boolean condition_2 = nombre_aleatoire_entre_0_1 < DecisionNode.getVariable_Aleatoire_fin();
       boolean condition_3 = nombre_de_vivant >= DecisionNode.getNombre_Personnage();
-      boolean condition_4 = nombre_journee < DecisionNode.getJour_Necessaire_fin();
-      boolean condition_5 = nombre_journee > DecisionNode.getJour_Necessaire_debut();
+      boolean condition_4 = nombre_journee <= DecisionNode.getJour_Necessaire_fin();
+      boolean condition_5 = nombre_journee >= DecisionNode.getJour_Necessaire_debut();
 
       boolean tousPresent = true;
       if (DecisionNode.getScenario_Necessaire() != null) {
@@ -202,7 +203,9 @@ public class Jour {
           }
           // Rajoute le déscison node qui remplie tous les critères et stop la fonction
           // pour en rajouter qu'un seul
-          tab_DecisionNode_en_cours.get(nombre_journee).add(DecisionNode.getId());
+
+          tab_DecisionNode_en_cours.get((nombre_journee)).add(DecisionNode.getId());
+
           return;
         }
       }
@@ -224,6 +227,9 @@ public class Jour {
     int nombre_nourriture;
 
     switch (index_scenario) {
+      case 0:
+        // ne fait rien sert à mettre du text
+        break;
 
       case 1:
         // Retirer un aliment index : 1
@@ -792,39 +798,7 @@ public class Jour {
       System.out.print("\u001B[34m"
           + "Inserer le numero du personnages que vous voulez nourrir (0 si personne a nourir) : " + "\u001B[0m");
 
-      try {
-        input = scanner.nextLine();
-      } catch (NoSuchElementException e) {
-
-        System.out.println(e.getMessage());
-
-        System.out.println("Slt toi ? C'est Yacine !!!");
-        try {
-          Thread.sleep(5000);
-        } catch (InterruptedException e1) {
-
-        }
-        System.out.println("Tu va rentrer ds une boucle infernale la...");
-        try {
-          Thread.sleep(2000);
-        } catch (InterruptedException e1) {
-
-        }
-        System.out.println("\n\n");
-        System.out.println("Mon petit Matheo faut gerer cette erreur.");
-        System.out.println("Dans une des classes Nodes ou Scenario tu n'initialise pas de scanner...");
-        System.out.println("Ne cherche pas a le close!!!!");
-        System.out.println("\u001B[31m" + "Si ce message s'affiche encore c que ta pas regler !!" + "\u001B[0m");
-        try {
-          Thread.sleep(10000);
-        } catch (InterruptedException e1) {
-
-        }
-        continue;
-      } catch (Exception e) {
-        System.out.println("\u001B[31m" + "Erreur dans la saisie !" + "\u001B[0m");
-        continue;
-      }
+      input = scanner.next();
 
       try {
         if (!(Integer.parseInt(input) <= 4 && Integer.parseInt(input) >= 0)) {
@@ -885,7 +859,6 @@ public class Jour {
 
   public boolean deroulement_du_jour() {
     ArrayList<Integer> vide = new ArrayList<Integer>();
-    vide.add(200);
     tab_scenario_impose_en_cours.add(vide);
     tab_scenario_impose_en_cours.add(vide);
     tab_scenario_impose_en_cours.add(vide);
@@ -909,7 +882,7 @@ public class Jour {
 
     }
     System.out.println("Jours :" + nombre_journee);
-    System.out.println(tab_scenario_impose_en_cours.get(nombre_journee));
+    System.out.println(tab_DecisionNode_en_cours.get(nombre_journee));
     for (int ChanceNode_lancement : tab_scenario_impose_en_cours.get(nombre_journee)) {
 
       for (ChanceNode ch : tab_scenario_impose) {
@@ -922,12 +895,17 @@ public class Jour {
     }
 
     selection_scenario_avec_choix(); // On rempli l'attribut tab_DecisionNode_en_cours de scenario avec choix a jouer
-    for (int DecisionNodelancement : tab_DecisionNode_en_cours.get(nombre_journee)) {
 
-      for (DecisionNode de : tab_DecisionNode) {
+    for (int DecisionNodelancement : tab_DecisionNode_en_cours.get(nombre_journee)) {
+      System.out.println(DecisionNodelancement);
+      Iterator<DecisionNode> iterator = tab_DecisionNode.iterator();
+      while (iterator.hasNext()) {
+        DecisionNode de = iterator.next();
         if (de.getId() == DecisionNodelancement) {
+          System.out.println(de.getId());
           de.raconte_histoire(personnages, objet_possession, tab_DecisionNode_en_cours, tab_DecisionNode_en_cours,
               personnages_en_vie);
+          iterator.remove(); // Utilisation de l'itérateur pour supprimer l'élément en cours
         }
       }
     }

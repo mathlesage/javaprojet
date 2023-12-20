@@ -11,13 +11,21 @@ public class DecisionNode extends Node {
 
     // Condition necessaire pour que le scenario s'invoque
     private float variable_Aleatoire_debut;
+    // pour que les scénarios ne tombent pas tous le temps au meme moment
     private float variable_Aleatoire_fin;
+
     private int jour_Necessaire_debut;
+    // Le scénarios tombent que entre ces deux jours
     private int jour_Necessaire_fin;
     private int nombre_Peronnage;
+
     private int[] scenario_Necessaire;
+    // les scénarios nécessaire pour que ca se lance
     private int id_peronnage_necessaire;
+    // les personnages nescéssaire pour avoir le scénarios(On va crée un scénarios
+    // pour chaque persos)
     private String nom_Objet_Necessaire;
+
     // Variable de chaque scenario
     private int totalmental;
     // Le total de l'energie de la famille doit être supèrieur à ca
@@ -33,6 +41,7 @@ public class DecisionNode extends Node {
     // Le total de l'agilité de la famille doit être supèrieur à ca
     private int totalagilite;
     // Récompense 1 si on refuse le scénarios
+
     private Map<String, ArrayList<IntPair>> dico1;
     // Récompense 2 si on accepte le scénarios mais les stats sont insuffisantes
     private Map<String, ArrayList<IntPair>> dico2;
@@ -41,6 +50,7 @@ public class DecisionNode extends Node {
     // Mettre -1 si on veut une histoire sur la famille sinon mettre le numero du
     // personnage
     private int numero_perso;
+    // pour le faire sur un numéro spéciale
 
     public DecisionNode(float variable_Aleatoire_debut, float variable_Aleatoire_fin, int jour_Necessaire_debut,
             int jour_Necessaire_fin, int nombre_Peronnage, int[] scenario_Necessaire, String histoire,
@@ -70,19 +80,48 @@ public class DecisionNode extends Node {
         this.numero_perso = numero_perso;
     }
 
+    // Scenario sans stat
+    public DecisionNode(float variable_Aleatoire_debut, float variable_Aleatoire_fin, int jour_Necessaire_debut,
+            int jour_Necessaire_fin, int nombre_Peronnage, int[] scenario_Necessaire, String histoire,
+            int id, Map<String, ArrayList<IntPair>> dico1, Map<String, ArrayList<IntPair>> dico2,
+            int id_peronnage_necessaire, int numero_perso) {
+        super(histoire, id, dico1);
+        this.variable_Aleatoire_debut = variable_Aleatoire_debut;
+        this.variable_Aleatoire_fin = variable_Aleatoire_fin;
+        this.jour_Necessaire_debut = jour_Necessaire_debut;
+        this.jour_Necessaire_fin = jour_Necessaire_fin;
+        this.nombre_Peronnage = nombre_Peronnage;
+        this.scenario_Necessaire = scenario_Necessaire;
+        this.totalmental = 0;
+        this.totalenergie = 0;
+        this.totalsante = 0;
+        this.totalforce = 0;
+        this.totalintelligence = 0;
+        this.totalresistance = 0;
+        this.totalagilite = 0;
+
+        this.dico1 = dico1;
+        this.dico2 = dico2;
+        this.dico3 = dico2;
+        this.id_peronnage_necessaire = id_peronnage_necessaire;
+        this.numero_perso = numero_perso;
+    }
+
+    // Scénario sur un personnage précis
+
     public void raconte_histoire(ArrayList<Personnages> personnagesList, Objet objet,
             ArrayList<ArrayList<Integer>> decisionNodes,
             ArrayList<ArrayList<Integer>> chanceNodes, int j) {
         // Si on veut faire un scénario sur un personnage unique on peut sinon mettre -1
         if (numero_perso > -1) {
             if (personnagesList.get(numero_perso).get_vivant()) {
-                histoire = personnagesList.get(numero_perso).get_perso().getPrenom() + histoire;
+                histoire = personnagesList.get(numero_perso).get_perso().getPrenom() + " " + histoire;
             } else {
                 return;
             }
 
         }
-        super.getHistoire();
+        System.out.println(super.getHistoire());
         String reponse;
 
         int familleMental = 0;
@@ -103,13 +142,12 @@ public class DecisionNode extends Node {
             familleAgilite += personnage.get_agilite();
         }
 
+        Scanner scanner = new Scanner(System.in);
         do {
-            try (Scanner scanner = new Scanner(System.in)) {
-                System.out.println("(oui/non)");
-                reponse = scanner.next().toLowerCase();
-                scanner.close();
-            }
-        } while (reponse.equals("oui") && reponse.equals("non"));
+            System.out.println("(oui/non)");
+            reponse = scanner.next().toLowerCase();
+        } while (!reponse.equals("oui") && !reponse.equals("non"));
+
         if (reponse.equals("non")) {
             super.dico = dico1;
             // Recomponse s'il refuse le scenario
