@@ -2,6 +2,7 @@ package Representation;
 
 import univers.*;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -309,6 +310,15 @@ public class Jour {
     // Pourra ramener de la nouriture des objets, etc...
 
     // On verifie d'abord qu'on peut effectivement aller en expedition
+	  
+	System.out.println("\n\n");
+	System.out.println("==============================================================\n");
+			 
+	System.out.println("\u001B[34m"+"			==================================\n"
+				+ "          		   Expedition ! \n"
+				+ "		==================================\n"+"\u001B[0m");
+	
+	  
     int verif1 = 1;
     int verif2 = 1;
     int verif3 = 1;
@@ -337,22 +347,29 @@ public class Jour {
     }
 
     if (verif1 + verif2 + verif3 + verif4 == 0) {
+      System.out.println("==============================================================\n");
       return;
     }
 
     // On peut emmener qql en expedition. Est ce que le joeur veut ?
     Scanner scan = new Scanner(System.in);
     String input = "";
-    System.out.println("Veut tu emmener quelqun en expedition, pour ramener un objet ou de la nourriture? o/n ");
+    System.out.println("\u001B[34m" + "Veut tu emmener quelqun en expedition, pour ramener un objet ou de la nourriture? o/n " + "\u001B[0m");
+    
+    
+ 
     input = scan.nextLine();
+  
+    
 
     // verifie qu'on a bien entree o ou n
     while (!(input.equals("n") || input.equals("o"))) {
-      System.out.println("Entre o pour oui ou n pour non!!!!");
+      System.out.print("\u001B[31m" + "Entre o pour oui ou n pour non! Ressaisir : " + "\u001B[0m " );
       input = scan.nextLine();
     }
 
     if (input.equals("n")) {
+      System.out.println("==============================================================\n");
       return;
     }
 
@@ -518,6 +535,8 @@ public class Jour {
     } else if (notetoal < 12000) {
 
     }
+    
+    System.out.println("==============================================================\n");
 
     // Perso choisi ---> perso_expedition, la fonction s'arrete si pas de perso
     // Objet pris -----> e_expedition Null si rien pris
@@ -532,8 +551,9 @@ public class Jour {
     String input_nourriture = "";
     String input_nombre = "";
 
-    System.out.println("Que veut tu donner à nourir ?");
+    System.out.print("\u001B[34m" + "Que veut tu donner à nourir ? (Ecrit un des des aliments de l'inventaire : attention au majuscule...) " +"\u001B[0m");
 
+    
     // On verifie juste que la nourriture existe
     boolean verif = false;
     while (!verif) {
@@ -542,23 +562,45 @@ public class Jour {
         nourriture_possession.getQuantite(input_nourriture);
         verif = true;
       } catch (IllegalArgumentException e) {
-        e.getMessage();
-        System.out.println("Ressaisir le nom.");
+        System.out.print("\u001B[31m" + e.getMessage() + "Ressaisir l'aliment : " +"\u001B[0m");
         verif = false;
       }
     }
 
-    System.out.println("Combien en veux tu donner ?");
-    System.out.println("Il y en a " + nourriture_possession.getQuantite(input_nourriture) + " de disponible.");
-    input_nombre = scan.nextLine();
-
-    while (Integer.parseInt(input_nombre) > nourriture_possession.getQuantite(input_nourriture)) {
-      System.out.println("Pas assez de nourriture disponible ! Resaisir un nombre !!");
-      input_nombre = scan.nextLine();
+    
+    System.out.println("\u001B[34m" + "Il y en a " + nourriture_possession.getQuantite(input_nourriture) + " de disponible." + "\u001B[0m");
+    System.out.print("\u001B[34m" + "Combien veux tu en donner ? " + "\u001B[0m");
+    
+    
+    
+    
+    while(true) {
+    	try {
+        	input_nombre = scan.nextLine();
+        	if(Integer.parseInt(input_nombre) > nourriture_possession.getQuantite(input_nourriture)) {
+        		System.out.print("\u001B[31m" + "Pas assez de nourriture disponible ! Ressaisir un nombre !! " + "\u001B[0m");
+        		continue;
+        	}
+        	if(Integer.parseInt(input_nombre) < 0) {
+        		System.out.print("\u001B[31m" + "Un nombre negatif ?? Ressaisir un nombre !! " + "\u001B[0m");
+        		continue;
+        	}
+        }
+    	catch(NumberFormatException e) {
+    		System.out.print("\u001B[31m" + "Saisir un Nombre! Ressaisir : " + "\u001B[0m");
+        	continue;
+    	}
+        catch(Exception e) {
+        	System.out.print("\u001B[31m" + "Saisie Incorrect. Ressaisir : " + "\u001B[0m");
+        	continue;
+        }
+    	break;
     }
-
+    
+    
+    
     nourriture_possession.setQuantite(input_nourriture,
-        nourriture_possession.getQuantite(input_nourriture) - Integer.parseInt(input_nombre));
+    nourriture_possession.getQuantite(input_nourriture) - Integer.parseInt(input_nombre));
 
     switch (input_nourriture) {
       case "Eau":
@@ -570,16 +612,16 @@ public class Jour {
             0, nourriture_possession.getEnergie(input_nourriture));
     }
 
- 
-  }
 
+  }
+  
   private void nourir_cave() {
     // Il faut une certaine dose de nourriture pour nourir un personnage
     // Ex : le pere doit manger plus que le frere
     // Variable a ajuster ensuite
 
 	  
-	 System.out.println("\n\n");
+	System.out.println("\n\n");
 	System.out.println("==============================================================\n");
 		 
 	System.out.println("\u001B[34m"+"			==================================\n"
@@ -607,44 +649,121 @@ public class Jour {
     for (Personnages p : personnages) {
       p.to_String_Generaux();
     }
-
-    System.out.println("Voici les nourritures disponibles.");
+   
+    System.out.println("\u001B[34m" + "			======Inventaire Nourriture======"+"\u001B[0m");
     nourriture_possession.getQuantites();
 
-    System.out.println("\u001B[34m" + "On va choisir les personnages a nourir. (Donner le numero de la personne que vous voulez nourir)" + "\u001B[0m");
+   
+    System.out.println("\n\n"+"\u001B[34m" + "On va choisir les personnages a nourir. (Donner le numero de la personne que vous voulez nourir)" + "\u001B[0m");
 
-    int[] tab_a_nourir = { 0, 0, 0, 0, 0 };
-
+    int[] tab_aide_verif = {0,0,0,0,0}; //Si persoi vivant alors on met a l'indice i la val 1, 0 sinon
+    
+    
     for (int i = 1; i <= 4; i++) {
       if (personnages.get(i - 1).get_vivant() && personnages.get(i - 1).get_en_expedition() == false) {
-        System.out.println(i + "------>" + personnages.get(i - 1).get_perso().name());
-        tab_a_nourir[i - 1] = 1;
+        System.out.println(i + "------>" + personnages.get(i - 1).get_perso().name() + " => " + personnages.get(i - 1).get_perso().getPrenom());
+        tab_aide_verif[i] = 1;
       }
     }
+    System.out.println();
 
     Scanner scanner = new Scanner(System.in);
     String input = "";
     boolean verif = true;
     while (nourriture_possession.get_nourriture_dispo() && verif) {
 
-      System.out.print("\u001B[31m" + "Inserer le numero du personnages que vous voulez nourrir :  "+ "\u001B[0m");
-      input = scanner.nextLine();
-
-      // verifier que num ok avec tab_a_nourir
+      System.out.print("\u001B[34m" + "Inserer le numero du personnages que vous voulez nourrir (0 si personne a nourir) : "+ "\u001B[0m");
+      
+      try{
+    	  input = scanner.nextLine();
+      }
+      catch(NoSuchElementException e){
+    	  
+    	  System.out.println(e.getMessage());
+    	  
+    	  System.out.println("Slt toi ? C'est Yacine !!!");
+    	  try {
+  			Thread.sleep(5000);
+  		} catch (InterruptedException e1) {
+  			
+  		}
+    	  System.out.println("Tu va rentrer ds une boucle infernale la...");
+    	  try {
+    			Thread.sleep(2000);
+    		} catch (InterruptedException e1) {
+    			
+    		}
+    	  System.out.println("\n\n");
+    	  System.out.println("Mon petit Matheo faut gerer cette erreur.");
+    	  System.out.println("Dans une des classes Nodes ou Scenario tu n'initialise pas de scanner...");
+    	  System.out.println("Ne cherche pas a le close!!!!");
+    	  System.out.println("\u001B[31m" + "Si ce message s'affiche encore c que ta pas regler !!" + "\u001B[0m");
+    		try {
+    			Thread.sleep(10000);
+    		} catch (InterruptedException e1) {
+    			
+    		}
+    		continue;
+      }
+      catch(Exception e){
+    	  System.out.println("\u001B[31m" +"Erreur dans la saisie !" + "\u001B[0m");
+    	  continue;
+      }
+      
+      try {  
+    	  if( !(Integer.parseInt(input)<= 4 && Integer.parseInt(input)>= 0) ) {
+    		  throw new ArithmeticException("\u001B[31m" + "Nombre saisie Incorrect !"+ "\u001B[0m");
+    	  }
+    	  
+    	  if( Integer.parseInt(input)> 0 && tab_aide_verif[Integer.parseInt(input)] == 0) {
+    		  throw new IllegalArgumentException("\u001B[31m" + "Personnage Mort, on ne peut pas le nourir !"+ "\u001B[0m");
+    	  	}	  
+      }
+      catch(NumberFormatException e ){
+    	  System.out.println("\u001B[31m" +"Erreur dans la saisie !" + "\u001B[0m");
+    	  continue;
+      }
+      catch(ArithmeticException e) {
+    	  System.out.println(e.getMessage());
+    	  continue;
+      }
+      catch(IllegalArgumentException e) {
+    	  System.out.println(e.getMessage());
+    	  continue;
+      }
+      
+      if(Integer.parseInt(input) == 0) {
+    	  verif = false;
+    	  continue;
+      }
       nourir_perso(personnages.get(Integer.parseInt(input) - 1));
-
-      System.out.println("\u001B[31m" + "Veux tu nourir quelqu'un d'autre ? o/n " + "\u001B[0m");
-      input = scanner.nextLine();
-
-      // verifier que bien o ou n
-
+      
+      while(true) {
+    	  System.out.print("\u001B[34m" + "Veux tu nourir quelqu'un d'autre (o/n) ?  " + "\u001B[0m");
+    	  try {
+        	  input = scanner.nextLine(); 
+        	  if(!(input.equals("o") || input.equals("n"))) {
+        		  throw new IllegalArgumentException("\u001B[31m" + "Inserer o pour oui ou n pour non !!!"+ "\u001B[0m");
+        	  }
+          }
+    	  catch(IllegalArgumentException e) {
+    		  System.out.println(e.getMessage());
+        	  continue;
+    	  }
+          catch(Exception e) {
+        	  System.out.println("\u001B[34m" +"Erreur dans la saisie !" + "\u001B[0m");
+        	  continue;
+          }
+    	  break;
+      }
+      
       if (input.equals("n")) {
         verif = false;
       }
     }
 
-    if (nourriture_possession.get_nourriture_dispo()) {
-      System.out.println("Plus de nourriture disponible.");
+    if (!(nourriture_possession.get_nourriture_dispo())) {
+      System.out.println("\u001B[34m" + "Attention plus de nourriture disponible !"+ "\u001B[0m");
     }
  
     System.out.println("==============================================================\n");
