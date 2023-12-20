@@ -18,7 +18,7 @@ public class listescenario {
 
         int[] intArray = new int[] {};
 
-        DecisionNode D1 = new DecisionNode(0, 1, 0, 10, 0, intArray,
+        DecisionNode D1 = new DecisionNode(0, 1, 9, 10, 0, intArray,
                 "Bienvenue dans le jeux adam le chien veut venir l'accepter vous", 0, 0, 0, 0, 0, 0, 0, 1, d1, d1,
                 d1, -1, 1);
         list.add(D1);
