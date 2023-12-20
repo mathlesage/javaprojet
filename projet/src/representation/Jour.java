@@ -353,7 +353,6 @@ public class Jour {
     }
 
     if (input.equals("n")) {
-      scan.close();
       return;
     }
 
@@ -526,7 +525,6 @@ public class Jour {
     // gestion de l'expedition en tant que tel
     // Faire avec Matheo : on a dit on le fait avec les scenario
 
-    scan.close();
   }
 
   private void nourir_perso(Personnages p1) {
@@ -572,7 +570,7 @@ public class Jour {
             0, nourriture_possession.getEnergie(input_nourriture));
     }
 
-    scan.close();
+ 
   }
 
   private void nourir_cave() {
@@ -580,21 +578,26 @@ public class Jour {
     // Ex : le pere doit manger plus que le frere
     // Variable a ajuster ensuite
 
+
+	System.out.println("\n\n");
+	System.out.println("\u001B[34m" + " ========================= A table ! ========================= " + "\u001B[0m" + "\n");
+	  
     if (!nourriture_possession.get_nourriture_dispo()) {
-      System.out.println("Plus de nourriture de disponible. On ne peut nourrir personne !!!");
+      System.out.println( "\u001B[31m" + " Plus de nourriture de disponible. On ne peut nourrir personne !!!" + "\u001B[0m");
       return;
     }
 
-    System.out.print("Voici l'etat des personnages.");
+    System.out.println("Voici l'etat des personnages.\n");
     for (Personnages p : personnages) {
       p.to_String();
     }
+    
+    System.out.println("\n\n");
 
-    System.out.print("Voici les nourritures disponibles.");
+    System.out.println("Voici les nourritures disponibles.");
     nourriture_possession.getQuantites();
 
-    System.out
-        .println("On va choisir les personnages a nourir. (Donner le numero de la personne que vous voulez nourir)");
+    System.out.println("\u001B[34m" + "On va choisir les personnages a nourir. (Donner le numero de la personne que vous voulez nourir)" + "\u001B[0m");
 
     int[] tab_a_nourir = { 0, 0, 0, 0, 0 };
 
@@ -610,11 +613,11 @@ public class Jour {
     boolean verif = true;
     while (nourriture_possession.get_nourriture_dispo() && verif) {
 
-      System.out.println("Inserer le numero du personnages que vous voulez nourrir :  ");
+      System.out.print("Inserer le numero du personnages que vous voulez nourrir :  ");
       input = scanner.nextLine();
 
       // verifier que num ok avec tab_a_nourir
-      nourir_perso(personnages.get(Integer.parseInt(input)));
+      nourir_perso(personnages.get(Integer.parseInt(input) - 1));
 
       System.out.println("Veux tu nourir quelqu'un d'autre ? o/n ");
       input = scanner.nextLine();
@@ -630,12 +633,11 @@ public class Jour {
       System.out.println("Plus de nourriture disponible.");
     }
 
-    scanner.close();
   }
 
   public boolean deroulement_du_jour() {
     ArrayList<Integer> vide = new ArrayList<Integer>();
-    vide.add(1);
+    vide.add(3);
     tab_scenario_impose_en_cours.add(vide);
     tab_scenario_impose_en_cours.add(vide);
     tab_scenario_impose_en_cours.add(vide);
@@ -644,10 +646,10 @@ public class Jour {
     tab_DecisionNode_en_cours.add(vide);
 
     int personnages_en_vie = 0;
-    System.out.println(personnages.size());
     for (Personnages p : personnages) {
       if (p.get_vivant()) {
         personnages_en_vie++;
+
       }
     }
     if (personnages_en_vie == 0) {
