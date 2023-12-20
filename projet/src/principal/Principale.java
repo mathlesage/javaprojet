@@ -8,14 +8,14 @@ import Representation.*;
 
 public class Principale {
 
-	public static Personnages[] choix_perso() {
+	public static ArrayList<Personnages> choix_perso() {
 
 
 		Scanner scan = new Scanner(System.in);
 		String input = "";
 		int valeur = 0;
 		
-		Personnages [] tab_aide_perso = {null,null,null,null,null,null,null,null,null};
+		ArrayList<Personnages> tab_aide_perso = new ArrayList<>();
 		String [] tab_aide_string = {
 									"",
 									"1 => Patrick, le père sage,\n",
@@ -67,34 +67,33 @@ public class Principale {
 			tab_aide_choix[valeur] = 1;
 			switch (valeur) {
 				case 1:
-					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Pere);
+					tab_aide_perso.add(new Personnages(Personnages_du_jeu.Pere));
 					break;
 				case 2:
-					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Mere);
+					tab_aide_perso.add(new Personnages(Personnages_du_jeu.Mere));
 					break;
 				case 3:
-					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Soeur);
+					tab_aide_perso.add(new Personnages(Personnages_du_jeu.Soeur));
 					break;
 				case 4:
-					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Frere);
+					tab_aide_perso.add(new Personnages(Personnages_du_jeu.Frere));
 					break;
 				case 5:
-					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Medecin);
+					tab_aide_perso.add(new Personnages(Personnages_du_jeu.Medecin));
 					break;
 				case 6:
-					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Athlete);
+					tab_aide_perso.add(new Personnages(Personnages_du_jeu.Athlete));
 					break;
 				case 7:
-					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Cousin);
+					tab_aide_perso.add(new Personnages(Personnages_du_jeu.Cousin));
 					break;
 
 				case 8:
-					tab_aide_perso[valeur] = new Personnages(Personnages_du_jeu.Cuisiniere);
+					tab_aide_perso.add(new Personnages(Personnages_du_jeu.Cuisiniere));
 					break;
 			}
 
 		}
-		scan.close();
 		return tab_aide_perso;
 	}
 
@@ -113,7 +112,7 @@ public class Principale {
 
 
 		// Choix des personnages
-		Personnages[] tab_aide_perso = choix_perso();
+		ArrayList <Personnages> tab_aide_perso = choix_perso();
 
 		// Objet de depart : Objet present deja dans la cave.
 		Objet objet_cave = new Objet();
@@ -128,7 +127,7 @@ public class Principale {
 		// Instance de Jour
 		ListeChancenode listeChancenode = new ListeChancenode();
 		ArrayList<ChanceNode> chanceNodes = listeChancenode.getListe();
-		Jour j = new Jour(tab_aide_perso[1], tab_aide_perso[2], tab_aide_perso[3], tab_aide_perso[4], objet_cave,
+		Jour j = new Jour(tab_aide_perso.get(0),tab_aide_perso.get(1),tab_aide_perso.get(2),tab_aide_perso.get(3),objet_cave,
 				nourriture_cave, lalala, chanceNodes);
 
 		while (true) {
