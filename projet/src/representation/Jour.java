@@ -260,6 +260,23 @@ public class Jour {
         nourriture_possession.setQuantite(node.getNom_Aliment(), 3);
         break;
 
+      case 11:
+        // Retirer un aliment index : 1
+        objet_possession.setQuantite(node.getNom_Aliment(), -1);
+        break;
+
+      case 15:
+        // retire tout les aliments : index : 5
+        nombre_nourriture = nourriture_possession.getQuantite(node.getNom_Aliment()) * -1;
+        objet_possession.setQuantite(node.getNom_Aliment(), nombre_nourriture);
+        break;
+
+      case 17:
+        // Ajouter une quantité index : 7
+
+        objet_possession.setQuantite(node.getNom_Aliment(), 1);
+        break;
+
       case 101:
         // rajouter un aliment 1 fois : id 101
         node.getNouritures().setQuantite(node.getNom_Aliment(), 1);
@@ -611,6 +628,8 @@ public class Jour {
             0, nourriture_possession.getEnergie(input_nourriture));
     }
 
+  }
+
 
   }
   
@@ -618,6 +637,7 @@ public class Jour {
     // Il faut une certaine dose de nourriture pour nourir un personnage
     // Ex : le pere doit manger plus que le frere
     // Variable a ajuster ensuite
+
 
 	  
 	System.out.println("\n\n");
@@ -637,10 +657,12 @@ public class Jour {
 	
 	
 	
+
     if (!nourriture_possession.get_nourriture_dispo()) {
-      System.out.println( "\u001B[31m" + " Plus de nourriture de disponible. On ne peut nourrir personne !!!" + "\u001B[0m");
+      System.out
+          .println("\u001B[31m" + " Plus de nourriture de disponible. On ne peut nourrir personne !!!" + "\u001B[0m");
       System.out.println("==============================================================\n");
-		
+
       return;
     }
 
@@ -654,6 +676,7 @@ public class Jour {
 
    
     System.out.println("\n\n"+"\u001B[34m" + "On va choisir les personnages a nourir. (Donner le numero de la personne que vous voulez nourir)" + "\u001B[0m");
+
 
     int[] tab_aide_verif = {0,0,0,0,0}; //Si persoi vivant alors on met a l'indice i la val 1, 0 sinon
     
@@ -670,6 +693,7 @@ public class Jour {
     String input = "";
     boolean verif = true;
     while (nourriture_possession.get_nourriture_dispo() && verif) {
+
 
       System.out.print("\u001B[34m" + "Inserer le numero du personnages que vous voulez nourrir (0 si personne a nourir) : "+ "\u001B[0m");
       
@@ -735,6 +759,7 @@ public class Jour {
     	  verif = false;
     	  continue;
       }
+
       nourir_perso(personnages.get(Integer.parseInt(input) - 1));
       
       while(true) {
@@ -764,14 +789,17 @@ public class Jour {
     if (!(nourriture_possession.get_nourriture_dispo())) {
       System.out.println("\u001B[34m" + "Attention plus de nourriture disponible !"+ "\u001B[0m");
     }
- 
+
     System.out.println("==============================================================\n");
-	
+
   }
 
   public boolean deroulement_du_jour() {
     ArrayList<Integer> vide = new ArrayList<Integer>();
-    vide.add(3);
+    vide.add(57);
+    vide.add(57);
+
+    vide.add(51);
     tab_scenario_impose_en_cours.add(vide);
     tab_scenario_impose_en_cours.add(vide);
     tab_scenario_impose_en_cours.add(vide);
@@ -798,7 +826,7 @@ public class Jour {
     System.out.println("Jours :" + nombre_journee);
     System.out.println(tab_scenario_impose_en_cours.get(nombre_journee));
     for (int ChanceNode_lancement : tab_scenario_impose_en_cours.get(nombre_journee)) {
-      System.out.println("3");
+      System.out.println(objet_possession.getQuantite("Fusil"));
       for (ChanceNode ch : tab_scenario_impose) {
         if (ch.getId() == ChanceNode_lancement) {
           lancement_scenario_impose(ch);
