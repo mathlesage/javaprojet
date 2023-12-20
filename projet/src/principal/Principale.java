@@ -10,7 +10,20 @@ public class Principale {
 
 	public static ArrayList<Personnages> choix_perso() {
 
-
+		System.out.println("==============================================================\n");
+		
+		System.out.println("\u001B[32m"+"			==================================\n"
+				+ "		Procedons au Choix des personnages \n"
+				+ "		==================================\n"+"\u001B[0m");
+		
+/*			
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			
+		}
+*/
+		
 		Scanner scan = new Scanner(System.in);
 		String input = "";
 		int valeur = 0;
@@ -25,7 +38,7 @@ public class Principale {
 									"5 => Paul : le médecin,\n",
 									"6 => Amine, l'athlète,\n",
 									"7 => Yacine, le cousin rusé,\n",
-									"8 => Guilianetta, la cuisinière ingénieuse\n"
+									"8 => Guilianetta, la cuisinière ingénieuse"
 									};
 		
 		int [] tab_aide_choix = {0,0,0,0,0,0,0,0,0};
@@ -37,17 +50,19 @@ public class Principale {
 			} catch (InterruptedException e) {
 				
 			}
-			
+					
 			affichage = "";
 			for(int j = 1;j<=8;j++) {
 				if(tab_aide_choix[j] == 0) {
 					affichage = affichage + tab_aide_string[j];
 				}
 			}
-			System.out.println("==========================================================================================================================================\n");
+			
+		
+			
 			System.out.println("Choix du personnage numero "+i+" :");
 			System.out.println(affichage);
-			System.out.print("Saisie le nombre correspondant au personnage que tu selectionnes : ");
+			System.out.print("\u001B[32m"+"Saisie le nombre correspondant au personnage que tu selectionnes : "+"\u001B[0m");
 
 			while (true) {
 
@@ -55,12 +70,12 @@ public class Principale {
 				try {
 					valeur = Integer.parseInt(input);
 					if (!(valeur <= 8 && valeur >= 1 && tab_aide_choix[valeur] == 0)) {
-						System.out.print("Personnage deja choisi ou inexistant ! Ressaisir : ");
+						System.out.print("\u001B[31m"+"Personnage deja choisi ou inexistant ! Ressaisir : " + "\u001B[0m");
 						continue;
 					}
 					break;
 				} catch (Exception e) {
-					System.out.print("Valeur incorect !!! Ressaisir : ");
+					System.out.print("\u001B[31m"+"Valeur incorect !!! Ressaisir : "+ "\u001B[0m");
 				}
 			}
 
@@ -92,24 +107,41 @@ public class Principale {
 					tab_aide_perso.add(new Personnages(Personnages_du_jeu.Cuisiniere));
 					break;
 			}
+			
+			System.out.println();
 
 		}
+		
+		System.out.println("==============================================================\n\n");
 		return tab_aide_perso;
 	}
 
-
 	public static void lancement_du_jeu() {
 
-		// Message du debut
-		System.out.println(
-				"En plein repas de famille, le monde sombra dans le chaos.\nLa 3ème guerre mondiale éclata, ne laissant qu'un refuge:\nLe bunker, avec seulement 4 places.\n\n =========Qui choisi tu ?========= \nPatrick : le père sage,\nStéphanie : la mère protectrice,\nSarah : l'esprit vif,\nMathéo : le frère courageux,\nPaul : le médecin,\nAmine : l'athlète,\nYacine : le cousin rusé,\nou Guilianetta : la cuisinière ingénieuse.\n\nQuatres personnes de ton choix vont affronter l'impensable.\nDans cette lutte pour la survie, chaque choix peseront lourd, chaque pas les rapprocheront du salut ou de la perte !");
-
+		
+		System.out.println("\u001B[31m"+"			==================================\n"
+				+ " 	        |	     SURVIVOR	         |\n"
+				+ "		==================================\n"+"\u001B[0m");
+		
+/*
 		try {
-			Thread.sleep(0000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			
 		}
+*/
+		
+		// Message du debut
+		System.out.println(
+				"En plein repas de famille, le monde sombra dans le chaos.\nLa 3ème guerre mondiale éclata, ne laissant qu'un refuge:\nLe bunker, avec seulement 4 places.\n\n		=========Qui choisi tu ?========= \n		Patrick : le père sage,\n		Stéphanie : la mère protectrice,\n		Sarah : la soeur a l'esprit vif,\n		Mathéo : le frère courageux,\n		Paul : le médecin,\n		Amine : l'athlète,\n		Yacine : le cousin rusé,\n		ou Guilianetta : la cuisinière ingénieuse.\n\nQuatres personnes de ton choix vont affronter l'impensable.\nDans cette lutte pour la survie, chaque choix peseront lourd,\nchaque pas les rapprocheront du salut ou de la perte !");
 
+/*
+		try {
+			Thread.sleep(30000);
+		} catch (InterruptedException e) {
+			
+		}
+*/
 
 		// Choix des personnages
 		ArrayList <Personnages> tab_aide_perso = choix_perso();
@@ -138,6 +170,8 @@ public class Principale {
 	}
 	
 
+	
+	
 	public static void main(String[] args) {
 		lancement_du_jeu();
 	}
