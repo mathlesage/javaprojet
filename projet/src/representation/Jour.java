@@ -216,6 +216,9 @@ public class Jour {
 
   private void lancement_scenario_impose(ChanceNode node) {
     // Raconte l'histoire du scénario
+    if (node.getNum_perso() != -1) {
+      System.out.print(personnages.get(node.getNum_perso()).get_perso().getPrenom() + " ");
+    }
     System.out.println(node.getHistoire());
     int index_scenario = node.getIndex_Evenement();
     int nombre_nourriture;
@@ -276,8 +279,157 @@ public class Jour {
 
         objet_possession.setQuantite(node.getNom_Aliment(), 1);
         break;
-
+      /*
+       * maj_contextuelle_attributs_specifique_Personnages_ajout() int nforce, int
+       * nconso_nourriture, int nintelligence,
+       * int nresistance, int nagilite)
+       */
       case 100:
+
+        // Le personnage devient moins fort
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages_ajout(-3, 0, 0, 0, 0);
+        } else {
+          System.out.println("A non il est mort");
+        }
+        break;
+
+      case 101:
+
+        // Le personnage devient plus fort
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages_ajout(3, 0, 0, 0, 0);
+        } else {
+          System.out.println("Ah non il est mort");
+        }
+        break;
+
+      case 102:
+
+        // Le personnage consomme plus de nourriture
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages_ajout(0, 3, 0, 0, 0);
+        } else {
+          System.out.println("Ah non il est mort");
+        }
+        break;
+
+      case 103:
+
+        // Le personnage consomme moins de nourriture
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages_ajout(0, -3, 0, 0, 0);
+        } else {
+          System.out.println("Ah non il est mort");
+        }
+        break;
+
+      case 104:
+
+        // Le personnage devient plus intelligent
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages_ajout(0, 0, 3, 0, 0);
+        } else {
+          System.out.println("Ah non il est mort");
+        }
+        break;
+
+      case 105:
+        // Le personnage perd de l'intelligence
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages_ajout(0, 0, -3, 0, 0);
+        } else {
+          System.out.println("Ah non il est mort");
+        }
+        break;
+
+      case 106:
+        // Le personnage gagne de l'agilité
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages_ajout(0, 0, 0, 3, 0);
+        } else {
+          System.out.println("Ah non il est mort");
+        }
+        break;
+
+      case 107:
+        // Le personnage perd de l'agilité
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages_ajout(0, 0, 0, -3, 0);
+        } else {
+          System.out.println("Ah non il est mort");
+        }
+        break;
+
+      case 108:
+        // Le personnage gagne de la résistance
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages_ajout(0, 0, 0, 0, 3);
+        } else {
+          System.out.println("Ah non il est mort");
+        }
+        break;
+      case 109:
+        // Le personnage perd de la résistance
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages_ajout(0, 0, 0, 0, -3);
+        } else {
+          System.out.println("Ah non il est mort");
+        }
+        break;
+
+      case 110:
+        // Le personnage devient fort partout
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages(20, 20, 20, 20, 20);
+        } else {
+          System.out.println("Ah non il est mort");
+        }
+        break;
+      case 111:
+        // Le personnage est devenue un légume
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages(0, 0, 0, 0, 0);
+        } else {
+          System.out.println("Ah non il est mort");
+        }
+        break;
+
+      case 112:
+        // Le personnage ne consomme plus rien
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages_ajout(0, -100, 0, 0,
+              0);
+        } else {
+          System.out.println("Ah non il est mort");
+        }
+        break;
+      case 113:
+        // Le personnage est accros à la nourriture
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages_ajout(0, 30, 0, 0, 0);
+        } else {
+          System.out.println("Ah non il est mort");
+        }
+        break;
+
+      case 114:
+        // Le personnage est d'une intelligence hors norme
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages_ajout(0, 0, 20, 0, 0);
+        } else {
+          System.out.println("Ah non il est mort");
+        }
+        break;
+
+      case 115:
+        // Le personnage tombe malade
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).set_temps_malade_virus(5);
+        } else {
+          System.out.println("Ah non il est mort");
+        }
+        break;
 
     }
 
@@ -733,7 +885,7 @@ public class Jour {
 
   public boolean deroulement_du_jour() {
     ArrayList<Integer> vide = new ArrayList<Integer>();
-
+    vide.add(200);
     tab_scenario_impose_en_cours.add(vide);
     tab_scenario_impose_en_cours.add(vide);
     tab_scenario_impose_en_cours.add(vide);
@@ -759,14 +911,16 @@ public class Jour {
     System.out.println("Jours :" + nombre_journee);
     System.out.println(tab_scenario_impose_en_cours.get(nombre_journee));
     for (int ChanceNode_lancement : tab_scenario_impose_en_cours.get(nombre_journee)) {
-      System.out.println(objet_possession.getQuantite("Fusil"));
+
       for (ChanceNode ch : tab_scenario_impose) {
+
         if (ch.getId() == ChanceNode_lancement) {
+
           lancement_scenario_impose(ch);
         }
       }
     }
-    System.out.println("5");
+
     selection_scenario_avec_choix(); // On rempli l'attribut tab_DecisionNode_en_cours de scenario avec choix a jouer
     for (int DecisionNodelancement : tab_DecisionNode_en_cours.get(nombre_journee)) {
 

@@ -233,6 +233,106 @@ public class ListeChancenode {
                 ChanceNode chance167 = new ChanceNode("Une nouvelle lampe est en stock.",
                                 "Le stock s'est enrichi d'une nouvelle lampe.", 167, 17, "Lampe");
 
+                ChanceNode chance200 = new ChanceNode("est devenu moins fort", " a perdu en muscle", 200, 100, 0);
+                ChanceNode chance201 = new ChanceNode("est devenu plus fort", " a pris du muscle", 201, 101, 0);
+                ChanceNode chance202 = new ChanceNode("consomme plus de nourriture", " a augmenté son appétit", 202,
+                                102, 0);
+                ChanceNode chance203 = new ChanceNode("consomme moins de nourriture", " a réduit son appétit", 203, 103,
+                                0);
+                ChanceNode chance204 = new ChanceNode("est devenue un intellectuel", "est devenue plus intelligent",
+                                204, 104, 0);
+                ChanceNode chance205 = new ChanceNode("a perdu de l'intelligence", "est moins intelligent", 205, 105,
+                                0);
+                ChanceNode chance206 = new ChanceNode("a gagné en agilité", "est plus agile", 206, 106, 0);
+                ChanceNode chance207 = new ChanceNode("a perdu de l'agilité", "est moins agile", 207, 107, 0);
+                ChanceNode chance208 = new ChanceNode("a gagné en résistance", "est plus résistant", 208, 108, 0);
+                ChanceNode chance209 = new ChanceNode("a perdu de la résistance", "est moins résistant", 209, 109, 0);
+                ChanceNode chance210 = new ChanceNode("est devenu plus fort partout", "est beaucoup plus fort", 210,
+                                110, 0);
+                ChanceNode chance211 = new ChanceNode("est devenu un légume", "est inactif", 211, 111, 0);
+                ChanceNode chance212 = new ChanceNode("ne consomme plus rien", "ne se nourrit plus du tout", 212, 112,
+                                0);
+                ChanceNode chance213 = new ChanceNode("est accro à la nourriture", "a une forte dépendance alimentaire",
+                                213, 113, 0);
+                ChanceNode chance214 = new ChanceNode("est d'une intelligence hors norme",
+                                "est extrêmement intelligent", 214, 114, 0);
+                ChanceNode chance215 = new ChanceNode("est tombé malade", "est atteint d'une maladie", 215, 115, 0);
+
+                ChanceNode chance220 = new ChanceNode("est devenu moins fort", " a perdu en muscle", 220, 100, 1);
+                ChanceNode chance221 = new ChanceNode("est devenu plus fort", " a pris du muscle", 221, 101, 1);
+                ChanceNode chance222 = new ChanceNode("consomme plus de nourriture", " a augmenté son appétit", 222,
+                                102, 1);
+                ChanceNode chance223 = new ChanceNode("consomme moins de nourriture", " a réduit son appétit", 223, 103,
+                                1);
+                ChanceNode chance224 = new ChanceNode("est devenue un intellectuel", "est devenue plus intelligent",
+                                224, 104, 1);
+                ChanceNode chance225 = new ChanceNode("a perdu de l'intelligence", "est moins intelligent", 225, 105,
+                                1);
+                ChanceNode chance226 = new ChanceNode("a gagné en agilité", "est plus agile", 226, 106, 1);
+                ChanceNode chance227 = new ChanceNode("a perdu de l'agilité", "est moins agile", 227, 107, 1);
+                ChanceNode chance228 = new ChanceNode("a gagné en résistance", "est plus résistant", 228, 108, 1);
+                ChanceNode chance229 = new ChanceNode("a perdu de la résistance", "est moins résistant", 229, 109, 1);
+                ChanceNode chance230 = new ChanceNode("est devenu plus fort partout", "est beaucoup plus fort", 230,
+                                110, 1);
+                ChanceNode chance231 = new ChanceNode("est devenu un légume", "est inactif", 231, 111, 1);
+                ChanceNode chance232 = new ChanceNode("ne consomme plus rien", "ne se nourrit plus du tout", 232, 112,
+                                1);
+                ChanceNode chance233 = new ChanceNode("est accro à la nourriture", "a une forte dépendance alimentaire",
+                                233, 113, 1);
+                ChanceNode chance234 = new ChanceNode("est d'une intelligence hors norme",
+                                "est extrêmement intelligent", 234, 114, 1);
+                ChanceNode chance235 = new ChanceNode("est tombé malade", "est atteint d'une maladie", 235, 115, 1);
+
+                ChanceNode chance240 = new ChanceNode("est devenu moins fort", " a perdu en muscle", 240, 100, 2);
+                ChanceNode chance241 = new ChanceNode("est devenu plus fort", " a pris du muscle", 241, 101, 2);
+                ChanceNode chance242 = new ChanceNode("consomme plus de nourriture", " a augmenté son appétit", 242,
+                                102, 2);
+                ChanceNode chance243 = new ChanceNode("consomme moins de nourriture", " a réduit son appétit", 243, 103,
+                                2);
+                ChanceNode chance244 = new ChanceNode("est devenue un intellectuel", "est devenue plus intelligent",
+                                244, 104, 2);
+                ChanceNode chance245 = new ChanceNode("a perdu de l'intelligence", "est moins intelligent", 245, 105,
+                                2);
+                ChanceNode chance246 = new ChanceNode("a gagné en agilité", "est plus agile", 246, 106, 2);
+                ChanceNode chance247 = new ChanceNode("a perdu de l'agilité", "est moins agile", 247, 107, 2);
+                ChanceNode chance248 = new ChanceNode("a gagné en résistance", "est plus résistant", 248, 108, 2);
+                ChanceNode chance249 = new ChanceNode("a perdu de la résistance", "est moins résistant", 249, 109, 2);
+                ChanceNode chance250 = new ChanceNode("est devenu plus fort partout", "est beaucoup plus fort", 250,
+                                110, 2);
+                ChanceNode chance251 = new ChanceNode("est devenu un légume", "est inactif", 251, 111, 2);
+                ChanceNode chance252 = new ChanceNode("ne consomme plus rien", "ne se nourrit plus du tout", 252, 112,
+                                2);
+                ChanceNode chance253 = new ChanceNode("est accro à la nourriture", "a une forte dépendance alimentaire",
+                                253, 113, 2);
+                ChanceNode chance254 = new ChanceNode("est d'une intelligence hors norme",
+                                "est extrêmement intelligent", 254, 114, 2);
+                ChanceNode chance255 = new ChanceNode("est tombé malade", "est atteint d'une maladie", 255, 115, 2);
+
+                ChanceNode chance260 = new ChanceNode("est devenu moins fort", " a perdu en muscle", 260, 100, 3);
+                ChanceNode chance261 = new ChanceNode("est devenu plus fort", " a pris du muscle", 261, 101, 3);
+                ChanceNode chance262 = new ChanceNode("consomme plus de nourriture", " a augmenté son appétit", 262,
+                                102, 3);
+                ChanceNode chance263 = new ChanceNode("consomme moins de nourriture", " a réduit son appétit", 263, 103,
+                                3);
+                ChanceNode chance264 = new ChanceNode("est devenue un intellectuel", "est devenue plus intelligent",
+                                264, 104, 3);
+                ChanceNode chance265 = new ChanceNode("a perdu de l'intelligence", "est moins intelligent", 265, 105,
+                                3);
+                ChanceNode chance266 = new ChanceNode("a gagné en agilité", "est plus agile", 266, 106, 3);
+                ChanceNode chance267 = new ChanceNode("a perdu de l'agilité", "est moins agile", 267, 107, 3);
+                ChanceNode chance268 = new ChanceNode("a gagné en résistance", "est plus résistant", 268, 108, 3);
+                ChanceNode chance269 = new ChanceNode("a perdu de la résistance", "est moins résistant", 269, 109, 3);
+                ChanceNode chance270 = new ChanceNode("est devenu plus fort partout", "est beaucoup plus fort", 270,
+                                110, 3);
+                ChanceNode chance271 = new ChanceNode("est devenu un légume", "est inactif", 271, 111, 3);
+                ChanceNode chance272 = new ChanceNode("ne consomme plus rien", "ne se nourrit plus du tout", 272, 112,
+                                3);
+                ChanceNode chance273 = new ChanceNode("est accro à la nourriture", "a une forte dépendance alimentaire",
+                                273, 113, 3);
+                ChanceNode chance274 = new ChanceNode("est d'une intelligence hors norme",
+                                "est extrêmement intelligent", 274, 114, 3);
+                ChanceNode chance275 = new ChanceNode("est tombé malade", "est atteint d'une maladie", 275, 115, 3);
+
                 liste.add(chance1);
                 liste.add(chance2);
                 liste.add(chance3);
@@ -279,7 +379,6 @@ public class ListeChancenode {
                 liste.add(chance61);
                 liste.add(chance65);
                 liste.add(chance67);
-
                 liste.add(chance71);
                 liste.add(chance75);
                 liste.add(chance77);
@@ -310,6 +409,70 @@ public class ListeChancenode {
                 liste.add(chance161);
                 liste.add(chance165);
                 liste.add(chance167);
+                liste.add(chance200);
+                liste.add(chance201);
+                liste.add(chance202);
+                liste.add(chance203);
+                liste.add(chance204);
+                liste.add(chance205);
+                liste.add(chance206);
+                liste.add(chance207);
+                liste.add(chance208);
+                liste.add(chance209);
+                liste.add(chance210);
+                liste.add(chance211);
+                liste.add(chance212);
+                liste.add(chance213);
+                liste.add(chance214);
+                liste.add(chance215);
+                liste.add(chance220);
+                liste.add(chance221);
+                liste.add(chance222);
+                liste.add(chance223);
+                liste.add(chance224);
+                liste.add(chance225);
+                liste.add(chance226);
+                liste.add(chance227);
+                liste.add(chance228);
+                liste.add(chance229);
+                liste.add(chance230);
+                liste.add(chance231);
+                liste.add(chance232);
+                liste.add(chance233);
+                liste.add(chance234);
+                liste.add(chance235);
+                liste.add(chance240);
+                liste.add(chance241);
+                liste.add(chance242);
+                liste.add(chance243);
+                liste.add(chance244);
+                liste.add(chance245);
+                liste.add(chance246);
+                liste.add(chance247);
+                liste.add(chance248);
+                liste.add(chance249);
+                liste.add(chance250);
+                liste.add(chance251);
+                liste.add(chance252);
+                liste.add(chance253);
+                liste.add(chance254);
+                liste.add(chance255);
+                liste.add(chance260);
+                liste.add(chance261);
+                liste.add(chance262);
+                liste.add(chance263);
+                liste.add(chance264);
+                liste.add(chance265);
+                liste.add(chance266);
+                liste.add(chance267);
+                liste.add(chance268);
+                liste.add(chance269);
+                liste.add(chance270);
+                liste.add(chance271);
+                liste.add(chance272);
+                liste.add(chance273);
+                liste.add(chance274);
+                liste.add(chance275);
 
         }
 
@@ -396,8 +559,71 @@ public class ListeChancenode {
          * 161 : La lampe est endommagée.
          * 165 : Toutes les lampes sont désormais hors service.
          * 167 : Ajout d'une nouvelle lampe.
-         * 
-         * 
+         * 200 : Le perso 0 est devenue moins fort
+         * 200 : Le personnage 0 est devenu moins fort.
+         * 201 : Le personnage 0 est devenu plus fort.
+         * 202 : Le personnage 0 consomme plus de nourriture.
+         * 203 : Le personnage 0 consomme moins de nourriture.
+         * 204 : Le personnage 0 est devenu un intellectuel.
+         * 205 : Le personnage 0 a perdu de l'intelligence.
+         * 206 : Le personnage 0 a gagné en agilité.
+         * 207 : Le personnage 0 a perdu de l'agilité.
+         * 208 : Le personnage 0 a gagné en résistance.
+         * 209 : Le personnage 0 a perdu de la résistance.
+         * 210 : Le personnage 0 est devenu plus fort partout.
+         * 211 : Le personnage 0 est devenu un légume.
+         * 212 : Le personnage 0 ne consomme plus rien.
+         * 213 : Le personnage 0 est accro à la nourriture.
+         * 214 : Le personnage 0 est d'une intelligence hors norme.
+         * 215 : Le personnage 0 est tombé malade.
+         * 220 : Le personnage 1 est devenu moins fort.
+         * 221 : Le personnage 1 est devenu plus fort.
+         * 222 : Le personnage 1 consomme plus de nourriture.
+         * 223 : Le personnage 1 consomme moins de nourriture.
+         * 224 : Le personnage 1 est devenu un intellectuel.
+         * 225 : Le personnage 1 a perdu de l'intelligence.
+         * 226 : Le personnage 1 a gagné en agilité.
+         * 227 : Le personnage 1 a perdu de l'agilité.
+         * 228 : Le personnage 1 a gagné en résistance.
+         * 229 : Le personnage 1 a perdu de la résistance.
+         * 230 : Le personnage 1 est devenu plus fort partout.
+         * 231 : Le personnage 1 est devenu un légume.
+         * 232 : Le personnage 1 ne consomme plus rien.
+         * 233 : Le personnage 1 est accro à la nourriture.
+         * 234 : Le personnage 1 est d'une intelligence hors norme.
+         * 235 : Le personnage 1 est tombé malade.
+         * 240 : Le personnage 2 est devenu moins fort.
+         * 241 : Le personnage 2 est devenu plus fort.
+         * 242 : Le personnage 2 consomme plus de nourriture.
+         * 243 : Le personnage 2 consomme moins de nourriture.
+         * 244 : Le personnage 2 est devenu un intellectuel.
+         * 245 : Le personnage 2 a perdu de l'intelligence.
+         * 246 : Le personnage 2 a gagné en agilité.
+         * 247 : Le personnage 2 a perdu de l'agilité.
+         * 248 : Le personnage 2 a gagné en résistance.
+         * 249 : Le personnage 2 a perdu de la résistance.
+         * 250 : Le personnage 2 est devenu plus fort partout.
+         * 251 : Le personnage 2 est devenu un légume.
+         * 252 : Le personnage 2 ne consomme plus rien.
+         * 253 : Le personnage 2 est accro à la nourriture.
+         * 254 : Le personnage 2 est d'une intelligence hors norme.
+         * 255 : Le personnage 2 est tombé malade.
+         * 260 : Le personnage 3 est devenu moins fort.
+         * 261 : Le personnage 3 est devenu plus fort.
+         * 262 : Le personnage 3 consomme plus de nourriture.
+         * 263 : Le personnage 3 consomme moins de nourriture.
+         * 264 : Le personnage 3 est devenu un intellectuel.
+         * 265 : Le personnage 3 a perdu de l'intelligence.
+         * 266 : Le personnage 3 a gagné en agilité.
+         * 267 : Le personnage 3 a perdu de l'agilité.
+         * 268 : Le personnage 3 a gagné en résistance.
+         * 269 : Le personnage 3 a perdu de la résistance.
+         * 270 : Le personnage 3 est devenu plus fort partout.
+         * 271 : Le personnage 3 est devenu un légume.
+         * 272 : Le personnage 3 ne consomme plus rien.
+         * 273 : Le personnage 3 est accro à la nourriture.
+         * 274 : Le personnage 3 est d'une intelligence hors norme.
+         * 275 : Le personnage 3 est tombé malade.
          * 
          * 
          * 

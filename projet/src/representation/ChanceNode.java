@@ -25,6 +25,7 @@ public class ChanceNode extends Node {
         super((personnages.get_perso().getPrenom() + " " + ((Math.random() < 0.5) ? histoire0 : histoire1)), id, dico);
         this.index_Evenement = index_Evenement;
         this.personnages = personnages;
+        this.numero_perso = -1;
 
     }
 
@@ -35,6 +36,8 @@ public class ChanceNode extends Node {
         this.index_Evenement = index_Evenement;
 
         this.nom_Aliment = nom_Alimentint;
+        this.numero_perso = -1;
+
     }
 
     // modifie un objet et ammener de nouveau scénario
@@ -46,6 +49,7 @@ public class ChanceNode extends Node {
         this.index_Evenement = index_Evenement;
         this.objets = objets;
         this.nom_Objet = nom_Objet;
+        this.numero_perso = -1;
     }
 
     public ChanceNode(String histoire0, String histoire1, int id, int index_Evenement, int numero_perso) {
@@ -59,6 +63,8 @@ public class ChanceNode extends Node {
         super(((Math.random() < 0.5) ? histoire0 : histoire1), id);
         this.index_Evenement = index_Evenement;
         this.nom_Aliment = nom_Aliment;
+        this.numero_perso = -1;
+
     }
 
     // Renvoie l'index evenement
