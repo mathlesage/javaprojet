@@ -107,6 +107,7 @@ public class DecisionNode extends Node {
             try (Scanner scanner = new Scanner(System.in)) {
                 System.out.println("(oui/non)");
                 reponse = scanner.next().toLowerCase();
+                scanner.close();
             }
         } while (reponse.equals("oui") && reponse.equals("non"));
         if (reponse.equals("non")) {
