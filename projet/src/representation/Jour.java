@@ -462,7 +462,7 @@ public class Jour {
           for (Elements_du_jeu obj : Elements_du_jeu.values()) {
             if (input.equals(obj.getNom())) {
               e_expedition = obj;
-              objet_possession.setQuantite(obj.getNom(), objet_possession.getQuantite(obj.getNom()) - 1);
+              objet_possession.setQuantite(obj.getNom(), - 1);
               verif = true;
               break;
             }
@@ -599,8 +599,7 @@ public class Jour {
     
     
     
-    nourriture_possession.setQuantite(input_nourriture,
-    nourriture_possession.getQuantite(input_nourriture) - Integer.parseInt(input_nombre));
+    nourriture_possession.setQuantite(input_nourriture, -Integer.parseInt(input_nombre));
 
     switch (input_nourriture) {
       case "Eau":
