@@ -277,46 +277,7 @@ public class Jour {
         objet_possession.setQuantite(node.getNom_Aliment(), 1);
         break;
 
-      case 101:
-        // rajouter un aliment 1 fois : id 101
-        node.getNouritures().setQuantite(node.getNom_Aliment(), 1);
-        break;
-
-      case 102:
-        // rajouter un aliment 2 fois : id 102
-        node.getNouritures().setQuantite(node.getNom_Aliment(), 2);
-        break;
-
-      case 103:
-        // rajouter un aliment 3 fois id 103
-        node.getNouritures().setQuantite(node.getNom_Aliment(), 3);
-        break;
-
-      case 105:
-        // doubler la quantiter d'un aliment : id 105
-        int quantite_nourriture = node.getNouritures().getQuantite(node.getNom_Objet());
-        node.getNouritures().setQuantite(node.getNom_Aliment(), quantite_nourriture);
-        break;
-      case 111:
-        // enlever un aliment 1 fois : id 111
-        node.getNouritures().setQuantite(node.getNom_Aliment(), -1);
-        break;
-
-      case 112:
-        // enlever un aliment 2 fois : id 112
-        node.getNouritures().setQuantite(node.getNom_Aliment(), -2);
-        break;
-
-      case 113:
-        // enlever un aliment 3 fois id 113
-        node.getNouritures().setQuantite(node.getNom_Aliment(), -3);
-        break;
-
-      case 115:
-        // enlever toute la quantiter d'un aliment : id 115
-        quantite_nourriture = node.getNouritures().getQuantite(node.getNom_Objet()) * -1;
-        node.getNouritures().setQuantite(node.getNom_Aliment(), quantite_nourriture);
-        break;
+      case 100:
 
     }
 
