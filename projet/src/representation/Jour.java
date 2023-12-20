@@ -578,21 +578,35 @@ public class Jour {
     // Ex : le pere doit manger plus que le frere
     // Variable a ajuster ensuite
 
-
-	System.out.println("\n\n");
-	System.out.println("\u001B[34m" + " ========================= A table ! ========================= " + "\u001B[0m" + "\n");
 	  
+	 System.out.println("\n\n");
+	System.out.println("==============================================================\n");
+		 
+	System.out.println("\u001B[34m"+"			==================================\n"
+			+ "          		    A Table !! \n"
+			+ "		==================================\n"+"\u001B[0m");
+	  
+/*			
+	try {
+		Thread.sleep(2000);
+	} catch (InterruptedException e) {
+		
+	}
+*/
+	
+	
+	
     if (!nourriture_possession.get_nourriture_dispo()) {
       System.out.println( "\u001B[31m" + " Plus de nourriture de disponible. On ne peut nourrir personne !!!" + "\u001B[0m");
+      System.out.println("==============================================================\n");
+		
       return;
     }
 
     System.out.println("Voici l'etat des personnages.\n");
     for (Personnages p : personnages) {
-      p.to_String();
+      p.to_String_Generaux();
     }
-    
-    System.out.println("\n\n");
 
     System.out.println("Voici les nourritures disponibles.");
     nourriture_possession.getQuantites();
@@ -613,13 +627,13 @@ public class Jour {
     boolean verif = true;
     while (nourriture_possession.get_nourriture_dispo() && verif) {
 
-      System.out.print("Inserer le numero du personnages que vous voulez nourrir :  ");
+      System.out.print("\u001B[31m" + "Inserer le numero du personnages que vous voulez nourrir :  "+ "\u001B[0m");
       input = scanner.nextLine();
 
       // verifier que num ok avec tab_a_nourir
       nourir_perso(personnages.get(Integer.parseInt(input) - 1));
 
-      System.out.println("Veux tu nourir quelqu'un d'autre ? o/n ");
+      System.out.println("\u001B[31m" + "Veux tu nourir quelqu'un d'autre ? o/n " + "\u001B[0m");
       input = scanner.nextLine();
 
       // verifier que bien o ou n
@@ -632,7 +646,9 @@ public class Jour {
     if (nourriture_possession.get_nourriture_dispo()) {
       System.out.println("Plus de nourriture disponible.");
     }
-
+ 
+    System.out.println("==============================================================\n");
+	
   }
 
   public boolean deroulement_du_jour() {
