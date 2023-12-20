@@ -30,9 +30,9 @@ public class listescenario {
 
         // Sniffer du champignon
         ArrayList<IntPair> listD2 = new ArrayList<>();
-        listD2.add(new IntPair(1, 204));
+        listD2.add(new IntPair(1, 211));
         Map<String, ArrayList<IntPair>> dico_2 = new HashMap<String, ArrayList<IntPair>>();
-        dico_2.put("decision", list1);
+        dico_2.put("chance", listD2);
         DecisionNode D2 = new DecisionNode(0, 1, 0, 5, 0, Arrayvide,
                 "veut manger des champignons qui sont dans le coins de la cave voulez vous le faire manger ces champignons ?",
                 1001, dico_vide, dico_2, -1, 0);

@@ -72,14 +72,14 @@ public class Jour {
    * jouer au i-eme jour
    * On le construit petit a petit.
    */
-  private ArrayList<ArrayList<Integer>> tab_DecisionNode_en_cours = new ArrayList<ArrayList<Integer>>();
+  public ArrayList<ArrayList<Integer>> tab_DecisionNode_en_cours = new ArrayList<ArrayList<Integer>>();
 
   /**
    * Tableau contenant à l'indice i, les i-eme scenario impose que l'on va jouer
    * au i-eme jour
    * On le construit petit a petit.
    */
-  private ArrayList<ArrayList<Integer>> tab_scenario_impose_en_cours = new ArrayList<ArrayList<Integer>>();
+  public ArrayList<ArrayList<Integer>> tab_scenario_impose_en_cours = new ArrayList<ArrayList<Integer>>();
 
   /** Tableau contenant l'indice des scenario passées */
 
@@ -890,23 +890,22 @@ public class Jour {
         if (ch.getId() == ChanceNode_lancement) {
 
           lancement_scenario_impose(ch);
+
         }
       }
     }
 
     selection_scenario_avec_choix(); // On rempli l'attribut tab_DecisionNode_en_cours de scenario avec choix a jouer
 
-    for (int DecisionNodelancement : tab_DecisionNode_en_cours.get(nombre_journee)) {
-      System.out.println(DecisionNodelancement);
-      Iterator<DecisionNode> iterator = tab_DecisionNode.iterator();
-      while (iterator.hasNext()) {
-        DecisionNode de = iterator.next();
-        if (de.getId() == DecisionNodelancement) {
-          System.out.println(de.getId());
-          de.raconte_histoire(personnages, objet_possession, tab_DecisionNode_en_cours, tab_DecisionNode_en_cours,
-              personnages_en_vie);
-          iterator.remove(); // Utilisation de l'itérateur pour supprimer l'élément en cours
-        }
+    ArrayList<Integer> decisions = tab_DecisionNode_en_cours.get(nombre_journee);
+    Iterator<DecisionNode> iterator = tab_DecisionNode.iterator();
+    while (iterator.hasNext()) {
+      DecisionNode de = iterator.next();
+      if (decisions.contains(de.getId())) {
+        System.out.println(de.getId());
+        de.raconte_histoire(personnages, objet_possession, tab_DecisionNode_en_cours, tab_DecisionNode_en_cours,
+            this.nombre_journee);
+        iterator.remove(); // Utilisation de l'itérateur pour supprimer l'élément en cours
       }
     }
 

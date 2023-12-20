@@ -156,9 +156,11 @@ public class DecisionNode extends Node {
             if (totalmental <= familleMental && totalenergie <= familleEnergie && totalsante <= familleSante
                     && totalforce <= familleForce && totalintelligence <= familleIntelligence
                     && totalresistance <= familleResistance && totalagilite <= familleAgilite) {
+
                 super.dico = dico2;
                 // Recomponse si les stats des perso sont suffisant
             } else {
+
                 super.dico = dico3;
                 // Recomponse si les stats des perso sont insuffisante
             }
