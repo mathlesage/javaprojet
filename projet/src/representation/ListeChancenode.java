@@ -249,7 +249,8 @@ public class ListeChancenode {
                 ChanceNode chance209 = new ChanceNode("a perdu de la résistance", "est moins résistant", 209, 109, 0);
                 ChanceNode chance210 = new ChanceNode("est devenu plus fort partout", "est beaucoup plus fort", 210,
                                 110, 0);
-                ChanceNode chance211 = new ChanceNode("est devenu un légume", "est inactif", 211, 111, 0);
+                ChanceNode chance211 = new ChanceNode("est devenu un légume",
+                                "ne répond plus et garde la bouche ouverte", 211, 111, 0);
                 ChanceNode chance212 = new ChanceNode("ne consomme plus rien", "ne se nourrit plus du tout", 212, 112,
                                 0);
                 ChanceNode chance213 = new ChanceNode("est accro à la nourriture", "a une forte dépendance alimentaire",
