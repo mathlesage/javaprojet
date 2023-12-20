@@ -28,10 +28,9 @@ public class Un_element {
     public void setQuantite(int quantite) throws ArithmeticException{
 
       if (quantite < 0) {
-          throw new ArithmeticException("Une quantite ne peut pas etre negative ! ");
+          throw new ArithmeticException("Ouf, il y en a deja 0 "+this.element.getNom()+" !");
       }
       this.quantite = quantite;
-
     }
 
     public int getEnergie(){
