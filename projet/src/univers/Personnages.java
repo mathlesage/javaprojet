@@ -155,21 +155,41 @@ public class Personnages {
   /**
    * Donne une description des attribus generaux et specifique des personnages
    */
-  public void to_String() {
-
+  public void to_String_Generaux() {
+	
+	System.out.println("------------------------------");
     if (this.etat_global != Etat_Personnages.Mort) {
-      System.out.println(this.perso.getPrenom() + " est vivant(e).\n" + this.etat_global.name() + "\n"
-          + this.etat_malade.name() + "\n" + this.etat_mentale.name());
-      System.out.println("\nATTRIBUTS GENERAUX :\n" + "Hydratation : " + this.barre_eau + "\nSassiete : "
+      System.out.print(this.perso.name() + " => " + this.perso.getPrenom() + " est vivant(e).\n" + "	"+this.etat_global.name() + "\n"
+          + "	" + this.etat_malade.name() + "\n" + "	" + this.etat_mentale.name());
+      System.out.println("\n------ATTRIBUTS GENERAUX------\n" + "Hydratation : " + this.barre_eau + "\nSassiete : "
           + this.barre_nourriture + "\nMental : " + this.barre_mentale + "\nEnergie : " + this.barre_energie
-          + "\nSante Genral : " + this.barre_sante);
-      System.out.println("\n" + "ATTRIBUTS SPECIFIQUES :\n" + "Force : " + this.force + "\nConso_Nourriture : "
-          + this.conso_nourriture + "\nIntelligence : " + this.intelligence + "\nResistance : " + this.resistance
-          + "\nAgilite : " + this.agilite);
+          + "\nSante General : " + this.barre_sante);
     } else {
       System.out.println(this.perso.getPrenom() + "est mort(e).");
     }
+    System.out.println("------------------------------");
+    System.out.println();
   }
+  
+  
+  public void to_String_Specefique(){
+	  
+	  System.out.println("------------------------------");
+	  if (this.etat_global != Etat_Personnages.Mort) {
+	      System.out.print(this.perso.name() + " => " + this.perso.getPrenom() + " est vivant(e).\n" + this.etat_global.name() + "\n"
+	          + this.etat_malade.name() + "\n" + this.etat_mentale.name());
+	      System.out.println("\n-----ATTRIBUTS SPECIFIQUE-----\n" + "Force : " + this.force + "\nConso_Nourriture : "
+	          + this.conso_nourriture + "\nIntelligence : " + this.intelligence + "\nResistance : " + this.resistance
+	          + "\nAgilite : " + this.agilite);
+	    } else {
+	      System.out.println(this.perso.getPrenom() + "est mort(e).");
+	    }
+	  System.out.println("------------------------------");
+	  System.out.println();
+	  
+  }
+  
+  
 
   // Getters
   public boolean get_vivant() {
