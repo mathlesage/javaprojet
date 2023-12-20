@@ -156,10 +156,11 @@ public class Personnages {
    * Donne une description des attribus generaux et specifique des personnages
    */
   public void to_String_Generaux() {
-	
-	System.out.println("------------------------------");
+
+    System.out.println("------------------------------");
     if (this.etat_global != Etat_Personnages.Mort) {
-      System.out.print(this.perso.name() + " => " + this.perso.getPrenom() + " est vivant(e).\n" + "	"+this.etat_global.name() + "\n"
+      System.out.print(this.perso.name() + " => " + this.perso.getPrenom() + " est vivant(e).\n" + "	"
+          + this.etat_global.name() + "\n"
           + "	" + this.etat_malade.name() + "\n" + "	" + this.etat_mentale.name());
       System.out.println("\n------ATTRIBUTS GENERAUX------\n" + "Hydratation : " + this.barre_eau + "\nSassiete : "
           + this.barre_nourriture + "\nMental : " + this.barre_mentale + "\nEnergie : " + this.barre_energie
@@ -170,26 +171,24 @@ public class Personnages {
     System.out.println("------------------------------");
     System.out.println();
   }
-  
-  
-  public void to_String_Specefique(){
-	  
-	  System.out.println("------------------------------");
-	  if (this.etat_global != Etat_Personnages.Mort) {
-	      System.out.print(this.perso.name() + " => " + this.perso.getPrenom() + " est vivant(e).\n" + this.etat_global.name() + "\n"
-	          + this.etat_malade.name() + "\n" + this.etat_mentale.name());
-	      System.out.println("\n-----ATTRIBUTS SPECIFIQUE-----\n" + "Force : " + this.force + "\nConso_Nourriture : "
-	          + this.conso_nourriture + "\nIntelligence : " + this.intelligence + "\nResistance : " + this.resistance
-	          + "\nAgilite : " + this.agilite);
-	    } else {
-	      System.out.println(this.perso.getPrenom() + "est mort(e).");
-	    }
-	  System.out.println("------------------------------");
-	  System.out.println();
-	  
+
+  public void to_String_Specefique() {
+
+    System.out.println("------------------------------");
+    if (this.etat_global != Etat_Personnages.Mort) {
+      System.out.print(
+          this.perso.name() + " => " + this.perso.getPrenom() + " est vivant(e).\n" + this.etat_global.name() + "\n"
+              + this.etat_malade.name() + "\n" + this.etat_mentale.name());
+      System.out.println("\n-----ATTRIBUTS SPECIFIQUE-----\n" + "Force : " + this.force + "\nConso_Nourriture : "
+          + this.conso_nourriture + "\nIntelligence : " + this.intelligence + "\nResistance : " + this.resistance
+          + "\nAgilite : " + this.agilite);
+    } else {
+      System.out.println(this.perso.getPrenom() + "est mort(e).");
+    }
+    System.out.println("------------------------------");
+    System.out.println();
+
   }
-  
-  
 
   // Getters
   public boolean get_vivant() {
@@ -506,4 +505,41 @@ public class Personnages {
   public void set_temps_malade_virus(int n) {
     this.temps_malade_virus = n;
   }
+
+  public void maj_contextuelle_attributs_specifique_Personnages_ajout(int nforce, int nconso_nourriture,
+      int nintelligence,
+      int nresistance, int nagilite) {
+
+    if (this.force + nforce < 0) {
+      this.force = 0;
+    } else {
+      this.force = this.force + nforce;
+    }
+
+    if (this.conso_nourriture + nconso_nourriture < 0) {
+      this.conso_nourriture = 0;
+    } else {
+      this.conso_nourriture = this.conso_nourriture + nconso_nourriture;
+    }
+
+    if (this.intelligence + nintelligence < 0) {
+      this.intelligence = 0;
+    } else {
+      this.intelligence = this.intelligence + nintelligence;
+    }
+
+    if (this.resistance + nresistance < 0) {
+      this.resistance = 0;
+    } else {
+      this.resistance = this.resistance + nresistance;
+    }
+
+    if (this.agilite + nagilite < 0) {
+      this.agilite = 0;
+    } else {
+      this.agilite = this.agilite + nagilite;
+    }
+
+  }
+
 }
