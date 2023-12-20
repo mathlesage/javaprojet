@@ -14,7 +14,7 @@ class PersonnagesTest {
 	
 	@Test
 	public void to_String_test() {
-		perso_test.to_String();
+		perso_test.to_String_Generaux();
 		assertEquals(true,true);
 	}
 	
