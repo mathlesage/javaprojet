@@ -1,9 +1,10 @@
 package Representation;
 
+import java.io.Serializable;
 import java.util.*;
 import univers.*;
 
-public class listescenario {
+public class listescenario implements Serializable {
 
     private ArrayList<DecisionNode> liste = new ArrayList<DecisionNode>();
 
