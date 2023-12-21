@@ -191,6 +191,18 @@ public class Personnages implements Serializable {
 
   }
 
+  public void to_String_en_expedition() {
+	  System.out.println("------------------------------");
+	    if (this.etat_global != Etat_Personnages.Mort) {
+	      System.out.println( this.perso.name() + " => " + this.perso.getPrenom() + " est en expedition.");
+	    } else {
+	      System.out.println(this.perso.getPrenom() + " est mort(e).");
+	    }
+	    System.out.println("------------------------------");
+	    System.out.println();
+  }
+  
+  
   // Getters
   public boolean get_vivant() {
     if (this.etat_global != Etat_Personnages.Mort) {
@@ -277,13 +289,11 @@ public class Personnages implements Serializable {
   public void maj_naturelle_attributs_generaux_Personnages() {
     // maj a faire tt les 1 jours en fin de journee
     if (this.etat_global != Etat_Personnages.Mort) {
-      this.barre_nourriture = this.barre_nourriture - 20; // 5 jour sans manger max
-      this.barre_eau = this.barre_eau - 33; // 3 jour sans boire max
-      this.barre_mentale = this.barre_mentale - 25;
-      this.barre_energie = (this.barre_nourriture <= 20) ? this.barre_energie - 10 : this.barre_energie - 5; // perd
-                                                                                                              // bcp
-                                                                                                              // d'energie
-                                                                                                              // si faim
+      this.barre_nourriture = this.barre_nourriture - 20; 
+      this.barre_eau = this.barre_eau - 25; 
+      this.barre_mentale = this.barre_mentale - 5;
+      this.barre_energie = (this.barre_nourriture <= 20) ? this.barre_energie - 10 : this.barre_energie - 5; // perd plus d'energie si faim
+                                                                                                      
       this.barre_sante = (this.barre_nourriture + this.barre_eau + this.barre_mentale + this.barre_energie) / 4;
     }
 
@@ -538,6 +548,7 @@ public class Personnages implements Serializable {
 
   public void revient_de_expedition() {
     this.en_expedition = false;
+    this.maj_contextuelle_attributs_generaux_Personnages(0, 0, 0, -20);
   }
 
   public void set_temps_malade_virus(int n) {

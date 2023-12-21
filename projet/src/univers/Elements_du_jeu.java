@@ -23,11 +23,11 @@ public enum Elements_du_jeu implements Serializable {
   TROUSSE("Trousse", -1, -1, -1, 2),
   RADIO("Radio", -1, -1, -1, 1),
   LAMPE("Lampe", -1, -1, -1, 6),
-  BANANE("Banane", 20, 10, 0, 1),
-  PATE("Pate", 20, 40, 0, 1),
+  BANANE("Banane", 20, 25, 5, 1),
+  PATE("Pate", 20, 50, 0, 1),
   FRANDISE("Friandise", 15, 10, 0, 1),
-  EAU("Eau", 0, 0, 33, 1),
-  SODA("Soda", 20, 0, 22, 5);
+  EAU("Eau", 0, 0, 75, 1),
+  SODA("Soda", 30, 0, 25, 5);
 
   private String nom;
   private int energie;

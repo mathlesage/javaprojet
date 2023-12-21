@@ -494,7 +494,6 @@ public class Jour implements Serializable {
           System.out.println("Certe il revient, mais il est mort.");
         }
         break;
-
     }
   }
 
@@ -744,6 +743,7 @@ public class Jour implements Serializable {
     int bon_placement = place_du_perso * 20;
     int temps_expedition = 1;
 
+
     while (tab_scenario_impose_en_cours.size() <= (nombre_journee + temps_expedition)) {
       tab_scenario_impose_en_cours.add(new ArrayList<>());
     }
@@ -781,6 +781,7 @@ public class Jour implements Serializable {
         tab_scenario_impose_en_cours.get(nombre_journee + 1).add(236);
         tab_scenario_impose_en_cours.get(nombre_journee + 1).add(256);
       }
+
 
     } else if (notetoal < 1800) {
       tab_scenario_impose_en_cours.get(nombre_journee + 1).add(599);
@@ -880,6 +881,7 @@ public class Jour implements Serializable {
         tab_scenario_impose_en_cours.get(nombre_journee + 1).add(8 + (10 * i));
 
       }
+
 
     } else {
       tab_scenario_impose_en_cours.get(nombre_journee + 1).add(210 + bon_placement);
@@ -1070,7 +1072,12 @@ public class Jour implements Serializable {
 
     System.out.println("Voici l'etat des personnages.\n");
     for (Personnages p : personnages) {
-      p.to_String_Generaux();
+      if(p.get_en_expedition()) {
+    	  p.to_String_en_expedition();
+      }
+      else {
+    	  p.to_String_Generaux();
+      }
     }
 
     System.out.println("\u001B[34m" + "			======Inventaire Nourriture======" + "\u001B[0m");
@@ -1185,6 +1192,7 @@ public class Jour implements Serializable {
       p.maj_naturelle_attributs_generaux_Personnages();
 
     }
+
     for (int ChanceNode_lancement : tab_scenario_impose_en_cours.get(nombre_journee)) {
       for (ChanceNode ch : tab_scenario_impose) {
         if (ch.getId() == ChanceNode_lancement) {
