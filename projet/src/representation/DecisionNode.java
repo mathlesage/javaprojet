@@ -1,5 +1,6 @@
 package Representation;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
@@ -7,7 +8,7 @@ import java.util.Scanner;
 import univers.Objet;
 import univers.Personnages;
 
-public class DecisionNode extends Node {
+public class DecisionNode extends Node implements Serializable {
 
     // Condition necessaire pour que le scenario s'invoque
     private float variable_Aleatoire_debut;

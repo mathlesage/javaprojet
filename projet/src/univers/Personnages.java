@@ -1,5 +1,6 @@
 package univers;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
@@ -11,7 +12,7 @@ import java.util.Random;
  * @author ABDELOUHAB Yacine
  * @version 2
  */
-public class Personnages {
+public class Personnages implements Serializable {
 
   private Personnages_du_jeu perso;
 

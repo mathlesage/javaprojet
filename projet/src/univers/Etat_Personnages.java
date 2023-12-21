@@ -1,6 +1,8 @@
 package univers;
 
-public enum Etat_Personnages{
+import java.io.Serializable;
+
+public enum Etat_Personnages implements Serializable{
 	
 	//Etat global
 	Vigoureux(80,100,"sante"),

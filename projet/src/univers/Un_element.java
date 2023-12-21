@@ -1,12 +1,14 @@
 package univers;
 
+import java.io.Serializable;
+
 /**
  * Classe decrivant un element du jeu, et combien il y en a.
  * 
  * @author ABDELOUHAB Yacine et QUATREBOEUFS Matheo
  */
 
-public class Un_element {
+public class Un_element implements Serializable {
 
   private Elements_du_jeu element;
   private int quantite;

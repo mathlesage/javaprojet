@@ -1,10 +1,11 @@
 package Representation;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class Node {
+public abstract class Node implements Serializable {
     private int id;
     protected String histoire;
     protected Map<String, ArrayList<IntPair>> dico;

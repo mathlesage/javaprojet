@@ -1,6 +1,8 @@
 package Representation;
 
 import univers.*;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Random;
@@ -40,12 +42,12 @@ import java.util.Iterator;
  * @version deux_classes
  */
 
-public class Jour {
+public class Jour implements Serializable {
 
   /**
    * Nombre de jour passe dans la cave
    */
-  private static int nombre_journee = 0;
+  private int nombre_journee = 0;
 
   // Personnages Objet et Nourriture sont des variables qui sont passe par
   // reference
@@ -120,6 +122,13 @@ public class Jour {
    * Ces scenarios avec choix sont determines grace au parametre des personnages,
    * des objets et nourriture qu'il possede.
    */
+  
+  
+  public int get_nombre_journee() {
+	  return this.nombre_journee;
+  }
+  
+  
   private void selection_scenario_avec_choix() {
 
     int nombre_de_vivant = 0; // Initialisation du compteur de personnages vivants
@@ -947,7 +956,6 @@ public class Jour {
       p.maj_naturelle_attributs_generaux_Personnages();
 
     }
-    System.out.println("Jours :" + nombre_journee);
     System.out.println(tab_DecisionNode_en_cours.get(nombre_journee));
     for (int ChanceNode_lancement : tab_scenario_impose_en_cours.get(nombre_journee)) {
 
