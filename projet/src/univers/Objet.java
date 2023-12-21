@@ -1,5 +1,6 @@
 package univers;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  * @author QUATREBOEUFS Matheo
  */
 
-public class Objet implements Inventaire {
+public class Objet implements Inventaire, Serializable {
 
   protected ArrayList<Un_element> inventaire = new ArrayList<Un_element>();
 
