@@ -1,8 +1,9 @@
 package Representation;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ListeChancenode {
+public class ListeChancenode implements Serializable {
 
         private ArrayList<ChanceNode> liste = new ArrayList<ChanceNode>();
 
