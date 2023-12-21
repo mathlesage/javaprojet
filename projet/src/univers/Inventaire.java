@@ -4,7 +4,7 @@ package univers;
 Une classe implementant cette interface, aura pour role de simuler les objets/la nourriture presente ou pas dans la cave a un jour donne.
 @author QUATREBOEUFS MATHEO
 */
-public interface Inventaire {
+public interface Inventaire  {
 
     //Methode permettant d'avoir la quantite d'un objet/aliment precis
     int getQuantite(String nom);
