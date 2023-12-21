@@ -232,6 +232,11 @@ public class Jour implements Serializable {
       System.out.print(personnages.get(node.getNum_perso()).get_perso().getPrenom() + " ");
     }
     System.out.println(node.getHistoire());
+    try {
+      Thread.sleep(2000);
+    } catch (InterruptedException e) {
+
+    }
     int index_scenario = node.getIndex_Evenement();
     int nombre_nourriture;
 
@@ -293,6 +298,7 @@ public class Jour implements Serializable {
         // Ajouter une quantité index : 7
 
         objet_possession.setQuantite(node.getNom_Aliment(), 1);
+
         break;
       /*
        * maj_contextuelle_attributs_specifique_Personnages_ajout() int nforce, int
@@ -440,14 +446,51 @@ public class Jour implements Serializable {
       case 115:
         // Le personnage tombe malade
         if (personnages.get(node.getNum_perso()).get_vivant()) {
-          personnages.get(node.getNum_perso()).set_temps_malade_virus(5);
+
+          personnages.get(node.getNum_perso()).maj_contamination_virus_Personnages();
+
         } else {
           System.out.println("Ah non il est mort");
         }
         break;
+      case 116:
+        // La personne meurt
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).tuer_personnage();
+        } else {
+          System.out.println("Une deuxième fois c'est un peu de l'acharnement.");
+        }
+        break;
+      case 117:
+        // La personne revient d'expédition
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).revient_de_expedition();
+        } else {
+          System.out.println("Certe il revient, mais il est mort.");
+        }
+      case 118:
+        // La personne est un peu amocher
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_generaux_Personnages(-20, -20, -20, -20);
+        } else {
+          System.out.println("Certe il revient, mais il est mort.");
+        }
+      case 119:
+        // La personne va mieux
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_generaux_Personnages(20, 20, 20, 20);
+        } else {
+          System.out.println("Certe il revient, mais il est mort.");
+        }
+
+      case 120:
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_generaux_Personnages(100, 100, 100, 100);
+        } else {
+          System.out.println("Certe il revient, mais il est mort.");
+        }
 
     }
-
   }
 
   private void expedition() {
@@ -456,10 +499,6 @@ public class Jour implements Serializable {
 
     // On verifie d'abord qu'on peut effectivement aller en expedition
 
-	  
-	  
-	  
-	  
     System.out.println("\n\n");
     System.out.println("==============================================================\n");
 
@@ -467,19 +506,15 @@ public class Jour implements Serializable {
         + "          		   Expedition ! \n"
         + "		==================================\n" + "\u001B[0m");
 
-    
-/*
-	  try {
-	  Thread.sleep(2000);
-	  } catch (InterruptedException e) {
-	  
-	  }
-*/
-    
-    
-    
-    
-    //On verifie qu'on peut emmener qql en expedition
+    /*
+     * try {
+     * Thread.sleep(2000);
+     * } catch (InterruptedException e) {
+     * 
+     * }
+     */
+
+    // On verifie qu'on peut emmener qql en expedition
     int verif1 = 1;
     int verif2 = 1;
     int verif3 = 1;
@@ -490,6 +525,7 @@ public class Jour implements Serializable {
     for (Personnages p : this.personnages) {
       if (p.get_vivant() == false || p.get_en_expedition() == true) {
         verif_courant = 0;
+
       } else {
         verif_courant = 1;
       }
@@ -508,12 +544,11 @@ public class Jour implements Serializable {
     }
 
     if (verif1 + verif2 + verif3 + verif4 == 0) {
-      System.out.println("\u001B[34m"+"Aucun Personnage Dispo !"+"\u001B[0m");
+      System.out.println("\u001B[34m" + "Aucun Personnage Dispo !" + "\u001B[0m");
       System.out.println("==============================================================\n");
       return;
     }
-        
-       
+
     // On peut emmener qql en expedition. Est ce que le joeur veut ?
     Scanner scan = new Scanner(System.in);
     String input = "";
@@ -533,7 +568,8 @@ public class Jour implements Serializable {
       return;
     }
 
-    System.out.println("\u001B[34m" + "Tu pourras choisir au plus un objet a prendre, et un personnage."+ "\u001B[0m ");
+    System.out
+        .println("\u001B[34m" + "Tu pourras choisir au plus un objet a prendre, et un personnage." + "\u001B[0m ");
 
     // Choix personnage
     // Rappeler les attributs specifiques des perso ?
@@ -567,49 +603,54 @@ public class Jour implements Serializable {
     System.out.println(choix_perso);
     System.out.print("\u001B[34m" + "Lequel choisi tu ? " + "\u001B[0m ");
 
-    
-    while(true) {
-    	
-        input = scan.nextLine(); // Verifier que il a entrer un numero valable grace au tableau...
-        try {
-        	
-        	if(!(Integer.parseInt(input) >= 1 && Integer.parseInt(input)<=4)) {
-        		System.out.print("\u001B[31m" + "Personnage Inexistant ! Ressaisir : " + "\u001B[0m");
-        		continue;
-        	}
-        	if(tab_aide_choix_perso[Integer.parseInt(input)] != 1) {
-        		System.out.print("\u001B[31m" + "Impossible de choisir ce personnage ! Ressaisir : " + "\u001B[0m");
-        		continue;
-        	}
+    while (true) {
+
+      input = scan.nextLine(); // Verifier que il a entrer un numero valable grace au tableau...
+      try {
+
+        if (!(Integer.parseInt(input) >= 1 && Integer.parseInt(input) <= 4)) {
+          System.out.print("\u001B[31m" + "Personnage Inexistant ! Ressaisir : " + "\u001B[0m");
+          continue;
         }
-        catch(NumberFormatException e) {
-        	System.out.print("\u001B[31m" + "Erreur de saisie ! Ressaisir : " + "\u001B[0m");
-        	continue;
+        if (tab_aide_choix_perso[Integer.parseInt(input)] != 1) {
+          System.out.print("\u001B[31m" + "Impossible de choisir ce personnage ! Ressaisir : " + "\u001B[0m");
+          continue;
         }
-        catch(Exception e) {
-        	System.out.print("\u001B[31m" + "Erreur! Ressaisir : " + "\u001B[0m");
-        	continue;
-        }
-        break;  
+      } catch (NumberFormatException e) {
+        System.out.print("\u001B[31m" + "Erreur de saisie ! Ressaisir : " + "\u001B[0m");
+        continue;
+      } catch (Exception e) {
+        System.out.print("\u001B[31m" + "Erreur! Ressaisir : " + "\u001B[0m");
+        continue;
+      }
+      break;
     }
-    
+    int place_du_perso = -1;
     Personnages perso_expedition;
     switch (Integer.parseInt(input)) {
       case 1:
+
         perso1.part_en_expedition();
         perso_expedition = this.perso1;
+        place_du_perso = 0;
         break;
       case 2:
         perso2.part_en_expedition();
         perso_expedition = this.perso2;
+        place_du_perso = 1;
+
         break;
       case 3:
         perso3.part_en_expedition();
         perso_expedition = this.perso3;
+        place_du_perso = 2;
+
         break;
       case 4:
         perso4.part_en_expedition();
         perso_expedition = this.perso4;
+        place_du_perso = 3;
+
         break;
       default:
         perso_expedition = this.perso1;
@@ -620,23 +661,19 @@ public class Jour implements Serializable {
     Elements_du_jeu e_expedition = null;
     // On verifie qu'il peut en choisir un...
     if (objet_possession.get_objet_dispo() == true) {
-    	
-    	
+
       System.out.println("\u001B[34m" + "			========Inventaire Objet========" + "\u001B[0m");
       this.objet_possession.getQuantites();
 
-      
-/*
-   	  try {
-   	  Thread.sleep(2000);
-   	  } catch (InterruptedException e) {
-   	  
-   	  }
-*/
-     
-      
-      
-      System.out.print("\u001B[34m" +  "Veux tu prendre un objet avec toi ? o/n " + "\u001B[0m");
+      /*
+       * try {
+       * Thread.sleep(2000);
+       * } catch (InterruptedException e) {
+       * 
+       * }
+       */
+
+      System.out.print("\u001B[34m" + "Veux tu prendre un objet avec toi ? o/n " + "\u001B[0m");
       input = scan.nextLine();
       while (!(input.equals("n") || input.equals("o"))) {
         System.out.print("\u001B[31m" + "Entre o pour oui ou n pour non!!!! " + "\u001B[0m");
@@ -644,38 +681,41 @@ public class Jour implements Serializable {
       }
 
       if (input.equals("o")) {
-        System.out.print("\u001B[34m" + "Quel objet veut tu prendre ? Ecrit son nom. (Premiere lettre en majuscule !) " + "\u001B[0m");
+        System.out.print("\u001B[34m" + "Quel objet veut tu prendre ? Ecrit son nom. (Premiere lettre en majuscule !) "
+            + "\u001B[0m");
         input = scan.nextLine();
 
         boolean verif = false;
         while (!verif) {
-        	
-	       try {
-	           for (Elements_du_jeu obj : Elements_du_jeu.values()) {
-	               if (input.equals(obj.getNom()) && this.objet_possession.getQuantite(obj.getNom()) != 0 ) {
-	                 e_expedition = obj;
-	                 objet_possession.setQuantite(obj.getNom(), -1);
-	                 verif = true;
-	                 break;
-	               }
-	             }
-	        	
-	       }
-	       catch(Exception e){
-	    	   
-	       }
+
+          try {
+            for (Elements_du_jeu obj : Elements_du_jeu.values()) {
+              if (input.equals(obj.getNom()) && this.objet_possession.getQuantite(obj.getNom()) != 0) {
+                e_expedition = obj;
+                objet_possession.setQuantite(obj.getNom(), -1);
+                verif = true;
+                break;
+              }
+            }
+
+          } catch (Exception e) {
+
+          }
           if (!verif) {
-            System.out.print("\u001B[31m" + "Nom incorect. Ressaisir l'objet. (Premiere lettre en majuscule !) : " + "\u001B[0m");
+            System.out.print(
+                "\u001B[31m" + "Nom incorect. Ressaisir l'objet. (Premiere lettre en majuscule !) : " + "\u001B[0m");
             input = scan.nextLine();
           }
         }
 
       } else {
-    	  
-        System.out.println("\u001B[34m" + "Pas d'Objet pris. Expedition realise sans objet. Bon courage." + "\u001B[0m");
+
+        System.out
+            .println("\u001B[34m" + "Pas d'Objet pris. Expedition realise sans objet. Bon courage." + "\u001B[0m");
       }
     } else {
-      System.out.println("\u001B[34m" + "Pas d'Objet disponible. Expedition realise sans objet. Bon courage."+ "\u001B[0m");
+      System.out
+          .println("\u001B[34m" + "Pas d'Objet disponible. Expedition realise sans objet. Bon courage." + "\u001B[0m");
     }
     int point_perso = (perso_expedition.get_barre_energie() * (perso_expedition.get_force()
         + perso_expedition.get_intelligence() + perso_expedition.get_agilite() + perso_expedition.get_resistance()));
@@ -683,7 +723,7 @@ public class Jour implements Serializable {
     if (e_expedition == null) {
       point_arm = 0;
     } else {
-      point_arm = e_expedition.getPoint() * 40;
+      point_arm = e_expedition.getPoint() * 400;
     }
     Random random = new Random();
     int min = 1;
@@ -691,49 +731,242 @@ public class Jour implements Serializable {
     int randomNumber = random.nextInt(max - min + 1) + min;
     int notetoal = randomNumber + point_arm + point_perso;
     // Supposons que notetoal est une variable de type int déjà définie
+    try {
+      Thread.sleep(3000);
+    } catch (InterruptedException e) {
+
+    }
+    int bon_placement = place_du_perso * 20;
+    int temps_expedition = 1;
+    while (tab_scenario_impose_en_cours.size() <= (nombre_journee + temps_expedition)) {
+      tab_scenario_impose_en_cours.add(new ArrayList<>());
+    }
+    tab_scenario_impose_en_cours.get(nombre_journee + temps_expedition).add(217 + bon_placement);
 
     if (notetoal < 600) {
 
-    } else if (notetoal < 12000) {
+      tab_scenario_impose_en_cours.get(nombre_journee + temps_expedition).add(500 + place_du_perso);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(216);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(236);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(256);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(276);
+    } else if (notetoal < 1200) {
+
+      tab_scenario_impose_en_cours.get(nombre_journee + temps_expedition).add(504 + place_du_perso);
+
+      if (place_du_perso == 0) {
+
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(236);
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(256);
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(276);
+      }
+      if (place_du_perso == 1) {
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(216);
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(256);
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(276);
+      }
+      if (place_du_perso == 2) {
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(216);
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(236);
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(276);
+      }
+      if (place_du_perso == 3) {
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(216);
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(236);
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(256);
+      }
 
     } else if (notetoal < 1800) {
-
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(599);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(216 + bon_placement);
     } else if (notetoal < 2400) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(599);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(211 + bon_placement);
 
     } else if (notetoal < 3000) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(599);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(215 + bon_placement);
 
     } else if (notetoal < 3600) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(599);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(218 + bon_placement);
 
     } else if (notetoal < 4200) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(599);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(218 + bon_placement);
 
     } else if (notetoal < 4800) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(218 + bon_placement);
 
     } else if (notetoal < 5400) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(37);
 
     } else if (notetoal < 6000) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(219 + bon_placement);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(17);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(37);
 
     } else if (notetoal < 6600) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(77);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(9);
 
     } else if (notetoal < 7200) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(208 + bon_placement);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(137);
 
     } else if (notetoal < 7800) {
-
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(19);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(27);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(46);
     } else if (notetoal < 8400) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(157);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(38);
 
     } else if (notetoal < 9000) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(7);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(17);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(27);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(37);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(47);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(67);
 
     } else if (notetoal < 9600) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(206 + bon_placement);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(203 + bon_placement);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(201 + bon_placement);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(7);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(87);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(19);
 
     } else if (notetoal < 10200) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(280 + place_du_perso);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(39);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(36);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(29);
 
     } else if (notetoal < 10800) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(38);
+      for (int i = 0; i < 10; i++) {
+
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(67 + (10 * i));
+
+      }
 
     } else if (notetoal < 11400) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(212 + bon_placement);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(214 + bon_placement);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
 
-    } else if (notetoal < 12000) {
+      for (int i = 0; i < 5; i++) {
+
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(8 + (10 * i));
+
+      }
+
+    } else {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(210 + bon_placement);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+
+      for (int i = 0; i < 5; i++) {
+
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(9 + (10 * i));
+
+      }
 
     }
 
+    /*
+     * 1. ChanceNode 1 : Perte d'une ration de pâte.
+     * 2. ChanceNode 2 : Perte de deux rations de pâte.
+     * 3. ChanceNode 3 : Disparition de trois rations de pâte.
+     * 5. ChanceNode 5 : Perte de toutes les rations de pâte.
+     * 6. ChanceNode 6 : Doublement des réserves de rations de pâte.
+     * 7. ChanceNode 7 : Ajout d'une ration de pâte.
+     * 8. ChanceNode 8 : Ajout de deux rations de pâte.
+     * 9. ChanceNode 9 : Ajout de trois nouvelles rations de pâte.
+     * 
+     * 11 : Perte d'une banane.
+     * 12 : Perte de deux bananes.
+     * 13 : Disparition de trois bananes.
+     * 15 : Perte de toutes les bananes.
+     * 16 : Doublement des réserves de bananes.
+     * 17 : Ajout d'une banane.
+     * 18 : Ajout de deux bananes.
+     * 19 : Ajout de trois nouvelles bananes.
+     * 
+     * 21 : Perte d'une friandise.
+     * 22 : Perte de deux friandises.
+     * 23 : Disparition de trois friandises.
+     * 25 : Perte de toutes les friandises.
+     * 26 : Doublement des réserves de friandises.
+     * 27 : Ajout d'une friandise.
+     * 28 : Ajout de deux friandises.
+     * 29 : Ajout de trois nouvelles friandises.
+     * 
+     * 31 : Perte d'une bouteille d'eau.
+     * 32 : Perte de deux bouteilles d'eau.
+     * 33 : Disparition de trois bouteilles d'eau.
+     * 35 : Perte de toutes les bouteilles d'eau.
+     * 36 : Doublement des réserves d'eau.
+     * 37 : Ajout d'une bouteille d'eau.
+     * 38 : Ajout de deux bouteilles d'eau.
+     * 39 : Ajout de trois nouvelles bouteilles d'eau.
+     * 
+     * 41 : Perte d'une canette de soda.
+     * 42 : Perte de deux canettes de soda.
+     * 43 : Disparition de trois canettes de soda.
+     * 45 : Perte de toutes les canettes de soda.
+     * 46 : Doublement des réserves de sodas.
+     * 47 : Ajout d'une canette de soda.
+     * 48 : Ajout de deux canettes de soda.
+     * 49 : Ajout de trois nouvelles canettes de soda.
+     * 
+     * 61 : Une boîte à outils est endommagée.
+     * 65 : Toutes les boîtes à outils sont devenues inutilisables.
+     * 67 : Ajout d'une nouvelle boîte à outils.
+     * 71 : Un katana est endommagé.
+     * 75 : Tous les katanas sont devenus inutilisables.
+     * 77 : Ajout d'un nouveau katana.
+     * 81 : Une carte de la ville est déchirée.
+     * 85 : Toutes les cartes de la ville sont devenues illisibles.
+     * 87 : Ajout d'une nouvelle carte de la ville.
+     * 91 : L'objet Échec est endommagé.
+     * 95 : Tous les objets Échec sont devenus inutilisables.
+     * 97 : Ajout d'un nouvel objet Échec.
+     * 101 : Une carte à jouer est abîmée.
+     * 105 : Toutes les cartes à jouer sont devenues illisibles.
+     * 107 : Ajout d'une nouvelle série de cartes à jouer.
+     * 111 : L'insecticide est presque vide.
+     * 115 : Tous les insecticides sont désormais vides.
+     * 117 : Ajout d'un nouvel insecticide.
+     * 121 : Une hache est endommagée.
+     * 125 : Toutes les haches sont désormais inutilisables.
+     * 127 : Ajout d'une nouvelle hache.
+     * 131 : Un sac est déchiré.
+     * 135 : Tous les sacs sont désormais inutilisables.
+     * 137 : Ajout d'un nouveau sac.
+     * 141 : Une trousse est abîmée.
+     * 145 : Toutes les trousses sont désormais inutilisables.
+     * 147 : Ajout d'une nouvelle trousse.
+     * 151 : La radio est endommagée.
+     * 155 : Toutes les radios sont désormais hors service.
+     * 157 : Ajout d'une nouvelle radio.
+     * 161 : La lampe est endommagée.
+     * 165 : Toutes les lampes sont désormais hors service.
+     * 167 : Ajout d'une nouvelle lampe.
+     */
     System.out.println("==============================================================\n");
 
     // Perso choisi ---> perso_expedition, la fonction s'arrete si pas de perso
@@ -792,15 +1025,12 @@ public class Jour implements Serializable {
     }
 
     nourriture_possession.setQuantite(input_nourriture, -Integer.parseInt(input_nombre));
-    
-    
-    for(Elements_du_jeu e : Elements_du_jeu.values()) {
-    	if(e.getNom().equals(input_nourriture)) {
-    		p1.maj_contextuelle_attributs_generaux_Personnages(e.getHydratation() * Integer.parseInt(input_nombre)
-    				, (int) (e.getNourrissant() * (1.0 / p1.get_conso_nourriture()))
-    				,0
-    				,e.getEnergie());
-    	}
+
+    for (Elements_du_jeu e : Elements_du_jeu.values()) {
+      if (e.getNom().equals(input_nourriture)) {
+        p1.maj_contextuelle_attributs_generaux_Personnages(e.getHydratation() * Integer.parseInt(input_nombre),
+            (int) (e.getNourrissant() * (1.0 / p1.get_conso_nourriture())), 0, e.getEnergie());
+      }
     }
   }
 
@@ -917,9 +1147,7 @@ public class Jour implements Serializable {
     if (!(nourriture_possession.get_nourriture_dispo())) {
       System.out.println("\u001B[34m" + "Attention plus de nourriture disponible !" + "\u001B[0m");
     }
-    
-    
-    
+
     System.out.println("\n\n\n");
     System.out.println("	    ==========Mise a jour effectuee==========\n\n");
     System.out.println("\u001B[34m" + "			======Inventaire Nourriture======" + "\u001B[0m");
@@ -935,12 +1163,7 @@ public class Jour implements Serializable {
   public boolean deroulement_du_jour() {
     ArrayList<Integer> vide = new ArrayList<Integer>();
     tab_scenario_impose_en_cours.add(vide);
-    tab_scenario_impose_en_cours.add(vide);
-    tab_scenario_impose_en_cours.add(vide);
     tab_DecisionNode_en_cours.add(vide);
-    tab_DecisionNode_en_cours.add(vide);
-    tab_DecisionNode_en_cours.add(vide);
-
     int personnages_en_vie = 0;
     for (Personnages p : personnages) {
       if (p.get_vivant()) {
@@ -956,11 +1179,11 @@ public class Jour implements Serializable {
       p.maj_naturelle_attributs_generaux_Personnages();
 
     }
+
     System.out.println(tab_DecisionNode_en_cours.get(nombre_journee));
+
     for (int ChanceNode_lancement : tab_scenario_impose_en_cours.get(nombre_journee)) {
-
       for (ChanceNode ch : tab_scenario_impose) {
-
         if (ch.getId() == ChanceNode_lancement) {
 
           lancement_scenario_impose(ch);
@@ -976,8 +1199,8 @@ public class Jour implements Serializable {
     while (iterator.hasNext()) {
       DecisionNode de = iterator.next();
       if (decisions.contains(de.getId())) {
-        System.out.println(de.getId());
-        de.raconte_histoire(personnages, objet_possession, tab_DecisionNode_en_cours, tab_DecisionNode_en_cours,
+
+        de.raconte_histoire(personnages, objet_possession, tab_DecisionNode_en_cours, tab_scenario_impose_en_cours,
             this.nombre_journee);
         iterator.remove(); // Utilisation de l'itérateur pour supprimer l'élément en cours
       }
