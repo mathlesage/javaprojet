@@ -743,9 +743,7 @@ public class Jour implements Serializable {
     }
     int bon_placement = place_du_perso * 20;
     int temps_expedition = 1;
-    System.out.println(randomNumber);
-    System.out.println(point_arm);
-    System.out.println(point_perso);
+
     while (tab_scenario_impose_en_cours.size() <= (nombre_journee + temps_expedition)) {
       tab_scenario_impose_en_cours.add(new ArrayList<>());
     }
