@@ -406,6 +406,26 @@ public class ListeChancenode implements Serializable {
                                 599, 0, -1);
                 ChanceNode chance598 = new ChanceNode("Et grace à l'expédition il y a eu :",
                                 "L'expédition à porter ces fruit car:", 598, 0, -1);
+                ChanceNode chance600 = new ChanceNode("La petite fille était gentille, grace à elle:",
+                                "C'était belle est bien une petite fille très généreuse, grace à elle:", 600, 0, -1);
+
+                ChanceNode chance601 = new ChanceNode("Il est rentré dans la plièce à couru jusqu'au provisions et :",
+                                "C'était un voleur, un charlatant et malheureusement", 601, 0, -1);
+
+                ChanceNode chance602 = new ChanceNode(
+                                "Des personnes attendaient près du colis, une bataille éclata mais vous perdez et malheureusement :",
+                                "Des personnes attendaient près du colis, une bataille éclata mais vous perdez et malheureusement :",
+                                602, 0, -1);
+
+                ChanceNode chance603 = new ChanceNode(
+                                "Des personnes attendaient près du colis, une bataille éclata mais heureusement vous avez été plus fort de plus le colis était plein:",
+                                "Des personnes attendaient près du colis, une bataille éclata mais heureusement vous avez été plus fort de plus le colis était plein:",
+                                603, 0, -1);
+
+                ChanceNode chance604 = new ChanceNode(
+                                "Une idée extrêmement néfaste, cela se transforme en bain de sang, et tout le monde perd la vie.",
+                                "Une idée terrible qui a viré au massacre, entraînant la perte de toutes les vies.",
+                                604, 0, -1);
 
                 liste.add(chance1);
                 liste.add(chance2);
@@ -577,6 +597,12 @@ public class ListeChancenode implements Serializable {
                 liste.add(chance281);
                 liste.add(chance282);
                 liste.add(chance283);
+                liste.add(chance600);
+                liste.add(chance601);
+                liste.add(chance602);
+                liste.add(chance603);
+                liste.add(chance604);
+
         }
 
         public ArrayList<ChanceNode> getListe() {
