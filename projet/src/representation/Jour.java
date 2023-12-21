@@ -122,13 +122,11 @@ public class Jour implements Serializable {
    * Ces scenarios avec choix sont determines grace au parametre des personnages,
    * des objets et nourriture qu'il possede.
    */
-  
-  
+
   public int get_nombre_journee() {
-	  return this.nombre_journee;
+    return this.nombre_journee;
   }
-  
-  
+
   private void selection_scenario_avec_choix() {
 
     int nombre_de_vivant = 0; // Initialisation du compteur de personnages vivants
@@ -468,13 +466,18 @@ public class Jour implements Serializable {
         } else {
           System.out.println("Certe il revient, mais il est mort.");
         }
+        break;
+
       case 118:
         // La personne est un peu amocher
         if (personnages.get(node.getNum_perso()).get_vivant()) {
           personnages.get(node.getNum_perso()).maj_contextuelle_attributs_generaux_Personnages(-20, -20, -20, -20);
+
         } else {
           System.out.println("Certe il revient, mais il est mort.");
         }
+        break;
+
       case 119:
         // La personne va mieux
         if (personnages.get(node.getNum_perso()).get_vivant()) {
@@ -482,6 +485,7 @@ public class Jour implements Serializable {
         } else {
           System.out.println("Certe il revient, mais il est mort.");
         }
+        break;
 
       case 120:
         if (personnages.get(node.getNum_perso()).get_vivant()) {
@@ -489,6 +493,7 @@ public class Jour implements Serializable {
         } else {
           System.out.println("Certe il revient, mais il est mort.");
         }
+        break;
 
     }
   }
@@ -738,6 +743,9 @@ public class Jour implements Serializable {
     }
     int bon_placement = place_du_perso * 20;
     int temps_expedition = 1;
+    System.out.println(randomNumber);
+    System.out.println(point_arm);
+    System.out.println(point_perso);
     while (tab_scenario_impose_en_cours.size() <= (nombre_journee + temps_expedition)) {
       tab_scenario_impose_en_cours.add(new ArrayList<>());
     }
@@ -1179,9 +1187,6 @@ public class Jour implements Serializable {
       p.maj_naturelle_attributs_generaux_Personnages();
 
     }
-
-    System.out.println(tab_DecisionNode_en_cours.get(nombre_journee));
-
     for (int ChanceNode_lancement : tab_scenario_impose_en_cours.get(nombre_journee)) {
       for (ChanceNode ch : tab_scenario_impose) {
         if (ch.getId() == ChanceNode_lancement) {
