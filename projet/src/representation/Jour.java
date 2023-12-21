@@ -223,6 +223,11 @@ public class Jour {
       System.out.print(personnages.get(node.getNum_perso()).get_perso().getPrenom() + " ");
     }
     System.out.println(node.getHistoire());
+    try {
+      Thread.sleep(2000);
+    } catch (InterruptedException e) {
+
+    }
     int index_scenario = node.getIndex_Evenement();
     int nombre_nourriture;
 
@@ -284,6 +289,7 @@ public class Jour {
         // Ajouter une quantité index : 7
 
         objet_possession.setQuantite(node.getNom_Aliment(), 1);
+
         break;
       /*
        * maj_contextuelle_attributs_specifique_Personnages_ajout() int nforce, int
@@ -431,14 +437,51 @@ public class Jour {
       case 115:
         // Le personnage tombe malade
         if (personnages.get(node.getNum_perso()).get_vivant()) {
-          personnages.get(node.getNum_perso()).set_temps_malade_virus(5);
+
+          personnages.get(node.getNum_perso()).maj_contamination_virus_Personnages();
+
         } else {
           System.out.println("Ah non il est mort");
         }
         break;
+      case 116:
+        // La personne meurt
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).tuer_personnage();
+        } else {
+          System.out.println("Une deuxième fois c'est un peu de l'acharnement.");
+        }
+        break;
+      case 117:
+        // La personne revient d'expédition
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).revient_de_expedition();
+        } else {
+          System.out.println("Certe il revient, mais il est mort.");
+        }
+      case 118:
+        // La personne est un peu amocher
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_generaux_Personnages(-20, -20, -20, -20);
+        } else {
+          System.out.println("Certe il revient, mais il est mort.");
+        }
+      case 119:
+        // La personne va mieux
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_generaux_Personnages(20, 20, 20, 20);
+        } else {
+          System.out.println("Certe il revient, mais il est mort.");
+        }
+
+      case 120:
+        if (personnages.get(node.getNum_perso()).get_vivant()) {
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_generaux_Personnages(100, 100, 100, 100);
+        } else {
+          System.out.println("Certe il revient, mais il est mort.");
+        }
 
     }
-
   }
 
   private void expedition() {
@@ -473,6 +516,7 @@ public class Jour {
     for (Personnages p : this.personnages) {
       if (p.get_vivant() == false || p.get_en_expedition() == true) {
         verif_courant = 0;
+
       } else {
         verif_courant = 1;
       }
@@ -572,24 +616,32 @@ public class Jour {
       }
       break;
     }
-
+    int place_du_perso = -1;
     Personnages perso_expedition;
     switch (Integer.parseInt(input)) {
       case 1:
+
         perso1.part_en_expedition();
         perso_expedition = this.perso1;
+        place_du_perso = 0;
         break;
       case 2:
         perso2.part_en_expedition();
         perso_expedition = this.perso2;
+        place_du_perso = 1;
+
         break;
       case 3:
         perso3.part_en_expedition();
         perso_expedition = this.perso3;
+        place_du_perso = 2;
+
         break;
       case 4:
         perso4.part_en_expedition();
         perso_expedition = this.perso4;
+        place_du_perso = 3;
+
         break;
       default:
         perso_expedition = this.perso1;
@@ -662,7 +714,7 @@ public class Jour {
     if (e_expedition == null) {
       point_arm = 0;
     } else {
-      point_arm = e_expedition.getPoint() * 40;
+      point_arm = e_expedition.getPoint() * 400;
     }
     Random random = new Random();
     int min = 1;
@@ -670,49 +722,242 @@ public class Jour {
     int randomNumber = random.nextInt(max - min + 1) + min;
     int notetoal = randomNumber + point_arm + point_perso;
     // Supposons que notetoal est une variable de type int déjà définie
+    try {
+      Thread.sleep(3000);
+    } catch (InterruptedException e) {
+
+    }
+    int bon_placement = place_du_perso * 20;
+    int temps_expedition = 1;
+    while (tab_scenario_impose_en_cours.size() <= (nombre_journee + temps_expedition)) {
+      tab_scenario_impose_en_cours.add(new ArrayList<>());
+    }
+    tab_scenario_impose_en_cours.get(nombre_journee + temps_expedition).add(217 + bon_placement);
 
     if (notetoal < 600) {
 
-    } else if (notetoal < 12000) {
+      tab_scenario_impose_en_cours.get(nombre_journee + temps_expedition).add(500 + place_du_perso);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(216);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(236);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(256);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(276);
+    } else if (notetoal < 1200) {
+
+      tab_scenario_impose_en_cours.get(nombre_journee + temps_expedition).add(504 + place_du_perso);
+
+      if (place_du_perso == 0) {
+
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(236);
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(256);
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(276);
+      }
+      if (place_du_perso == 1) {
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(216);
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(256);
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(276);
+      }
+      if (place_du_perso == 2) {
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(216);
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(236);
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(276);
+      }
+      if (place_du_perso == 3) {
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(216);
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(236);
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(256);
+      }
 
     } else if (notetoal < 1800) {
-
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(599);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(216 + bon_placement);
     } else if (notetoal < 2400) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(599);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(211 + bon_placement);
 
     } else if (notetoal < 3000) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(599);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(215 + bon_placement);
 
     } else if (notetoal < 3600) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(599);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(218 + bon_placement);
 
     } else if (notetoal < 4200) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(599);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(218 + bon_placement);
 
     } else if (notetoal < 4800) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(218 + bon_placement);
 
     } else if (notetoal < 5400) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(37);
 
     } else if (notetoal < 6000) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(219 + bon_placement);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(17);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(37);
 
     } else if (notetoal < 6600) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(77);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(9);
 
     } else if (notetoal < 7200) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(208 + bon_placement);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(137);
 
     } else if (notetoal < 7800) {
-
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(19);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(27);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(46);
     } else if (notetoal < 8400) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(157);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(38);
 
     } else if (notetoal < 9000) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(7);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(17);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(27);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(37);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(47);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(67);
 
     } else if (notetoal < 9600) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(206 + bon_placement);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(203 + bon_placement);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(201 + bon_placement);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(7);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(87);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(19);
 
     } else if (notetoal < 10200) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(280 + place_du_perso);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(39);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(36);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(29);
 
     } else if (notetoal < 10800) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(38);
+      for (int i = 0; i < 10; i++) {
+
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(67 + (10 * i));
+
+      }
 
     } else if (notetoal < 11400) {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(212 + bon_placement);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(214 + bon_placement);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
 
-    } else if (notetoal < 12000) {
+      for (int i = 0; i < 5; i++) {
+
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(8 + (10 * i));
+
+      }
+
+    } else {
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(210 + bon_placement);
+      tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
+
+      for (int i = 0; i < 5; i++) {
+
+        tab_scenario_impose_en_cours.get(nombre_journee + 1).add(9 + (10 * i));
+
+      }
 
     }
 
+    /*
+     * 1. ChanceNode 1 : Perte d'une ration de pâte.
+     * 2. ChanceNode 2 : Perte de deux rations de pâte.
+     * 3. ChanceNode 3 : Disparition de trois rations de pâte.
+     * 5. ChanceNode 5 : Perte de toutes les rations de pâte.
+     * 6. ChanceNode 6 : Doublement des réserves de rations de pâte.
+     * 7. ChanceNode 7 : Ajout d'une ration de pâte.
+     * 8. ChanceNode 8 : Ajout de deux rations de pâte.
+     * 9. ChanceNode 9 : Ajout de trois nouvelles rations de pâte.
+     * 
+     * 11 : Perte d'une banane.
+     * 12 : Perte de deux bananes.
+     * 13 : Disparition de trois bananes.
+     * 15 : Perte de toutes les bananes.
+     * 16 : Doublement des réserves de bananes.
+     * 17 : Ajout d'une banane.
+     * 18 : Ajout de deux bananes.
+     * 19 : Ajout de trois nouvelles bananes.
+     * 
+     * 21 : Perte d'une friandise.
+     * 22 : Perte de deux friandises.
+     * 23 : Disparition de trois friandises.
+     * 25 : Perte de toutes les friandises.
+     * 26 : Doublement des réserves de friandises.
+     * 27 : Ajout d'une friandise.
+     * 28 : Ajout de deux friandises.
+     * 29 : Ajout de trois nouvelles friandises.
+     * 
+     * 31 : Perte d'une bouteille d'eau.
+     * 32 : Perte de deux bouteilles d'eau.
+     * 33 : Disparition de trois bouteilles d'eau.
+     * 35 : Perte de toutes les bouteilles d'eau.
+     * 36 : Doublement des réserves d'eau.
+     * 37 : Ajout d'une bouteille d'eau.
+     * 38 : Ajout de deux bouteilles d'eau.
+     * 39 : Ajout de trois nouvelles bouteilles d'eau.
+     * 
+     * 41 : Perte d'une canette de soda.
+     * 42 : Perte de deux canettes de soda.
+     * 43 : Disparition de trois canettes de soda.
+     * 45 : Perte de toutes les canettes de soda.
+     * 46 : Doublement des réserves de sodas.
+     * 47 : Ajout d'une canette de soda.
+     * 48 : Ajout de deux canettes de soda.
+     * 49 : Ajout de trois nouvelles canettes de soda.
+     * 
+     * 61 : Une boîte à outils est endommagée.
+     * 65 : Toutes les boîtes à outils sont devenues inutilisables.
+     * 67 : Ajout d'une nouvelle boîte à outils.
+     * 71 : Un katana est endommagé.
+     * 75 : Tous les katanas sont devenus inutilisables.
+     * 77 : Ajout d'un nouveau katana.
+     * 81 : Une carte de la ville est déchirée.
+     * 85 : Toutes les cartes de la ville sont devenues illisibles.
+     * 87 : Ajout d'une nouvelle carte de la ville.
+     * 91 : L'objet Échec est endommagé.
+     * 95 : Tous les objets Échec sont devenus inutilisables.
+     * 97 : Ajout d'un nouvel objet Échec.
+     * 101 : Une carte à jouer est abîmée.
+     * 105 : Toutes les cartes à jouer sont devenues illisibles.
+     * 107 : Ajout d'une nouvelle série de cartes à jouer.
+     * 111 : L'insecticide est presque vide.
+     * 115 : Tous les insecticides sont désormais vides.
+     * 117 : Ajout d'un nouvel insecticide.
+     * 121 : Une hache est endommagée.
+     * 125 : Toutes les haches sont désormais inutilisables.
+     * 127 : Ajout d'une nouvelle hache.
+     * 131 : Un sac est déchiré.
+     * 135 : Tous les sacs sont désormais inutilisables.
+     * 137 : Ajout d'un nouveau sac.
+     * 141 : Une trousse est abîmée.
+     * 145 : Toutes les trousses sont désormais inutilisables.
+     * 147 : Ajout d'une nouvelle trousse.
+     * 151 : La radio est endommagée.
+     * 155 : Toutes les radios sont désormais hors service.
+     * 157 : Ajout d'une nouvelle radio.
+     * 161 : La lampe est endommagée.
+     * 165 : Toutes les lampes sont désormais hors service.
+     * 167 : Ajout d'une nouvelle lampe.
+     */
     System.out.println("==============================================================\n");
 
     // Perso choisi ---> perso_expedition, la fonction s'arrete si pas de perso
