@@ -155,11 +155,11 @@ public class ListeChancenode implements Serializable {
 
                 ChanceNode chance61 = new ChanceNode(
                                 "Une boîte à outils est endommagée, réduisant les outils disponibles.",
-                                "Une boîte à outils est endommagée.", 61, 11, "BoiteOutils");
+                                "Une boîte à outils est endommagée.", 61, 11, "Boite a Outils");
                 ChanceNode chance65 = new ChanceNode("Toutes les boîtes à outils sont devenues inutilisables.",
-                                "Plus aucune boîte à outils ne fonctionne.", 65, 15, "BoiteOutils");
+                                "Plus aucune boîte à outils ne fonctionne.", 65, 15, "Boite a Outils");
                 ChanceNode chance67 = new ChanceNode("Une nouvelle boîte à outils est en stock.",
-                                "Le stock s'est enrichi d'une boîte à outils neuve.", 67, 17, "BoiteOutils");
+                                "Le stock s'est enrichi d'une boîte à outils neuve.", 67, 17, "Boite a Outils");
 
                 ChanceNode chance71 = new ChanceNode("Un katana est endommagé, réduisant la disponibilité des armes.",
                                 "Un katana est endommagé.", 71, 11, "Katana");
@@ -170,11 +170,12 @@ public class ListeChancenode implements Serializable {
 
                 ChanceNode chance81 = new ChanceNode(
                                 "Une carte de la ville est déchirée, rendant la navigation difficile.",
-                                "Une carte de la ville est déchirée.", 81, 11, "CarteVille");
+                                "Une carte de la ville est déchirée.", 81, 11, "Carte de la ville");
                 ChanceNode chance85 = new ChanceNode("Toutes les cartes de la ville sont devenues illisibles.",
-                                "Plus aucune carte de la ville n'est lisible.", 85, 15, "CarteVille");
+                                "Plus aucune carte de la ville n'est lisible.", 85, 15, "Carte de la ville");
                 ChanceNode chance87 = new ChanceNode("Une nouvelle carte de la ville est en stock.",
-                                "Le stock s'est enrichi d'une nouvelle carte de la ville.", 87, 17, "CarteVille");
+                                "Le stock s'est enrichi d'une nouvelle carte de la ville.", 87, 17,
+                                "Carte de la ville");
 
                 ChanceNode chance91 = new ChanceNode("L'objet Échec est endommagé, réduisant son efficacité.",
                                 "L'objet Échec est endommagé.", 91, 11, "Echec");
@@ -185,12 +186,12 @@ public class ListeChancenode implements Serializable {
 
                 ChanceNode chance101 = new ChanceNode(
                                 "Une carte à jouer est abîmée, rendant son utilisation difficile.",
-                                "Une carte à jouer est abîmée.", 101, 11, "CarteAJouer");
+                                "Une carte à jouer est abîmée.", 101, 11, "Carte a jouer");
                 ChanceNode chance105 = new ChanceNode("Toutes les cartes à jouer sont devenues illisibles.",
-                                "Plus aucune carte à jouer n'est lisible.", 105, 15, "CarteAJouer");
+                                "Plus aucune carte à jouer n'est lisible.", 105, 15, "Carte a jouer");
                 ChanceNode chance107 = new ChanceNode("Une nouvelle série de cartes à jouer est en stock.",
                                 "Le stock s'est enrichi d'une nouvelle série de cartes à jouer.", 107, 17,
-                                "CarteAJouer");
+                                "Carte a jouer");
 
                 ChanceNode chance111 = new ChanceNode("L'insecticide est presque vide, réduisant son efficacité.",
                                 "L'insecticide est presque épuisé.", 111, 11, "Insecticide");
@@ -248,7 +249,7 @@ public class ListeChancenode implements Serializable {
                 ChanceNode chance207 = new ChanceNode("a perdu de l'agilité", "est moins agile", 207, 107, 0);
                 ChanceNode chance208 = new ChanceNode("a gagné en résistance", "est plus résistant", 208, 108, 0);
                 ChanceNode chance209 = new ChanceNode("a perdu de la résistance", "est moins résistant", 209, 109, 0);
-                ChanceNode chance210 = new ChanceNode("est devenu plus fort partout", "est beaucoup plus fort", 210,
+                ChanceNode chance210 = new ChanceNode("est devenu invinsible", "est devenue un dieu", 210,
                                 110, 0);
                 ChanceNode chance211 = new ChanceNode("est devenu un légume",
                                 "ne répond plus et garde la bouche ouverte", 211, 111, 0);
@@ -259,6 +260,12 @@ public class ListeChancenode implements Serializable {
                 ChanceNode chance214 = new ChanceNode("est d'une intelligence hors norme",
                                 "est extrêmement intelligent", 214, 114, 0);
                 ChanceNode chance215 = new ChanceNode("est tombé malade", "est atteint d'une maladie", 215, 115, 0);
+                ChanceNode chance216 = new ChanceNode("est malheureusement décédé.",
+                                "a malheureusement perdu la vie, triste nouvelle.", 216, 116, 0);
+                ChanceNode chance217 = new ChanceNode("est rentré de l'expédition.",
+                                "est de retour après une longue expédition.", 217, 117, 0);
+                ChanceNode chance218 = new ChanceNode("se sent pas très bien", "est mal", 218, 118, 0);
+                ChanceNode chance219 = new ChanceNode("se sent mieux", "est bien", 219, 119, 0);
 
                 ChanceNode chance220 = new ChanceNode("est devenu moins fort", " a perdu en muscle", 220, 100, 1);
                 ChanceNode chance221 = new ChanceNode("est devenu plus fort", " a pris du muscle", 221, 101, 1);
@@ -284,6 +291,12 @@ public class ListeChancenode implements Serializable {
                 ChanceNode chance234 = new ChanceNode("est d'une intelligence hors norme",
                                 "est extrêmement intelligent", 234, 114, 1);
                 ChanceNode chance235 = new ChanceNode("est tombé malade", "est atteint d'une maladie", 235, 115, 1);
+                ChanceNode chance236 = new ChanceNode("est malheureusement décédé.",
+                                "a malheureusement perdu la vie, triste nouvelle.", 236, 116, 1);
+                ChanceNode chance237 = new ChanceNode("est rentré de l'expédition.",
+                                "est de retour après une longue expédition.", 237, 117, 1);
+                ChanceNode chance238 = new ChanceNode("se sent pas très bien", "est mal", 238, 118, 1);
+                ChanceNode chance239 = new ChanceNode("se sent mieux", "est bien", 239, 119, 1);
 
                 ChanceNode chance240 = new ChanceNode("est devenu moins fort", " a perdu en muscle", 240, 100, 2);
                 ChanceNode chance241 = new ChanceNode("est devenu plus fort", " a pris du muscle", 241, 101, 2);
@@ -309,6 +322,12 @@ public class ListeChancenode implements Serializable {
                 ChanceNode chance254 = new ChanceNode("est d'une intelligence hors norme",
                                 "est extrêmement intelligent", 254, 114, 2);
                 ChanceNode chance255 = new ChanceNode("est tombé malade", "est atteint d'une maladie", 255, 115, 2);
+                ChanceNode chance256 = new ChanceNode("est malheureusement décédé.",
+                                "a malheureusement perdu la vie, triste nouvelle.", 256, 116, 2);
+                ChanceNode chance257 = new ChanceNode("est rentré de l'expédition.",
+                                "est de retour après une longue expédition.", 257, 117, 2);
+                ChanceNode chance258 = new ChanceNode("se sent pas très bien", "est mal", 258, 118, 2);
+                ChanceNode chance259 = new ChanceNode("se sent mieux", "est bien", 259, 119, 2);
 
                 ChanceNode chance260 = new ChanceNode("est devenu moins fort", " a perdu en muscle", 260, 100, 3);
                 ChanceNode chance261 = new ChanceNode("est devenu plus fort", " a pris du muscle", 261, 101, 3);
@@ -334,6 +353,59 @@ public class ListeChancenode implements Serializable {
                 ChanceNode chance274 = new ChanceNode("est d'une intelligence hors norme",
                                 "est extrêmement intelligent", 274, 114, 3);
                 ChanceNode chance275 = new ChanceNode("est tombé malade", "est atteint d'une maladie", 275, 115, 3);
+                ChanceNode chance276 = new ChanceNode("est malheureusement décédé.",
+                                "a malheureusement perdu la vie, triste nouvelle.", 276, 116, 3);
+                ChanceNode chance277 = new ChanceNode("est rentré de l'expédition.",
+                                "est de retour après une longue expédition.", 277, 117, 3);
+                ChanceNode chance278 = new ChanceNode("se sent pas très bien", "est mal", 278, 118, 3);
+                ChanceNode chance279 = new ChanceNode("se sent mieux", "est bien", 279, 119, 3);
+
+                ChanceNode chance280 = new ChanceNode("c'est jamais senti au si bien.", "est vraiment au max", 280, 120,
+                                0);
+                ChanceNode chance281 = new ChanceNode("c'est jamais senti au si bien.", "est vraiment au max", 281, 120,
+                                1);
+                ChanceNode chance282 = new ChanceNode("c'est jamais senti au si bien.", "est vraiment au max", 282, 120,
+                                2);
+                ChanceNode chance283 = new ChanceNode("c'est jamais senti au si bien.", "est vraiment au max", 283, 120,
+                                3);
+
+                ChanceNode chance500 = new ChanceNode(
+                                " est de retour. Mais son retour s'est accompagné d'une profonde démence. Qu'a-t-il donc pu observer dehors ? Il sème la mort sans distinction, avant de mettre fin à ses jours.",
+                                "est revenu, furieux d'avoir été renvoyé dehors. Mécontent, il empoisonne tout le monde avant de se suicider.",
+                                500, 0, 0);
+                ChanceNode chance501 = new ChanceNode(
+                                " est de retour. Mais son retour s'est accompagné d'une profonde démence. Qu'a-t-il donc pu observer dehors ? Il sème la mort sans distinction, avant de mettre fin à ses jours.",
+                                "est revenu, furieux d'avoir été renvoyé dehors. Mécontent, il empoisonne tout le monde avant de se suicider.",
+                                501, 0, 1);
+                ChanceNode chance502 = new ChanceNode(
+                                " est de retour. Mais son retour s'est accompagné d'une profonde démence. Qu'a-t-il donc pu observer dehors ? Il sème la mort sans distinction, avant de mettre fin à ses jours.",
+                                "est revenu, furieux d'avoir été renvoyé dehors. Mécontent, il empoisonne tout le monde avant de se suicider.",
+                                502, 0, 2);
+                ChanceNode chance503 = new ChanceNode(
+                                " est de retour. Mais son retour s'est accompagné d'une profonde démence. Qu'a-t-il donc pu observer dehors ? Il sème la mort sans distinction, avant de mettre fin à ses jours.",
+                                "est revenu, furieux d'avoir été renvoyé dehors. Mécontent, il empoisonne tout le monde avant de se suicider.",
+                                503, 0, 3);
+
+                ChanceNode chance504 = new ChanceNode(
+                                "est revenu, mais complètement déséquilibré. Pour protéger sa famille de ce qui se trouve à l'extérieur, il décide de tous les éliminer.",
+                                "est revenu, mais son état mental est gravement altéré. Dans le but de protéger sa famille des dangers extérieurs, il prend la décision radicale de les éliminer.",
+                                504, 0, 0);
+                ChanceNode chance505 = new ChanceNode(
+                                "est revenu, mais complètement déséquilibré. Pour protéger sa famille de ce qui se trouve à l'extérieur, il décide de tous les éliminer.",
+                                "est revenu, mais son état mental est gravement altéré. Dans le but de protéger sa famille des dangers extérieurs, il prend la décision radicale de les éliminer.",
+                                505, 0, 1);
+                ChanceNode chance506 = new ChanceNode(
+                                "est revenu, mais complètement déséquilibré. Pour protéger sa famille de ce qui se trouve à l'extérieur, il décide de tous les éliminer.",
+                                "est revenu, mais son état mental est gravement altéré. Dans le but de protéger sa famille des dangers extérieurs, il prend la décision radicale de les éliminer.",
+                                506, 0, 2);
+                ChanceNode chance507 = new ChanceNode(
+                                "est revenu, mais complètement déséquilibré. Pour protéger sa famille de ce qui se trouve à l'extérieur, il décide de tous les éliminer.",
+                                "est revenu, mais son état mental est gravement altéré. Dans le but de protéger sa famille des dangers extérieurs, il prend la décision radicale de les éliminer.",
+                                507, 0, 3);
+                ChanceNode chance599 = new ChanceNode("Mais est revevenue avec rien.", "Mais est rentré bredouille",
+                                599, 0, -1);
+                ChanceNode chance598 = new ChanceNode("Et grace à l'expédition il y a eu :",
+                                "L'expédition à porter ces fruit car:", 598, 0, -1);
 
                 liste.add(chance1);
                 liste.add(chance2);
@@ -475,7 +547,36 @@ public class ListeChancenode implements Serializable {
                 liste.add(chance273);
                 liste.add(chance274);
                 liste.add(chance275);
-
+                liste.add(chance276);
+                liste.add(chance216);
+                liste.add(chance236);
+                liste.add(chance256);
+                liste.add(chance500);
+                liste.add(chance501);
+                liste.add(chance502);
+                liste.add(chance503);
+                liste.add(chance217);
+                liste.add(chance237);
+                liste.add(chance257);
+                liste.add(chance277);
+                liste.add(chance504);
+                liste.add(chance505);
+                liste.add(chance506);
+                liste.add(chance507);
+                liste.add(chance218);
+                liste.add(chance219);
+                liste.add(chance238);
+                liste.add(chance239);
+                liste.add(chance258);
+                liste.add(chance259);
+                liste.add(chance278);
+                liste.add(chance279);
+                liste.add(chance599);
+                liste.add(chance598);
+                liste.add(chance280);
+                liste.add(chance281);
+                liste.add(chance282);
+                liste.add(chance283);
         }
 
         public ArrayList<ChanceNode> getListe() {

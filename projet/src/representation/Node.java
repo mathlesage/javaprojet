@@ -39,15 +39,13 @@ public abstract class Node implements Serializable {
 
     public void prochain_Scenario(ArrayList<ArrayList<Integer>> decisionNodes,
             ArrayList<ArrayList<Integer>> chanceNodes, int j) {
-        System.out.println("decision");
+
         if (dico.containsKey("null")) {
             return;
         }
 
         ArrayList<IntPair> decision = dico.get("decision");
         ArrayList<IntPair> chance = dico.get("chance");
-        System.out.println(decision);
-        System.out.println(chance);
 
         if (decision != null) {
             for (IntPair pair : decision) {
