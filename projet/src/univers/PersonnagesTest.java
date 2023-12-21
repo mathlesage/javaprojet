@@ -30,6 +30,17 @@ class PersonnagesTest {
 	}
 	
 	@Test
+	public void maj_contextuelle_attributs_generaux_Test_negatif_moins_vingt() {
+		this.perso_test.maj_contextuelle_attributs_generaux_Personnages(-20, -20, -20, -20);
+		boolean verif = false;
+		if(this.perso_test.get_barre_eau() == 80 && this.perso_test.get_barre_nourriture() == 80 && this.perso_test.get_barre_mentale() == 80 && this.perso_test.get_barre_energie() == 80  ) {
+			
+			verif = true;
+		}
+		assertEquals(true,verif);
+	}
+	
+	@Test
 	public void maj_naturelle_attributs_generaux_Personnages_Test_mort(){
 		this.perso_test.maj_naturelle_attributs_generaux_Personnages();
 		this.perso_test.maj_naturelle_attributs_generaux_Personnages();
