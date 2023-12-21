@@ -406,6 +406,11 @@ public class ListeChancenode implements Serializable {
                                 599, 0, -1);
                 ChanceNode chance598 = new ChanceNode("Et grace à l'expédition il y a eu :",
                                 "L'expédition à porter ces fruit car:", 598, 0, -1);
+                ChanceNode chance600 = new ChanceNode("La petite fille était gentille, grace à elle:",
+                                "C'était belle est bien une petite fille très généreuse, grace à elle:", 600, 0, -1);
+
+                ChanceNode chance601 = new ChanceNode("Il est rentré dans la plièce à couru jusqu'au provisions et :",
+                                "C'était un voleur, un charlatant et malheureusement", 601, 0, -1);
 
                 liste.add(chance1);
                 liste.add(chance2);
@@ -577,6 +582,9 @@ public class ListeChancenode implements Serializable {
                 liste.add(chance281);
                 liste.add(chance282);
                 liste.add(chance283);
+                liste.add(chance600);
+                liste.add(chance601);
+
         }
 
         public ArrayList<ChanceNode> getListe() {
