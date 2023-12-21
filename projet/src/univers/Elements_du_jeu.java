@@ -1,5 +1,7 @@
 package univers;
 
+import java.io.Serializable;
+
 /**
  * Enumeration de la nourriture et des objets du jeu ainsi que leur attribut
  * energisant, nourrisant, et d'hydratation.
@@ -8,7 +10,7 @@ package univers;
  * 
  * @author ABDELOUHAB Yacine et QUATREBOEUFS Matheo
  */
-public enum Elements_du_jeu {
+public enum Elements_du_jeu implements Serializable {
   FUSIL("Fusil", -1, -1, -1, 10),
   BOITE_OUTILS("Boite a Outils", -1, -1, -1, 5),
   KATANA("Katana", -1, -1, -1, 9),

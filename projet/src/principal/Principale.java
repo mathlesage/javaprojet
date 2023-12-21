@@ -1,15 +1,30 @@
 package principal;
-
 import univers.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import Representation.*;
 
-public class Principale {
 
-	public static ArrayList<Personnages> choix_perso() {
+public class Principale implements Serializable{
+	
+	private final int id;
+	private Jour jeu = null;
+	private static int nbr_game = 0;
+	private boolean deja_lance = false;
+	
+	
+	Principale(){
+		nbr_game ++;
+		this.id = nbr_game;
+	}
+	
+	public int principale_get_id(){
+		return this.id;
+	}
+	
+	private static ArrayList<Personnages> choix_perso() {
 
 		System.out.println("==============================================================\n");
 
@@ -117,60 +132,122 @@ public class Principale {
 		return tab_aide_perso;
 	}
 
-	public static void lancement_du_jeu() {
+	public int lancement_du_jeu() {
+		//Retourne zero : fin jeu
+		//Retourne un : on veut sauvegarder la partie
+		
+		if(!this.deja_lance) {
+			this.deja_lance = true;
+			
+			//On initialise une instance de Jour
 
-		System.out.println("\u001B[31m" + "			==================================\n"
-				+ " 	        |	     SURVIVOR	         |\n"
-				+ "		==================================\n" + "\u001B[0m");
+			System.out.println("\u001B[31m" + "			==================================\n"
+					+ " 	        |	     SURVIVOR	         |\n"
+					+ "		==================================\n" + "\u001B[0m");
 
-		/*
-		 * try {
-		 * Thread.sleep(5000);
-		 * } catch (InterruptedException e) {
-		 * 
-		 * }
-		 */
+			/*
+			 * try {
+			 * Thread.sleep(5000);
+			 * } catch (InterruptedException e) {
+			 * 
+			 * }
+			 */
 
-		// Message du debut
-		System.out.println(
-				"En plein repas de famille, le monde sombra dans le chaos.\nLa 3ème guerre mondiale éclata, ne laissant qu'un refuge:\nLe bunker, avec seulement 4 places.\n\n		=========Qui choisi tu ?========= \n		Patrick : le père sage,\n		Stéphanie : la mère protectrice,\n		Sarah : la soeur a l'esprit vif,\n		Mathéo : le frère courageux,\n		Paul : le médecin,\n		Amine : l'athlète,\n		Yacine : le cousin rusé,\n		ou Guilianetta : la cuisinière ingénieuse.\n\nQuatres personnes de ton choix vont affronter l'impensable.\nDans cette lutte pour la survie, chaque choix peseront lourd,\nchaque pas les rapprocheront du salut ou de la perte !");
+			// Message du debut
+			System.out.println(
+					"En plein repas de famille, le monde sombra dans le chaos.\nLa 3ème guerre mondiale éclata, ne laissant qu'un refuge:\nLe bunker, avec seulement 4 places.\n\n		=========Qui choisi tu ?========= \n		Patrick : le père sage,\n		Stéphanie : la mère protectrice,\n		Sarah : la soeur a l'esprit vif,\n		Mathéo : le frère courageux,\n		Paul : le médecin,\n		Amine : l'athlète,\n		Yacine : le cousin rusé,\n		ou Guilianetta : la cuisinière ingénieuse.\n\nQuatres personnes de ton choix vont affronter l'impensable.\nDans cette lutte pour la survie, chaque choix peseront lourd,\nchaque pas les rapprocheront du salut ou de la perte !");
 
-		/*
-		 * try {
-		 * Thread.sleep(30000);
-		 * } catch (InterruptedException e) {
-		 * 
-		 * }
-		 */
+			/*
+			 * try {
+			 * Thread.sleep(30000);
+			 * } catch (InterruptedException e) {
+			 * 
+			 * }
+			 */
 
-		// Choix des personnages
-		ArrayList<Personnages> tab_aide_perso = choix_perso();
+			// Choix des personnages
+			ArrayList<Personnages> tab_aide_perso = choix_perso();
 
-		// Objet de depart : Objet present deja dans la cave.
-		Objet objet_cave = new Objet();
-		objet_cave.setQuantite("Carte a jouer", 1);
+			// Objet de depart : Objet present deja dans la cave.
+			Objet objet_cave = new Objet();
+			objet_cave.setQuantite("Carte a jouer", 1);
 
-		// Nourriture de depart : Nourriture deja dans la cave.
-		Nourriture nourriture_cave = new Nourriture();
-		nourriture_cave.setQuantite("Pate", 5);
-		nourriture_cave.setQuantite("Eau", 5);
-		listescenario listescene = new listescenario();
-		ArrayList<DecisionNode> lalala = listescene.getListe();
-		// Instance de Jour
-		ListeChancenode listeChancenode = new ListeChancenode();
-		ArrayList<ChanceNode> chanceNodes = listeChancenode.getListe();
-		Jour j = new Jour(tab_aide_perso.get(0), tab_aide_perso.get(1), tab_aide_perso.get(2), tab_aide_perso.get(3),
-				objet_cave,
-				nourriture_cave, lalala, chanceNodes);
-
-		while (true) {
-			j.deroulement_du_jour();
+			// Nourriture de depart : Nourriture deja dans la cave.
+			Nourriture nourriture_cave = new Nourriture();
+			nourriture_cave.setQuantite("Pate", 5);
+			nourriture_cave.setQuantite("Eau", 5);
+			listescenario listescene = new listescenario();
+			ArrayList<DecisionNode> lalala = listescene.getListe();
+			// Instance de Jour
+			ListeChancenode listeChancenode = new ListeChancenode();
+			ArrayList<ChanceNode> chanceNodes = listeChancenode.getListe();
+			Jour j = new Jour(tab_aide_perso.get(0), tab_aide_perso.get(1), tab_aide_perso.get(2), tab_aide_perso.get(3),
+					objet_cave,
+					nourriture_cave, lalala, chanceNodes);
+			this.jeu = j;
+			
 		}
-
-	}
-
-	public static void main(String[] args) {
-		lancement_du_jeu();
+		
+		
+		//Au bout du jour 15 on a survecu !!
+		boolean jeu_tjr = true;
+		boolean jeu_gagne = false;
+		
+		while (jeu_tjr && !(jeu_gagne)) {
+			
+			
+			System.out.println("Jours :" + this.jeu.get_nombre_journee());
+			
+			if(this.jeu.get_nombre_journee() > 15) {
+				jeu_gagne = true;
+				break;
+			}
+			jeu_tjr = this.jeu.deroulement_du_jour();
+			
+			//Veut tu continuer a jouer au sauvegarder ?
+			
+			System.out.println("Fin de la journee");
+			System.out.println("Continuez la journee suivante ? ");
+			
+			
+			String input="";
+			Scanner scan = new Scanner(System.in);
+			
+		    while (true) {
+		        System.out.print("\u001B[32m" + "o pour continuer / n pour sauvegarder : " + "\u001B[0m");
+	         try {
+		            input = scan.nextLine();
+		            if (!(input.equals("o") || input.equals("n"))) {
+		              throw new IllegalArgumentException("\u001B[31m" + "Inserer o pour continuer ou n pour sauvegarder !!!" + "\u001B[0m");
+		            }
+		          } 
+	         catch (IllegalArgumentException e) {
+		            System.out.println(e.getMessage());
+		            continue;
+		          } 
+	         catch (Exception e) {
+		            System.out.println("\u001B[34m" + "Erreur dans la saisie !" + "\u001B[0m");
+		            continue;
+		          }
+		          break;
+		     }
+		    
+		    //Si continuer, on fait rien
+			//Si veut pas, on fait retourner 1 et on gere la sauvegarde dans Game
+		    if(input.equals("n")){
+		    	return 1;
+		    }
+		    
+		}
+		
+		if(!jeu_tjr) {
+			System.out.println("Perduuuuu!");
+		}
+		else if(jeu_gagne) {
+			System.out.println("Incroyable il reste des survivants !!");
+		}
+		
+		return 0;
 	}
 
 }
