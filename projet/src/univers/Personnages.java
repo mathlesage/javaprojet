@@ -280,7 +280,7 @@ public class Personnages implements Serializable {
       this.barre_nourriture = this.barre_nourriture - 20; // 5 jour sans manger max
       this.barre_eau = this.barre_eau - 33; // 3 jour sans boire max
       this.barre_mentale = this.barre_mentale - 25;
-      this.barre_energie = (this.barre_nourriture <= 50) ? this.barre_energie - 25 : this.barre_energie - 10; // perd
+      this.barre_energie = (this.barre_nourriture <= 20) ? this.barre_energie - 10 : this.barre_energie - 5; // perd
                                                                                                               // bcp
                                                                                                               // d'energie
                                                                                                               // si faim
@@ -319,11 +319,48 @@ public class Personnages implements Serializable {
    * Autre contexte ?
    */
   public void maj_contextuelle_attributs_generaux_Personnages(int eau, int nourriture, int mentale, int energie) {
-	  
-	this.barre_eau = (this.barre_eau + eau > 100) ? 100 : this.barre_eau + eau;
-    this.barre_nourriture = (this.barre_nourriture + nourriture > 100) ? 100 : this.barre_nourriture + nourriture;
-    this.barre_mentale = (this.barre_mentale + mentale > 100) ? 100 : this.barre_mentale + mentale;
-    this.barre_mentale = (this.barre_energie + energie > 100) ? 100 : this.barre_energie + energie; 
+	 
+	if(this.barre_eau + eau > 100) {
+		this.barre_eau = 100;
+	}
+	else if(this.barre_eau + eau < 0) {
+		this.barre_eau = 0;
+	}
+	else {
+		this.barre_eau = this.barre_eau + eau;
+	}
+	
+	if(this.barre_nourriture + nourriture > 100) {
+		this.barre_nourriture = 100;
+	}
+	else if(this.barre_nourriture + nourriture < 0) {
+		this.barre_nourriture = 0;
+	}
+	else {
+		this.barre_nourriture = this.barre_nourriture + nourriture;
+	}
+	
+	if(this.barre_mentale + mentale > 100) {
+		this.barre_mentale = 100;
+	}
+	else if(this.barre_mentale + mentale < 0) {
+		this.barre_mentale = 0;
+	}
+	else {
+		this.barre_mentale = this.barre_mentale + mentale;
+	}
+	
+	if(this.barre_energie + energie > 100) {
+		this.barre_energie = 100;
+	}
+	else if(this.barre_energie + energie < 0) {
+		this.barre_energie = 0;
+	}
+	else {
+		this.barre_energie = this.barre_energie + energie;
+	}
+	
+    
     this.barre_sante = (this.barre_nourriture + this.barre_eau + this.barre_mentale + this.barre_energie) / 4;
   }
 
