@@ -1,5 +1,6 @@
 package Representation;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,7 +9,7 @@ import java.util.Random;
 
 import univers.*;
 
-public class ChanceNode extends Node {
+public class ChanceNode extends Node implements Serializable {
     private int index_Evenement;
     private Personnages personnages;
     private Nourriture nouritures;
