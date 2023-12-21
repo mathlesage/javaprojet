@@ -1,6 +1,8 @@
 package Representation;
 
-public class IntPair {
+import java.io.Serializable;
+
+public class IntPair implements Serializable {
     private int premier;
     private int deuxieme;
 
