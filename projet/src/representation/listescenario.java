@@ -220,6 +220,41 @@ public class listescenario implements Serializable {
                                 "Un cafard radioactive est dans votre repère voulez vous le laissez vivre ?", 1022,
                                 dico22, "Insecticide");
 
+                Map<String, ArrayList<IntPair>> dico23 = new HashMap<>();
+                ArrayList<IntPair> listD23 = new ArrayList<>();
+
+                listD23.add(new IntPair(1, 141));
+                listD23.add(new IntPair(1, 87));
+
+                dico23.put("chance", listD23);
+
+                DecisionNode D23 = new DecisionNode(5, 100,
+                                "On vous propose d'échanger votre trousse contre une Carte de la ville, acceptez vous ?",
+                                1023,
+                                dico23, "Trousse");
+
+                // Changer
+                Map<String, ArrayList<IntPair>> dico24 = new HashMap<>();
+                ArrayList<IntPair> listD24 = new ArrayList<>();
+                listD24.add(new IntPair(1, 1025));
+
+                dico24.put("decision", listD24);
+
+                DecisionNode D24 = new DecisionNode(30, 100,
+                                "Votre radio à l'air d'emettre un signal, voulez vous l'écouter ?",
+                                1024,
+                                dico24, "Radio");
+
+                Map<String, ArrayList<IntPair>> dico25_2 = new HashMap<>();
+                ArrayList<IntPair> listD25_2 = new ArrayList<>();
+                listD25_2.add(new IntPair(1, 609));
+
+                dico25_2.put("chance", listD25_2);
+
+                DecisionNode D25 = new DecisionNode(0.0f, 0.0f, 0, 0, 0, new int[] {},
+                                "La radio signale un lieu de rapatriement où l'armée offre un refuge sécurisé. Prendriez-vous le risque de vous y rendre ?",
+                                1025, dico_vide, dico25_2, -1, -1);
+
                 list.add(D1);
                 list.add(D2);
                 list.add(D3);
@@ -242,7 +277,9 @@ public class listescenario implements Serializable {
                 list.add(D20);
                 list.add(D21);
                 list.add(D22);
-
+                list.add(D23);
+                list.add(D24);
+                list.add(D25);
                 this.liste = list;
 
         }

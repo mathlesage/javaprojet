@@ -83,6 +83,16 @@ public class Jour implements Serializable {
    */
   public ArrayList<ArrayList<Integer>> tab_scenario_impose_en_cours = new ArrayList<ArrayList<Integer>>();
 
+  /**
+   * Tableau contenant à l'indice i, l'id du terminal node
+   */
+  public ArrayList<Integer> tab_Terminale_Node = new ArrayList<Integer>();
+
+  /**
+   * Tous les terminals nodes
+   */
+  private ArrayList<TerminalNode> tab_Toute_fin = new ArrayList<TerminalNode>();
+
   /** Tableau contenant l'indice des scenario passées */
 
   private ArrayList<Integer> scenarios_indice_passe = new ArrayList<Integer>();
@@ -1101,6 +1111,7 @@ public class Jour implements Serializable {
     ArrayList<Integer> vide = new ArrayList<Integer>();
     tab_scenario_impose_en_cours.add(vide);
     tab_DecisionNode_en_cours.add(vide);
+    tab_Terminale_Node.add(0);
     int personnages_en_vie = 0;
     for (Personnages p : personnages) {
       if (p.get_vivant()) {
@@ -1115,6 +1126,12 @@ public class Jour implements Serializable {
     for (Personnages p : personnages) {
       p.maj_naturelle_attributs_generaux_Personnages();
 
+    }
+    for (TerminalNode terminal : tab_Toute_fin) {
+      if (terminal.getId() == tab_Terminale_Node.get(nombre_journee)) {
+        return 2;
+
+      }
     }
 
     for (int ChanceNode_lancement : tab_scenario_impose_en_cours.get(nombre_journee)) {
