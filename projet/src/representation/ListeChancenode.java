@@ -1,12 +1,17 @@
 package Representation;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
+
+/**Classe permetant de gerer la creation de TOUS les ChanceNode Possible du Jeu
+ * @author QUATREBOEUFS Matheo
+ * */
 public class ListeChancenode implements Serializable {
 
         private ArrayList<ChanceNode> liste = new ArrayList<ChanceNode>();
 
+        /**Constructeur
+         * */
         public ListeChancenode() {
 
                 // Modifier les pates
@@ -642,6 +647,8 @@ public class ListeChancenode implements Serializable {
 
         }
 
+        /**
+         * @return Tout les Chance Node dans une ArrayList*/
         public ArrayList<ChanceNode> getListe() {
                 return liste;
         }

@@ -1,5 +1,4 @@
 package Representation;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,6 +8,11 @@ import java.util.Scanner;
 import univers.Objet;
 import univers.Personnages;
 
+
+
+/**Classe Decision
+ * @author QUATREBOEUFS Matheo
+ * */
 public class DecisionNode extends Node implements Serializable {
 
     // Condition necessaire pour que le scenario s'invoque
@@ -54,6 +58,30 @@ public class DecisionNode extends Node implements Serializable {
     private int numero_perso;
     // pour le faire sur un numéro spéciale
 
+    
+    /** Constructeur1
+     * @param variable_Aleatoire_debut Borne Superieur de la var pour jouer ce scenario
+     * @param variable_Aleatoire_fin Borne Inferieur de la var pour jouer ce scenario
+     * @param jour_Necessaire_debut Borne Inferieur pour pouvoir jouer le scenario
+     * @param jour_Necessaire_fin Borne Superieur pour pouvoir jouer le scenario
+     * @param nombre_Peronnage Nombre de personnage necessaire pour pouvoir jouer le scenario
+     * @param scenario_Necessaire Scenario Necessaire pour pouvoir jouer le scenario
+     * @param histoire Histoire du Scenario
+     * @param totalmental Mental de Toute la famille reunit necessaire pour pouvoir Passer avec succes le scenario
+     * @param totalenergie Energie de Toute la famille reunit necessaire pour pouvoir Passer avec succes le scenario
+     * @param totalsante Sante de Toute la famille reunit necessaire pour pouvoir Passer avec succes le scenario
+     * @param totalforce Force de Toute la famille reunit necessaire pour pouvoir Passer avec succes le scenario
+     * @param totalintelligence Intelligence de Toute la famille reunit necessaire pour pouvoir Passer avec succes le scenario
+     * @param totalresistance Resistance de Toute la famille reunit necessaire pour pouvoir Passer avec succes le scenario
+     * @param totalagilite Agilite de Toute la famille reunit necessaire pour pouvoir Passer avec succes le scenario
+     * @param id id Scenario
+     * @param dico1 Prochain Scenario si on refuse le scenario
+     * @param dico2 Prochain Scenario si on accepte le scenario et qu'on a les stat necessaire
+     * @param dico3 Prochain Scenario si on accepte le scenario mais qu'on a pas les stat necessaire
+     * @param id_peronnage_necessaire perso necessaire pour faire jouer ce scenario
+     * @param numero_perso Placement du perso dans le tableau de personnage
+     * 
+     * */
     public DecisionNode(float variable_Aleatoire_debut, float variable_Aleatoire_fin, int jour_Necessaire_debut,
             int jour_Necessaire_fin, int nombre_Peronnage, int[] scenario_Necessaire, String histoire,
             int totalmental, int totalenergie, int totalsante, int totalforce, int totalintelligence,
@@ -83,7 +111,23 @@ public class DecisionNode extends Node implements Serializable {
 
     }
 
-    // Scenario sans stat
+    
+    
+    /** Constructeur2
+     * @param variable_Aleatoire_debut Borne Superieur de la var pour jouer ce scenario
+     * @param variable_Aleatoire_fin Borne Inferieur de la var pour jouer ce scenario
+     * @param jour_Necessaire_debut Borne Inferieur pour pouvoir jouer le scenario
+     * @param jour_Necessaire_fin Borne Superieur pour pouvoir jouer le scenario
+     * @param nombre_Peronnage Nombre de personnage necessaire pour pouvoir jouer le scenario
+     * @param scenario_Necessaire Scenario Necessaire pour pouvoir jouer le scenario
+     * @param histoire Histoire du Scenario
+     * @param id id Scenario
+     * @param dico1 Prochain Scenario si on refuse le scenario
+     * @param dico2 Prochain Scenario si on accepte le scenario et qu'on a les stat necessaires
+     * @param id_peronnage_necessaire perso necessaire pour faire jouer ce scenario
+     * @param numero_perso Placement du perso dans le tableau de personnage
+     * 
+     * */
     public DecisionNode(float variable_Aleatoire_debut, float variable_Aleatoire_fin, int jour_Necessaire_debut,
             int jour_Necessaire_fin, int nombre_Peronnage, int[] scenario_Necessaire, String histoire,
             int id, Map<String, ArrayList<IntPair>> dico1, Map<String, ArrayList<IntPair>> dico2,
@@ -110,6 +154,17 @@ public class DecisionNode extends Node implements Serializable {
         this.numero_perso = numero_perso;
     }
 
+    
+    /** Constructeur3
+     * @param jour_Necessaire_debut Borne Inferieur pour pouvoir jouer le scenario
+     * @param jour_Necessaire_fin Borne Superieur pour pouvoir jouer le scenario
+     * @param nombre_Peronnage Nombre de personnage necessaire pour pouvoir jouer le scenario
+     * @param histoire Histoire du Scenario
+     * @param id id Scenario
+     * @param dico2 Prochain Scenario si on accepte le scenario et qu'on a les stat necessaire 
+     * @param objet_nec Objet necessaire pour realiser le scenario avec succes
+     * 
+     * */
     public DecisionNode(int jour_Necessaire_debut, int jour_Necessaire_fin, String histoire, int id,
             Map<String, ArrayList<IntPair>> dico2, String objet_nec) {
 
@@ -144,8 +199,9 @@ public class DecisionNode extends Node implements Serializable {
 
     }
 
-    // Scénario sur un personnage précis
-
+   
+    /**Lance le scenario
+     * */
     public void raconte_histoire(ArrayList<Personnages> personnagesList, Objet objet,
             ArrayList<ArrayList<Integer>> decisionNodes,
             ArrayList<ArrayList<Integer>> chanceNodes, ArrayList<Integer> terminalNode, int j) {
@@ -206,35 +262,59 @@ public class DecisionNode extends Node implements Serializable {
         super.prochain_Scenario(decisionNodes, chanceNodes, terminalNode, j);
     }
 
-    // getter des conditions nescessaire pour que les scenarios soit proposer
+    /**Getters
+     * @return VarBorneInf
+     * */
     public float getVariable_Aleatoire_debut() {
         return variable_Aleatoire_debut;
     }
 
+    /**Getters
+     * @return VarBorneSup
+     * */
     public float getVariable_Aleatoire_fin() {
         return variable_Aleatoire_fin;
     }
 
+    /**Getters
+     * @return JourneeBorneInf
+     * */
     public int getJour_Necessaire_debut() {
         return jour_Necessaire_debut;
     }
-
+    
+    /**Getters
+     * @return JourneeBorneSup
+     * */
     public int getJour_Necessaire_fin() {
         return jour_Necessaire_fin;
     }
 
+    
+    /**Getters
+     * @return nombre Personnage necessaire
+     * */
     public int getNombre_Personnage() {
         return nombre_Peronnage;
     }
 
+    /**Getters
+     * @return Scenarios necessaire pour lance le scenario
+     * */
     public int[] getScenario_Necessaire() {
         return scenario_Necessaire;
     }
 
+    /**Getters
+     * @return perso necessaire pour lance le scenario
+     * */
     public int get_id_peronnage_necessaire() {
         return id_peronnage_necessaire;
     }
 
+    /**Getters
+     * @return nom de l'objet necessaire pour lance le scenario
+     * */
     public String getObjetnecessaire() {
         return nom_Objet_Necessaire;
     }

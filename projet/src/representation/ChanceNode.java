@@ -27,7 +27,9 @@ public class ChanceNode extends Node implements Serializable {
      * @param histoire0 Premiere Histoire possible
      * @param histoire1 Seconde Histoire possible
      * @param id Id du Node
-     * @param personnages 
+     * @param personnages Personnage sur qui sera affecter le scenario
+     * @param dico suite de l'histoire
+     * @param index_Evenement id evenement
      * */
 
     public ChanceNode(String histoire0, String histoire1, int id, Personnages personnages,
@@ -40,7 +42,15 @@ public class ChanceNode extends Node implements Serializable {
 
     }
 
-    // modifie un aliment ammener de nouveau scénario
+    
+    /** modifie un aliment ammener de nouveau scénario
+     * @param histoire0 Premiere Histoire possible
+     * @param histoire1 Seconde Histoire possible
+     * @param id Id du Node
+     * @param nom_Alimentint Aliment sur qui sera affecter le scenario
+     * @param dico suite de l'histoire
+     * @param index_Evenement Quand va t on jouer le prochain evenement ?
+     * */
     public ChanceNode(String histoire0, String histoire1, int index_Evenement, String nom_Alimentint, int id,
             Map<String, ArrayList<IntPair>> dico) {
         super((nom_Alimentint + " " + ((Math.random() < 0.5) ? histoire0 : histoire1)), id, dico);
@@ -51,7 +61,15 @@ public class ChanceNode extends Node implements Serializable {
 
     }
 
-    // modifie un objet et ammener de nouveau scénario
+    
+    /** modifie un objet et ammener de nouveau scénario
+     * @param histoire0 Premiere Histoire possible
+     * @param histoire1 Seconde Histoire possible
+     * @param id Id du Node
+     * @param nom_Alimentint Aliment sur qui sera affecter le scenario
+     * @param dico suite de l'histoire
+     * @param index_Evenement Quand va t on jouer le prochain evenement ?
+     * */
     public ChanceNode(String histoire0, String histoire1, int index_Evenement, Objet objets, String nom_Objet, int id,
             Map<String, ArrayList<IntPair>> dico) {
 
@@ -63,13 +81,28 @@ public class ChanceNode extends Node implements Serializable {
         this.numero_perso = -1;
     }
 
+    
+    /** modifie un objet et ammener de nouveau scénario
+     * @param histoire0 Premiere Histoire possible
+     * @param histoire1 Seconde Histoire possible
+     * @param id Id du Node
+     * @param numero_Perso idPerso sur qui sera affecter le scenario
+     * @param index_Evenement Quand va t on jouer le prochain evenement ?
+     * */
     public ChanceNode(String histoire0, String histoire1, int id, int index_Evenement, int numero_perso) {
         super(((Math.random() < 0.5) ? histoire0 : histoire1), id);
         this.index_Evenement = index_Evenement;
         this.numero_perso = numero_perso;
     }
 
-    // Scénarios qui changent un aliments
+    
+    /** Scénarios qui changent un aliments
+     * @param histoire0 Premiere Histoire possible
+     * @param histoire1 Seconde Histoire possible
+     * @param id Id du Node
+     * @param nom_Aliment int Aliment sur qui sera affecter le scenario
+     * @param index_Evenement Quand va t on jouer le prochain evenement ?
+     * */
     public ChanceNode(String histoire0, String histoire1, int id, int index_Evenement, String nom_Aliment) {
         super(((Math.random() < 0.5) ? histoire0 : histoire1), id);
         this.index_Evenement = index_Evenement;
@@ -78,36 +111,47 @@ public class ChanceNode extends Node implements Serializable {
 
     }
 
-    // Renvoie l'index evenement
+    
+    
+    
+    /**Getters
+     * @return index evenement*/
     public int getIndex_Evenement() {
         return index_Evenement;
     }
 
-    // Renvoie un personnage
+    /**Getters
+     * @return personnages*/
     public Personnages getPersonnages() {
         return personnages;
     }
 
-    // renvoie la nourriture
+    /**Getters
+     * @return nourritures*/
     public Nourriture getNouritures() {
         return nouritures;
     }
 
-    // renvoie l'aliment
+    /**Getters
+     * @return nom aliment*/
     public String getNom_Aliment() {
         return nom_Aliment;
     }
 
-    // renvoie l'objet
+    /**Getters
+     * @return objtes*/
     public Objet getObjets() {
         return objets;
     }
 
-    // renvoie le nom de l'objet
+    /**Getters
+     * @return nom obet*/
     public String getNom_Objet() {
         return nom_Objet;
     }
 
+    /**Getters
+     * @return numero (id) du personnage*/
     public int getNum_perso() {
         return numero_perso;
     }

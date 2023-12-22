@@ -1,13 +1,18 @@
 package Representation;
-
 import java.io.Serializable;
 import java.util.*;
 import univers.*;
 
+
+/**Classe permetant de gerer la creation de TOUS les DecisionNode Possible du Jeu
+ * @author QUATREBOEUFS Matheo
+ * */
 public class listescenario implements Serializable {
 
         private ArrayList<DecisionNode> liste = new ArrayList<DecisionNode>();
 
+        /**Constructeur
+         * */
         public listescenario() {
                 ArrayList<DecisionNode> list = new ArrayList<DecisionNode>();
                 Map<String, ArrayList<IntPair>> d1 = new HashMap<String, ArrayList<IntPair>>();
@@ -312,6 +317,8 @@ public class listescenario implements Serializable {
 
         }
 
+        /**
+         * @return Tout les DecisionNode dans une ArrayList*/
         public ArrayList<DecisionNode> getListe() {
                 return liste;
 

@@ -237,13 +237,11 @@ public class Jour implements Serializable {
     }
   }
 
-  private ArrayList<Integer> lancement_scenario_avec_choix() {
-    return null;
-  }
 
-  /**
-   * Lance un scenario
-   */
+  /**Lance un scenario
+   * @param node Le scenario en Question
+   * */
+
   private void lancement_scenario_impose(ChanceNode node) {
     // Raconte l'histoire du scénario
     if (node.getNum_perso() != -1) {
@@ -1204,9 +1202,28 @@ public class Jour implements Serializable {
     for (Personnages p : personnages) {
       p.maj_donnee_etat_naturelle_Personnages();
     }
+    
+    //On verifie qu'il y a au moins une personne en vie...
+    personnages_en_vie = 0;
+    for (Personnages p : personnages) {
+      if (p.get_vivant()) {
+        personnages_en_vie++;
+
+      }
+    }
+    if (personnages_en_vie == 0) {
+      return 0;
+    }
 
     nourir_cave();
+    
+    
+    
+    
     expedition();
+    
+    
+    
     nombre_journee = nombre_journee + 1;
 
     personnages_en_vie = 0;
