@@ -31,9 +31,9 @@ public class listescenario implements Serializable {
                 int[] Arrayvide = new int[] {};
 
                 DecisionNode D1 = new DecisionNode(0, 1, 9, 10, 0, Arrayvide,
-                                "Bienvenue dans le jeux adam le chien veut venir l'accepter vous", 0, 0, 0, 0, 0, 0, 0,
+                                "", 0, 0, 0, 0, 0, 0, 0,
                                 1000, d1, d1,
-                                d1, -1, 1);
+                                d1, 1, 1);
 
                 // Sniffer du champignon
                 ArrayList<IntPair> listD2 = new ArrayList<>();
@@ -82,7 +82,7 @@ public class listescenario implements Serializable {
                 listD5_2.add(new IntPair(1, 117));
                 dico_D5_1.put("chance", listD5_2);
 
-                DecisionNode D5 = new DecisionNode(0.4f, 0.5f, 3, 20, 4, Arrayvide,
+                DecisionNode D5 = new DecisionNode(0.4f, 0.5f, 3, 20, 0, Arrayvide,
                                 "Un colis est tombé juste à coté de la maison voulez vous allez le chercher ?", 20, 20,
                                 20, 20, 10, 10,
                                 10, 1004, dico_vide, dico_D5_1, dico_D5_2, -1, -1);
@@ -96,7 +96,7 @@ public class listescenario implements Serializable {
                 listD6.add(new IntPair(1, 276));
                 dico_D6_1.put("chance", listD6);
 
-                DecisionNode D6 = new DecisionNode(0.7f, 0.8f, 15, 30, 2, Arrayvide,
+                DecisionNode D6 = new DecisionNode(0.6f, 0.8f, 6, 30, 2, Arrayvide,
                                 "La solitude et la faim commencent à affecter la santé mentale de chacun. Une idée émerge : celle de consommer la personne la moins appréciée. Qu'en pensez-vous, seriez-vous d'accord avec cette idée ? ",
                                 1006, dico_vide,
                                 dico_D6_1, -1, -1);
@@ -233,7 +233,7 @@ public class listescenario implements Serializable {
 
                 dico23.put("chance", listD23);
 
-                DecisionNode D23 = new DecisionNode(5, 100,
+                DecisionNode D23 = new DecisionNode(3, 100,
                                 "On vous propose d'échanger votre trousse contre une Carte de la ville, acceptez vous ?",
                                 1023,
                                 dico23, "Trousse");
@@ -245,21 +245,48 @@ public class listescenario implements Serializable {
 
                 dico24.put("decision", listD24);
 
-                DecisionNode D24 = new DecisionNode(30, 100,
+                DecisionNode D24 = new DecisionNode(10, 100,
                                 "Votre radio à l'air d'emettre un signal, voulez vous l'écouter ?",
                                 1024,
                                 dico24, "Radio");
 
                 Map<String, ArrayList<IntPair>> dico25_2 = new HashMap<>();
                 ArrayList<IntPair> listD25_2 = new ArrayList<>();
-                listD25_2.add(new IntPair(1, 609));
+                listD25_2.add(new IntPair(1, 10000));
 
-                dico25_2.put("chance", listD25_2);
+                dico25_2.put("fin", listD25_2);
 
                 DecisionNode D25 = new DecisionNode(0.0f, 0.0f, 0, 0, 0, new int[] {},
                                 "La radio signale un lieu de rapatriement où l'armée offre un refuge sécurisé. Prendriez-vous le risque de vous y rendre ?",
                                 1025, dico_vide, dico25_2, -1, -1);
 
+                Map<String, ArrayList<IntPair>> dico26_1 = new HashMap<>();
+                ArrayList<IntPair> listD26_1 = new ArrayList<>();
+                listD26_1.add(new IntPair(1, 610));
+                dico26_1.put("chance", listD26_1);
+
+                Map<String, ArrayList<IntPair>> dico26_2 = new HashMap<>();
+                ArrayList<IntPair> listD26_2 = new ArrayList<>();
+                listD26_2.add(new IntPair(1, 611));
+                listD26_2.add(new IntPair(1, 167));
+                dico26_2.put("chance", listD26_2);
+
+                DecisionNode D26 = new DecisionNode(0.5f, 1, 0, 20, 0, Arrayvide,
+                                "Un petit endant toque à la porte et réclame votre hospitalité, vous n'allez quand même pas le laisser dehors, l'acceptez vous ?",
+                                1026, dico26_1, dico26_2, -1, -1);
+
+                Map<String, ArrayList<IntPair>> dico27 = new HashMap<>();
+                ArrayList<IntPair> listD27 = new ArrayList<>();
+                listD27.add(new IntPair(1, 117));
+                listD27.add(new IntPair(1, 1));
+
+                dico27.put("chance", listD27);
+
+                DecisionNode D27 = new DecisionNode(0.4f, 0.7f, 0, 100, 0, Arrayvide,
+                                "On vous propose une ration de pate contre un insecticide acceptez vous ?", 1027,
+                                dico_vide, dico27, -1, -1);
+
+                list.add(D27);
                 list.add(D1);
                 list.add(D2);
                 list.add(D3);
@@ -285,6 +312,7 @@ public class listescenario implements Serializable {
                 list.add(D23);
                 list.add(D24);
                 list.add(D25);
+                list.add(D26);
                 this.liste = list;
 
         }

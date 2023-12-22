@@ -121,19 +121,22 @@ public class Jour implements Serializable {
     this.personnages.add(this.perso4);
     this.tab_DecisionNode = tab_DecisionNode;
     this.tab_scenario_impose = tab_scenario_impose;
+    TerminalNode Fin_1 = new TerminalNode(
+        "Tout c'est bien passée l'armé est venue vous cherchez, votre famille est sain et sauf.", 10000);
+    TerminalNode Fin_2 = new TerminalNode(
+        "Le jeu est devenue trop facile bien joué à vous.", 10001);
+    tab_Toute_fin.add(Fin_1);
+    tab_Toute_fin.add(Fin_2);
 
   }
 
-
   /**
-   *Guetters nombre_journee
+   * Guetters nombre_journee
    */
   public int get_nombre_journee() {
     return this.nombre_journee;
   }
 
-  
-  
   /**
    * Parmis les scenarios avec choix disponible, il faudra chaque jour jouer un ou
    * plusieurs scenario.
@@ -234,9 +237,11 @@ public class Jour implements Serializable {
     }
   }
 
+
   /**Lance un scenario
    * @param node Le scenario en Question
    * */
+
   private void lancement_scenario_impose(ChanceNode node) {
     // Raconte l'histoire du scénario
     if (node.getNum_perso() != -1) {
@@ -413,7 +418,8 @@ public class Jour implements Serializable {
       case 110:
         // Le personnage devient fort partout
         if (personnages.get(node.getNum_perso()).get_vivant()) {
-          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages(20, 0, 20, 20, 20);
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages_ajout(10, -10, 10, 10,
+              10);
         } else {
           System.out.println("Ah non il est mort");
         }
@@ -518,10 +524,8 @@ public class Jour implements Serializable {
     }
   }
 
-  
-  
   /**
-   *Simule l'expedition d'un joeur
+   * Simule l'expedition d'un joeur
    */
   private void expedition() {
     // Un personnage va en expedition
@@ -906,7 +910,7 @@ public class Jour implements Serializable {
 
       }
 
-    } else {
+    } else if (notetoal < 17000) {
       tab_scenario_impose_en_cours.get(nombre_journee + 1).add(210 + bon_placement);
       tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
 
@@ -915,6 +919,12 @@ public class Jour implements Serializable {
         tab_scenario_impose_en_cours.get(nombre_journee + 1).add(9 + (10 * i));
 
       }
+    } else {
+      while (tab_Terminale_Node.size() <= nombre_journee + 1) {
+        tab_Terminale_Node.add(0);
+      }
+
+      tab_Terminale_Node.set(nombre_journee + 1, 10001);
 
     }
 
@@ -928,10 +938,10 @@ public class Jour implements Serializable {
 
   }
 
-  
   /**
-   *Nourit un personnage en fonction de l'inventaire.
-   *@param Perso a nourir
+   * Nourit un personnage en fonction de l'inventaire.
+   * 
+   * @param Perso a nourir
    */
   private void nourir_perso(Personnages p1) {
     Scanner scan = new Scanner(System.in);
@@ -985,14 +995,14 @@ public class Jour implements Serializable {
     for (Elements_du_jeu e : Elements_du_jeu.values()) {
       if (e.getNom().equals(input_nourriture)) {
         p1.maj_contextuelle_attributs_generaux_Personnages(e.getHydratation() * Integer.parseInt(input_nombre),
-            (int) (e.getNourrissant() * (1.0 / p1.get_conso_nourriture()))* Integer.parseInt(input_nombre), 0, e.getEnergie()* Integer.parseInt(input_nombre));
+            (int) (e.getNourrissant() * (1.0 / p1.get_conso_nourriture())) * Integer.parseInt(input_nombre), 0,
+            e.getEnergie() * Integer.parseInt(input_nombre));
       }
     }
   }
 
-  
   /**
-   *Nourit tous les personnes vivantes de la caves
+   * Nourit tous les personnes vivantes de la caves
    */
   private void nourir_cave() {
     // Il faut une certaine dose de nourriture pour nourir un personnage
@@ -1124,10 +1134,11 @@ public class Jour implements Serializable {
 
   }
 
-  
   /**
-   *Simule le deroulement d'une journee
-   *@return 0 tout le monde est mort / 1 RAS, on peut continuer la journee suivante / 2 on a atteint un terminal Node
+   * Simule le deroulement d'une journee
+   * 
+   * @return 0 tout le monde est mort / 1 RAS, on peut continuer la journee
+   *         suivante / 2 on a atteint un terminal Node
    */
   public int deroulement_du_jour() {
     ArrayList<Integer> vide = new ArrayList<Integer>();
@@ -1150,7 +1161,9 @@ public class Jour implements Serializable {
 
     }
     for (TerminalNode terminal : tab_Toute_fin) {
+
       if (terminal.getId() == tab_Terminale_Node.get(nombre_journee)) {
+        System.out.println(terminal.getHistoire());
         return 2;
 
       }
@@ -1175,6 +1188,7 @@ public class Jour implements Serializable {
       if (decisions.contains(de.getId())) {
 
         de.raconte_histoire(personnages, objet_possession, tab_DecisionNode_en_cours, tab_scenario_impose_en_cours,
+            this.tab_Terminale_Node,
             this.nombre_journee);
         iterator.remove(); // Utilisation de l'itérateur pour supprimer l'élément en cours
       }
@@ -1214,16 +1228,15 @@ public class Jour implements Serializable {
 
     personnages_en_vie = 0;
     for (Personnages p : personnages) {
-        if (p.get_vivant()) {
-          personnages_en_vie++;
+      if (p.get_vivant()) {
+        personnages_en_vie++;
 
-        }
       }
-      if (personnages_en_vie == 0) {
-        return 0;
-      }
-    
-    
+    }
+    if (personnages_en_vie == 0) {
+      return 0;
+    }
+
     return 1;
   }
 
