@@ -266,10 +266,22 @@ public class listescenario implements Serializable {
                 listD26_2.add(new IntPair(1, 167));
                 dico26_2.put("chance", listD26_2);
 
-                DecisionNode D26 = new DecisionNode(0, 1, 0, 20, 0, Arrayvide,
+                DecisionNode D26 = new DecisionNode(0.5f, 1, 0, 20, 0, Arrayvide,
                                 "Un petit endant toque à la porte et réclame votre hospitalité, vous n'allez quand même pas le laisser dehors, l'acceptez vous ?",
                                 1026, dico26_1, dico26_2, -1, -1);
 
+                Map<String, ArrayList<IntPair>> dico27 = new HashMap<>();
+                ArrayList<IntPair> listD27 = new ArrayList<>();
+                listD27.add(new IntPair(1, 117));
+                listD27.add(new IntPair(1, 1));
+
+                dico27.put("chance", listD27);
+
+                DecisionNode D27 = new DecisionNode(0.4f, 0.7f, 0, 100, 0, Arrayvide,
+                                "On vous propose une ration de pate contre un insecticide acceptez vous ?", 1027,
+                                dico_vide, dico27, -1, -1);
+
+                list.add(D27);
                 list.add(D1);
                 list.add(D2);
                 list.add(D3);
