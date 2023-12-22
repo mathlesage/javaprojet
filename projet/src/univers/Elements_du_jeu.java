@@ -43,22 +43,33 @@ public enum Elements_du_jeu implements Serializable {
     this.point = point;
   }
 
+  
+  /** Getters
+   * @return Nom de l'Element*/
   public String getNom() {
     return this.nom;
   }
 
+  /** Getters
+   * @return Energie de l'element*/
   public int getEnergie() {
     return this.energie;
   }
 
+  /** Getters
+   * @return Pouvoir nourrisant de l'element*/
   public int getNourrissant() {
     return this.nourissant;
   }
 
+  /** Getters
+   * @return Pouvoir Hydratant de l'element*/
   public int getHydratation() {
     return this.hydratation;
   }
 
+  /** Getters
+   * @return Point de l'element*/
   public int getPoint() {
     return this.point;
   }

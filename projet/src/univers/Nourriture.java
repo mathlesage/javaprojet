@@ -7,6 +7,9 @@ package univers;
 */
 public class Nourriture extends Objet{
 
+	/**
+	 * Constructeur par defaut de la classe
+	*/
     public Nourriture() {
 
         Un_element banane=new Un_element(Elements_du_jeu.BANANE,0);
@@ -25,6 +28,13 @@ public class Nourriture extends Objet{
         inventaire.add(soda);
     }
 
+    
+    /**
+     * Getters pour la quantite
+     * @param nom Nom de la Nourriture
+     * @throws IllegalArgumentException Nourriture Inexistante
+     * @return la quantite disponible dans l'inventaire
+     * */
     	@Override
     public int getQuantite(String nom) throws IllegalArgumentException{
       try{
@@ -36,6 +46,13 @@ public class Nourriture extends Objet{
     }
     	
     	
+    	
+    /**
+     * Setters pour la quantite
+     * @param nom Nom de la Nourriture
+     * @param q Quantite que l'on veut mettre a jour
+     * @throws IllegalArgumentException Nourriture Inexistante
+    */
     	@Override
     public void setQuantite(String nom, int q) throws IllegalArgumentException{
       try{
@@ -46,6 +63,14 @@ public class Nourriture extends Objet{
       }
     }
 
+    	
+    	
+    	
+    /** Getters pour connaitre le pouvoir nourrisant de l'aliment
+     * @param nom Nom de la nourriture
+     * @throws IllegalArgumentException Nourriture Inexistante
+     * @return Pouvoir Nourrisant
+     * */
     public int getNourrissant(String nom) throws IllegalArgumentException {
 
         boolean verif = false;
@@ -60,6 +85,11 @@ public class Nourriture extends Objet{
         return -1; //Probleme non gere
       }
 
+    /** Getters pour connaitre le pouvoir energisant de l'aliment
+     * @param nom Nom de la nourriture
+     * @throws IllegalArgumentException Nourriture Inexistante
+     * @return Pouvoir Energisant
+     * */
     public int getEnergie(String nom) throws IllegalArgumentException{
 
         boolean verif = false;
@@ -74,6 +104,12 @@ public class Nourriture extends Objet{
         return -1; //Probleme non gere
 }
 
+    
+    /** Getters pour connaitre le pouvoir hydratant de l'aliment
+     * @param nom Nom de la nourriture
+     * @throws IllegalArgumentException Nourriture Inexistante
+     * @return Pouvoir Hydratant
+     * */
     public int getHydratation(String nom) throws IllegalArgumentException{
         boolean verif = false;
         for(Un_element aliment : inventaire){
@@ -88,6 +124,9 @@ public class Nourriture extends Objet{
     }
     
     
+    /** Nourriture Disponible ou pas dans notre inventaire
+     * @return Oui si au moins un aliment disponible, Non sinon.
+     * */
     public boolean get_nourriture_dispo() {
   	  for(Un_element e : inventaire) {
   		  if(e.getQuantite() > 0) {

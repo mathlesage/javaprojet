@@ -39,7 +39,7 @@ import java.util.Iterator;
  * 
  * 
  * @author ABDELOUHAB Yacine et QUATREBOEUFS Matheo
- * @version deux_classes
+ * @version 2
  */
 
 public class Jour implements Serializable {
@@ -114,6 +114,16 @@ public class Jour implements Serializable {
 
   }
 
+
+  /**
+   *Guetters nombre_journee
+   */
+  public int get_nombre_journee() {
+    return this.nombre_journee;
+  }
+
+  
+  
   /**
    * Parmis les scenarios avec choix disponible, il faudra chaque jour jouer un ou
    * plusieurs scenario.
@@ -122,11 +132,6 @@ public class Jour implements Serializable {
    * Ces scenarios avec choix sont determines grace au parametre des personnages,
    * des objets et nourriture qu'il possede.
    */
-
-  public int get_nombre_journee() {
-    return this.nombre_journee;
-  }
-
   private void selection_scenario_avec_choix() {
 
     int nombre_de_vivant = 0; // Initialisation du compteur de personnages vivants
@@ -220,10 +225,11 @@ public class Jour implements Serializable {
   }
 
   private ArrayList<Integer> lancement_scenario_avec_choix() {
-
     return null;
   }
 
+  /**Lance un scenario
+   * */
   private void lancement_scenario_impose(ChanceNode node) {
     // Raconte l'histoire du scénario
     if (node.getNum_perso() != -1) {
@@ -505,6 +511,11 @@ public class Jour implements Serializable {
     }
   }
 
+  
+  
+  /**
+   *Simule l'expedition d'un joeur
+   */
   private void expedition() {
     // Un personnage va en expedition
     // Pourra ramener de la nouriture des objets, etc...
@@ -910,6 +921,11 @@ public class Jour implements Serializable {
 
   }
 
+  
+  /**
+   *Nourit un personnage en fonction de l'inventaire.
+   *@param Perso a nourir
+   */
   private void nourir_perso(Personnages p1) {
     Scanner scan = new Scanner(System.in);
     String input_nourriture = "";
@@ -962,11 +978,15 @@ public class Jour implements Serializable {
     for (Elements_du_jeu e : Elements_du_jeu.values()) {
       if (e.getNom().equals(input_nourriture)) {
         p1.maj_contextuelle_attributs_generaux_Personnages(e.getHydratation() * Integer.parseInt(input_nombre),
-            (int) (e.getNourrissant() * (1.0 / p1.get_conso_nourriture())), 0, e.getEnergie());
+            (int) (e.getNourrissant() * (1.0 / p1.get_conso_nourriture()))* Integer.parseInt(input_nombre), 0, e.getEnergie()* Integer.parseInt(input_nombre));
       }
     }
   }
 
+  
+  /**
+   *Nourit tous les personnes vivantes de la caves
+   */
   private void nourir_cave() {
     // Il faut une certaine dose de nourriture pour nourir un personnage
     // Ex : le pere doit manger plus que le frere
@@ -1097,7 +1117,12 @@ public class Jour implements Serializable {
 
   }
 
-  public boolean deroulement_du_jour() {
+  
+  /**
+   *Simule le deroulement d'une journee
+   *@return 0 tout le monde est mort / 1 RAS, on peut continuer la journee suivante / 2 on a atteint un terminal Node
+   */
+  public int deroulement_du_jour() {
     ArrayList<Integer> vide = new ArrayList<Integer>();
     tab_scenario_impose_en_cours.add(vide);
     tab_DecisionNode_en_cours.add(vide);
@@ -1109,7 +1134,7 @@ public class Jour implements Serializable {
       }
     }
     if (personnages_en_vie == 0) {
-      return false;
+      return 0;
     }
 
     for (Personnages p : personnages) {
@@ -1154,7 +1179,19 @@ public class Jour implements Serializable {
     expedition();
     nombre_journee = nombre_journee + 1;
 
-    return true;
+    personnages_en_vie = 0;
+    for (Personnages p : personnages) {
+        if (p.get_vivant()) {
+          personnages_en_vie++;
+
+        }
+      }
+      if (personnages_en_vie == 0) {
+        return 0;
+      }
+    
+    
+    return 1;
   }
 
 }

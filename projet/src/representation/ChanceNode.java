@@ -1,5 +1,4 @@
 package Representation;
-
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -9,6 +8,10 @@ import java.util.Random;
 
 import univers.*;
 
+
+/**Classe ChanceNode
+ * @author QUATREBOEUFS Matheo
+ * */
 public class ChanceNode extends Node implements Serializable {
     private int index_Evenement;
     private Personnages personnages;
@@ -18,8 +21,15 @@ public class ChanceNode extends Node implements Serializable {
     private String nom_Objet;
     private int numero_perso;
 
-    // Deux récit différent avec 1 chance sur 2 de tomber sur l'un ou l'autre
-    // modifie un personnage ammener de nouveau scénario
+    
+    
+    /**Deux récit différent avec 1 chance sur 2 de tomber sur l'un ou l'autre modifie un personnage et peux ammener de nouveau scénario
+     * @param histoire0 Premiere Histoire possible
+     * @param histoire1 Seconde Histoire possible
+     * @param id Id du Node
+     * @param personnages 
+     * */
+
     public ChanceNode(String histoire0, String histoire1, int id, Personnages personnages,
             Map<String, ArrayList<IntPair>> dico, int index_Evenement) {
 

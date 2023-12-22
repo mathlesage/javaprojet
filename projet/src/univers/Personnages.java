@@ -7,7 +7,7 @@ import java.util.Random;
  * Un personnage du jeu est un Personnages avec plusieurs attribus :
  * des attributs generaux, des attributs specifiques et quelques autres.
  * Le joueur commencera avec 4 joueurs de son choix. On a 8 types de
- * personnages differents, chacun identifie par un numero.
+ * personnages differents tous enumerer dans Personnages_du_jeu.
  * 
  * @author ABDELOUHAB Yacine
  * @version 2
@@ -154,7 +154,7 @@ public class Personnages implements Serializable {
   }
 
   /**
-   * Donne une description des attribus generaux et specifique des personnages
+   * Donne une description des attribus generaux des personnages
    */
   public void to_String_Generaux() {
 
@@ -173,6 +173,10 @@ public class Personnages implements Serializable {
     System.out.println();
   }
 
+  
+  /**
+   * Donne une description des attribus specifiques des personnages
+   */
   public void to_String_Specefique() {
 
     System.out.println("------------------------------");
@@ -191,18 +195,25 @@ public class Personnages implements Serializable {
 
   }
 
+  /**
+   * Affichage si en expedition
+   */
   public void to_String_en_expedition() {
-    System.out.println("------------------------------");
-    if (this.etat_global != Etat_Personnages.Mort) {
-      System.out.println(this.perso.name() + " => " + this.perso.getPrenom() + " est en expedition.");
-    } else {
-      System.out.println(this.perso.getPrenom() + " est mort(e).");
-    }
-    System.out.println("------------------------------");
-    System.out.println();
-  }
 
-  // Getters
+	  System.out.println("------------------------------");
+	    if (this.etat_global != Etat_Personnages.Mort) {
+	      System.out.println( this.perso.name() + " => " + this.perso.getPrenom() + " est en expedition.");
+	    } else {
+	      System.out.println(this.perso.getPrenom() + " est mort(e).");
+	    }
+	    System.out.println("------------------------------");
+	    System.out.println();
+  }
+  
+  
+  /**Getters
+   * @return vivant ou pas ?*/
+
   public boolean get_vivant() {
     if (this.etat_global != Etat_Personnages.Mort) {
       return true;
@@ -210,74 +221,115 @@ public class Personnages implements Serializable {
     return false;
   }
 
+  /**Getters
+   * @return nombre correspondant a la barre nourriture*/
   public int get_barre_nourriture() {
     return this.barre_nourriture;
   }
 
+  /**Getters
+   * @return nombre correspondant a la barre mentale*/
   public int get_barre_mentale() {
     return this.barre_mentale;
   }
 
+  /**Getters
+   * @return nombre correspondant a la barre energie*/
   public int get_barre_energie() {
     return this.barre_energie;
   }
 
+  /**Getters
+   * @return nombre correspondant a la barre sante*/
   public int get_barre_sante() {
     return this.barre_sante;
   }
 
+  /**Getters
+   * @return nombre correspondant a la barre eau*/
   public int get_barre_eau() {
     return this.barre_eau;
   }
 
+  /**Getters
+   * @return nombre correspondant a la force du perso*/
   public int get_force() {
     return this.force;
   }
 
+  
   public Personnages_du_jeu get_perso() {
     return this.perso;
   }
 
+  /**Getters 
+   * Conso Nourriture : a quel point faut t-il mange pour etre rassasie ?
+   * @return nombre correspondant a la consommation du perso*/
   public int get_conso_nourriture() {
     return this.conso_nourriture;
   }
 
+  /**Getters
+   * @return nombre correspondant a l'intelligence du perso*/
   public int get_intelligence() {
     return this.intelligence;
   }
 
+  
+  /**Getters
+   * @return nombre correspondant a la resistance du perso*/
   public int get_resistance() {
     return this.resistance;
   }
 
+  /**Getters
+   * @return nombre correspondant a l'agilite du perso*/
   public int get_agilite() {
     return this.agilite;
   }
 
+  /**Getters
+   * @return nombre correspondant a combien de temps le perso est malade*/
   public int get_temps_malade_virus() {
     return this.temps_malade_virus;
   }
 
+  /**Getters
+   * @return perso en expedition ou pas ?*/
   public boolean get_en_expedition() {
     return this.en_expedition;
   }
 
+  
+  /**Getters
+   * @return l'etat global du personages*/
   public Etat_Personnages get_etat_global() {
     return this.etat_global;
   }
 
+  /**Getters
+   * @return l'etat malade ou pas malade du personages*/
   public Etat_Personnages get_etat_malade() {
     return this.etat_malade;
   }
 
+  
+  /**Getters
+   * @return l'etat mentale du personages*/
   public Etat_Personnages get_etat_mentale() {
     return this.etat_mentale;
   }
 
+  
+  /**Getters
+   * @return l'etat de fatigue du personages*/
   public Etat_Personnages get_etat_energie() {
     return this.etat_energie;
   }
 
+  
+  
+  
   /**
    * MAJ Obligatoire chaque jour qui passe.
    * On a de plus en plus faim/soif le long de la journee.
@@ -415,7 +467,9 @@ public class Personnages implements Serializable {
     }
   }
 
-  // MAJ Maladie
+  /**
+   * MAJ Si Perso Malade, Fatigue etc... Tous cela affecte les attributs specifiques
+   * */
   public void maj_donnee_etat_naturelle_Personnages() {
 
     /**************
@@ -470,27 +524,38 @@ public class Personnages implements Serializable {
     }
   }
 
-  // Consequence des divers formes de maladie lors de leur apparition ou
-  // disparition
+  /**
+   * Si perso Fatigue, on baisse ces stats
+   */
   private void consequence_fatigue() {
     maj_contextuelle_attributs_specifique_Personnages(-2, -2, -2, -2, -2);
   }
 
+  
+  /**
+   * Si perso n'est plus fatigue, on augmente les stats qui ont ete baisse
+   */
   private void consequence_fin_fatigue() {
     maj_contextuelle_attributs_specifique_Personnages(2, 2, 2, 2, 2);
   }
 
+  /**
+   * Si perso en Depression, on baisse ces stats
+   */
   private void consequence_depression() {
-    /*
-     * Diminution de l'intelligence et de l'agilite
-     */
     maj_contextuelle_attributs_specifique_Personnages(0, 0, -4, 0, -4);
   }
 
+  /**
+   * Si perso n'est plus en depression, on augmente les stats qui ont ete baisse
+   */
   private void fin_consequence_depression() {
     maj_contextuelle_attributs_specifique_Personnages(0, 0, 4, 0, 4);
   }
 
+  /**
+   * Si perso Malade, on peut soit guerir naturellement, soit mourrir.
+   */
   private void consequence_maladie() {
 
     // Peut on guerir ?
@@ -513,6 +578,9 @@ public class Personnages implements Serializable {
     }
   }
 
+  /**
+   * Si perso Malade, on baisse ces stats.
+   */
   private void consequence_maladie_baisse_stat() {
     /***********************************************************************************
      * On dira qu'on baisse de 5 points chaque statistiques *
@@ -531,23 +599,39 @@ public class Personnages implements Serializable {
 
   }
 
+  /**
+   * Si perso plus Malade, on augmente les stats qui ont ete baisse.
+   */
   private void consequence_maladie_guerison_augmente_stat() {
     maj_contextuelle_attributs_specifique_Personnages(5, 5, 5, 5, 5);
   }
 
+  
+  /**Setters
+   * Part en expedition
+   * */
   public void part_en_expedition() {
     this.en_expedition = true;
   }
 
+  /**Setters
+   * Revient d'expedition (baisse de l'energie)
+   * */
   public void revient_de_expedition() {
     this.en_expedition = false;
     this.maj_contextuelle_attributs_generaux_Personnages(0, 0, 0, -20);
   }
 
+  /**Setters
+   * @param n cmb de jour malade ? Si plus de 5, le prochain jour guerit automatiquement.
+   * Mettre a jour le temps de maladie
+   * */
   public void set_temps_malade_virus(int n) {
     this.temps_malade_virus = n;
   }
 
+  /** MAJ les attributs specifique du Perso
+   * */
   public void maj_contextuelle_attributs_specifique_Personnages_ajout(int nforce, int nconso_nourriture,
       int nintelligence,
       int nresistance, int nagilite) {
@@ -584,6 +668,9 @@ public class Personnages implements Serializable {
 
   }
 
+  
+  /**Tuer un personages
+   * */
   public void tuer_personnage() {
     this.etat_global = Etat_Personnages.Mort;
   }
