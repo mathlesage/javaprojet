@@ -158,7 +158,6 @@ public class DecisionNode extends Node implements Serializable {
     /** Constructeur3
      * @param jour_Necessaire_debut Borne Inferieur pour pouvoir jouer le scenario
      * @param jour_Necessaire_fin Borne Superieur pour pouvoir jouer le scenario
-     * @param nombre_Peronnage Nombre de personnage necessaire pour pouvoir jouer le scenario
      * @param histoire Histoire du Scenario
      * @param id id Scenario
      * @param dico2 Prochain Scenario si on accepte le scenario et qu'on a les stat necessaire 
@@ -201,6 +200,12 @@ public class DecisionNode extends Node implements Serializable {
 
    
     /**Lance le scenario
+     * @param personnagesList Perso present dans le jeu
+     * @param objet du scenario
+     * @param decisionNodes Prochain DecisionNode
+     * @param chanceNodes Prochain ChanceNode
+     * @param terminalNode Prochain TerminalNode
+     * @param j Jour ou on est 
      * */
     public void raconte_histoire(ArrayList<Personnages> personnagesList, Objet objet,
             ArrayList<ArrayList<Integer>> decisionNodes,
