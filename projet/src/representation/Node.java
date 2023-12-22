@@ -46,6 +46,7 @@ public abstract class Node implements Serializable {
 
         ArrayList<IntPair> decision = dico.get("decision");
         ArrayList<IntPair> chance = dico.get("chance");
+        ArrayList<IntPair> fin = dico.get("fin");
 
         if (decision != null) {
             for (IntPair pair : decision) {
@@ -68,6 +69,10 @@ public abstract class Node implements Serializable {
                 System.out.println(pair.getDeuxieme());
                 chanceNodes.get(chanceIndex).add(pair.getDeuxieme());
             }
+
+        }
+        if (fin != null) {
+
         }
     }
 
