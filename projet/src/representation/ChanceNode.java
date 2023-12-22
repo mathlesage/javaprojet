@@ -66,7 +66,8 @@ public class ChanceNode extends Node implements Serializable {
      * @param histoire0 Premiere Histoire possible
      * @param histoire1 Seconde Histoire possible
      * @param id Id du Node
-     * @param nom_Alimentint Aliment sur qui sera affecter le scenario
+     * @param nom_Objet nom Objet qui sera utilise lors du scenario
+     * @param objets objets qui sera utilise lors du scenario
      * @param dico suite de l'histoire
      * @param index_Evenement Quand va t on jouer le prochain evenement ?
      * */
@@ -86,8 +87,8 @@ public class ChanceNode extends Node implements Serializable {
      * @param histoire0 Premiere Histoire possible
      * @param histoire1 Seconde Histoire possible
      * @param id Id du Node
-     * @param numero_Perso idPerso sur qui sera affecter le scenario
      * @param index_Evenement Quand va t on jouer le prochain evenement ?
+     * @param numero_perso idPerso sur qui sera affecter le scenario
      * */
     public ChanceNode(String histoire0, String histoire1, int id, int index_Evenement, int numero_perso) {
         super(((Math.random() < 0.5) ? histoire0 : histoire1), id);
