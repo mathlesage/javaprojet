@@ -26,9 +26,9 @@ public class listescenario implements Serializable {
                 int[] Arrayvide = new int[] {};
 
                 DecisionNode D1 = new DecisionNode(0, 1, 9, 10, 0, Arrayvide,
-                                "Bienvenue dans le jeux adam le chien veut venir l'accepter vous", 0, 0, 0, 0, 0, 0, 0,
+                                "", 0, 0, 0, 0, 0, 0, 0,
                                 1000, d1, d1,
-                                d1, -1, 1);
+                                d1, 1, 1);
 
                 // Sniffer du champignon
                 ArrayList<IntPair> listD2 = new ArrayList<>();
@@ -77,7 +77,7 @@ public class listescenario implements Serializable {
                 listD5_2.add(new IntPair(1, 117));
                 dico_D5_1.put("chance", listD5_2);
 
-                DecisionNode D5 = new DecisionNode(0.4f, 0.5f, 3, 20, 4, Arrayvide,
+                DecisionNode D5 = new DecisionNode(0.4f, 0.5f, 3, 20, 0, Arrayvide,
                                 "Un colis est tombé juste à coté de la maison voulez vous allez le chercher ?", 20, 20,
                                 20, 20, 10, 10,
                                 10, 1004, dico_vide, dico_D5_1, dico_D5_2, -1, -1);
@@ -91,7 +91,7 @@ public class listescenario implements Serializable {
                 listD6.add(new IntPair(1, 276));
                 dico_D6_1.put("chance", listD6);
 
-                DecisionNode D6 = new DecisionNode(0.7f, 0.8f, 8, 30, 2, Arrayvide,
+                DecisionNode D6 = new DecisionNode(0.6f, 0.8f, 6, 30, 2, Arrayvide,
                                 "La solitude et la faim commencent à affecter la santé mentale de chacun. Une idée émerge : celle de consommer la personne la moins appréciée. Qu'en pensez-vous, seriez-vous d'accord avec cette idée ? ",
                                 1006, dico_vide,
                                 dico_D6_1, -1, -1);

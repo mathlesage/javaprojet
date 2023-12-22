@@ -123,7 +123,10 @@ public class Jour implements Serializable {
     this.tab_scenario_impose = tab_scenario_impose;
     TerminalNode Fin_1 = new TerminalNode(
         "Tout c'est bien passée l'armé est venue vous cherchez, votre famille est sain et sauf.", 10000);
+    TerminalNode Fin_2 = new TerminalNode(
+        "Le jeu est devenue trop facile bien joué à vous.", 10001);
     tab_Toute_fin.add(Fin_1);
+    tab_Toute_fin.add(Fin_2);
 
   }
 
@@ -417,7 +420,8 @@ public class Jour implements Serializable {
       case 110:
         // Le personnage devient fort partout
         if (personnages.get(node.getNum_perso()).get_vivant()) {
-          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages(20, 0, 20, 20, 20);
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages_ajout(10, -10, 10, 10,
+              10);
         } else {
           System.out.println("Ah non il est mort");
         }
@@ -908,7 +912,7 @@ public class Jour implements Serializable {
 
       }
 
-    } else {
+    } else if (notetoal < 17000) {
       tab_scenario_impose_en_cours.get(nombre_journee + 1).add(210 + bon_placement);
       tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
 
@@ -917,6 +921,12 @@ public class Jour implements Serializable {
         tab_scenario_impose_en_cours.get(nombre_journee + 1).add(9 + (10 * i));
 
       }
+    } else {
+      while (tab_Terminale_Node.size() <= nombre_journee + 1) {
+        tab_Terminale_Node.add(0);
+      }
+
+      tab_Terminale_Node.set(nombre_journee + 1, 10001);
 
     }
 
