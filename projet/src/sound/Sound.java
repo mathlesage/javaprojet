@@ -17,6 +17,7 @@ public class Sound {
 	}
 	
 	/**Constructeur avec initialisation du chemin
+	 * @param son_fichier chemin ou se trouve le fichier son (point de depart : racine du projet)
 	 * */
 	public Sound(String son_fichier){
 		this.son_fichier = son_fichier;	
@@ -24,7 +25,7 @@ public class Sound {
 	
 	
 	/**Set le fichier
-	 * @param chemin du fichier
+	 * @param son_fichier chemin du fichier
 	 * */
 	public void set_son_fichier(String son_fichier) {
 		this.son_fichier = son_fichier;
