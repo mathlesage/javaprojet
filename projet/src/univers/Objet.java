@@ -7,13 +7,18 @@ import java.util.ArrayList;
  * Classe Objet, permet de connaitre le nombre des differents objets present
  * dans la cave ou pas.
  * 
- * @author QUATREBOEUFS Matheo
+ * @author ABDELOUHAB Yacine et QUATREBOEUFS Matheo
  */
 
 public class Objet implements Inventaire, Serializable {
 
+  /**
+   * Liste de nos Element : C'est un inventaire.
+  */
   protected ArrayList<Un_element> inventaire = new ArrayList<Un_element>();
 
+  /**Constructeur par Defaut
+   * */
   public Objet() {
 
     Un_element fusil = new Un_element(Elements_du_jeu.FUSIL, 0);
@@ -54,6 +59,13 @@ public class Objet implements Inventaire, Serializable {
 
   }
 
+  
+  /**
+   * Getters pour la quantite
+   * @param nom Nom de l'objet
+   * @throws IllegalArgumentException Objet Inexistant
+   * @return la quantite disponible dans l'inventaire.
+   * */
   public int getQuantite(String nom) throws IllegalArgumentException {
     for (Un_element obj : inventaire) {
       if (nom.equals(obj.getNom())) {
@@ -64,6 +76,12 @@ public class Objet implements Inventaire, Serializable {
     throw new IllegalArgumentException("Objet inexistant ! ");
   }
 
+  /**
+   * Setters pour la quantite
+   * @param nom Nom de l'objet
+   * @param q Quantite que l'on veut mettre a jour
+   * @throws IllegalArgumentException Objet Inexistant
+  */
   public void setQuantite(String nom, int q) throws IllegalArgumentException {
 
     boolean verif = false;
@@ -84,6 +102,9 @@ public class Objet implements Inventaire, Serializable {
     }
   }
 
+  
+  /**Affiche tous les objets/nourritures disponibles dans l'inventaire ainsi que leurs quantites
+   * */
   public void getQuantites() {
 
     for (Un_element obj : inventaire) {
@@ -96,6 +117,8 @@ public class Objet implements Inventaire, Serializable {
     }
   }
 
+  /**@return Une ArrayList des noms d'objets qu'on possede.
+   * */
   public ArrayList<String> getObjetsposseder() {
     ArrayList<String> objetsQuantitePositive = new ArrayList<>();
 
@@ -108,6 +131,9 @@ public class Objet implements Inventaire, Serializable {
     return objetsQuantitePositive;
   }
 
+  
+  /**@return Est ce que l'objet est dispo ?
+   * */
   public boolean get_objet_dispo() {
     for (Un_element e : this.inventaire) {
       if (e.getQuantite() > 0) {
