@@ -92,12 +92,24 @@ public class listescenario implements Serializable {
                 1006, dico_vide,
                 dico_D6_1, -1, -1);
 
+        Map<String, ArrayList<IntPair>> dico_D7_1 = new HashMap<String, ArrayList<IntPair>>();
+        ArrayList<IntPair> listD7 = new ArrayList<IntPair>();
+        listD7.add(new IntPair(1, 280));
+        listD7.add(new IntPair(1, 281));
+        listD7.add(new IntPair(1, 282));
+        listD7.add(new IntPair(1, 283));
+        dico_D7_1.put("chance", listD7);
+        DecisionNode D7 = new DecisionNode(0f, 1f, 10, 12, 0, Arrayvide,
+                "Guilianetta propose de préparer un plat spécial dont elle seule détient le secret. Acceptez-vous sa proposition ? ",
+                1007, dico_vide, dico_D7_1, 7, -1);
+
         list.add(D1);
         list.add(D2);
         list.add(D3);
         list.add(D4);
         list.add(D5);
         list.add(D6);
+        list.add(D7);
 
         this.liste = list;
 
