@@ -206,7 +206,10 @@ public class Principale implements Serializable{
 
 			// Objet de depart : Objet present deja dans la cave.
 			Objet objet_cave = new Objet();
-			objet_cave.setQuantite("Insecticide", 1);
+			objet_cave.setQuantite("Trousse", 1);
+			objet_cave.setQuantite("Echec", 1);
+			objet_cave.setQuantite("Fusil", 1);
+			objet_cave.setQuantite("Radio", 1);
 
 			// Nourriture de depart : Nourriture deja dans la cave.
 			Nourriture nourriture_cave = new Nourriture();

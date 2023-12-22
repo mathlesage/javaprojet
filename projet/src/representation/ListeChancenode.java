@@ -445,7 +445,11 @@ public class ListeChancenode implements Serializable {
                                 "a été mordu par un cafar, après une horrible nuit une force nouvelle apparait:",
                                 "a été mordu par un cafar, après une horrible nuit une force nouvelle apparait:",
                                 608, 0, 0);
-
+                ChanceNode chance609 = new ChanceNode(
+                                "Vous avez gagnez",
+                                "Vous avez gagnez",
+                                609, 0, -1);
+                liste.add(chance609);
                 liste.add(chance608);
                 liste.add(chance607);
                 liste.add(chance606);
