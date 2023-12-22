@@ -38,7 +38,7 @@ public abstract class Node implements Serializable {
     }
 
     public void prochain_Scenario(ArrayList<ArrayList<Integer>> decisionNodes,
-            ArrayList<ArrayList<Integer>> chanceNodes, int j) {
+            ArrayList<ArrayList<Integer>> chanceNodes, ArrayList<Integer> tab_Terminale_Node, int j) {
 
         if (dico.containsKey("null")) {
             return;
@@ -65,15 +65,23 @@ public abstract class Node implements Serializable {
                 while (chanceNodes.size() <= chanceIndex) {
                     chanceNodes.add(new ArrayList<>());
                 }
-                System.out.println(chanceIndex);
-                System.out.println(pair.getDeuxieme());
+
                 chanceNodes.get(chanceIndex).add(pair.getDeuxieme());
             }
 
         }
         if (fin != null) {
+            for (IntPair pair : fin) {
+                int fin_index = j + pair.getPremier();
+                while (tab_Terminale_Node.size() <= fin_index) {
+                    tab_Terminale_Node.add(0);
+                }
+
+                tab_Terminale_Node.set(fin_index, pair.getDeuxieme());
+
+            }
 
         }
-    }
 
+    }
 }

@@ -91,7 +91,7 @@ public class listescenario implements Serializable {
                 listD6.add(new IntPair(1, 276));
                 dico_D6_1.put("chance", listD6);
 
-                DecisionNode D6 = new DecisionNode(0.7f, 0.8f, 15, 30, 2, Arrayvide,
+                DecisionNode D6 = new DecisionNode(0.7f, 0.8f, 8, 30, 2, Arrayvide,
                                 "La solitude et la faim commencent à affecter la santé mentale de chacun. Une idée émerge : celle de consommer la personne la moins appréciée. Qu'en pensez-vous, seriez-vous d'accord avec cette idée ? ",
                                 1006, dico_vide,
                                 dico_D6_1, -1, -1);
@@ -240,16 +240,16 @@ public class listescenario implements Serializable {
 
                 dico24.put("decision", listD24);
 
-                DecisionNode D24 = new DecisionNode(30, 100,
+                DecisionNode D24 = new DecisionNode(0, 100,
                                 "Votre radio à l'air d'emettre un signal, voulez vous l'écouter ?",
                                 1024,
                                 dico24, "Radio");
 
                 Map<String, ArrayList<IntPair>> dico25_2 = new HashMap<>();
                 ArrayList<IntPair> listD25_2 = new ArrayList<>();
-                listD25_2.add(new IntPair(1, 609));
+                listD25_2.add(new IntPair(1, 10000));
 
-                dico25_2.put("chance", listD25_2);
+                dico25_2.put("fin", listD25_2);
 
                 DecisionNode D25 = new DecisionNode(0.0f, 0.0f, 0, 0, 0, new int[] {},
                                 "La radio signale un lieu de rapatriement où l'armée offre un refuge sécurisé. Prendriez-vous le risque de vous y rendre ?",
