@@ -148,7 +148,7 @@ public class DecisionNode extends Node implements Serializable {
 
     public void raconte_histoire(ArrayList<Personnages> personnagesList, Objet objet,
             ArrayList<ArrayList<Integer>> decisionNodes,
-            ArrayList<ArrayList<Integer>> chanceNodes, int j) {
+            ArrayList<ArrayList<Integer>> chanceNodes, ArrayList<Integer> terminalNode, int j) {
         // Si on veut faire un scénario sur un personnage unique on peut sinon mettre -1
         if (numero_perso > -1) {
             if (personnagesList.get(numero_perso).get_vivant()) {
@@ -203,7 +203,7 @@ public class DecisionNode extends Node implements Serializable {
             }
 
         }
-        super.prochain_Scenario(decisionNodes, chanceNodes, j);
+        super.prochain_Scenario(decisionNodes, chanceNodes, terminalNode, j);
     }
 
     // getter des conditions nescessaire pour que les scenarios soit proposer
