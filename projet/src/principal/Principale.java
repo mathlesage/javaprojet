@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import Representation.*;
 
-public class Principale implements Serializable {
-
-
 
 /**
 Classe, permettant de lancer une partie. C'est la qu'on a les info du jeu : tout est conserve dans l'attribut jeu.
