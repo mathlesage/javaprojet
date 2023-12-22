@@ -1,12 +1,12 @@
 package principal;
 
+import sound.*;
 import univers.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 import Representation.*;
-
 
 /**
 Classe, permettant de lancer une partie. C'est la qu'on a les info du jeu : tout est conserve dans l'attribut jeu.
@@ -170,6 +170,7 @@ public class Principale implements Serializable{
 		// Retourne un : on veut sauvegarder la partie
 
 		if (!this.deja_lance) {
+			Sound survivor = new Sound("survivor.wav");
 			this.deja_lance = true;
 
 			// On initialise une instance de Jour
@@ -177,26 +178,17 @@ public class Principale implements Serializable{
 			System.out.println("\u001B[31m" + "			==================================\n"
 					+ " 	        |	     SURVIVOR	         |\n"
 					+ "		==================================\n" + "\u001B[0m");
-
-			/*
-			 * try {
-			 * Thread.sleep(5000);
-			 * } catch (InterruptedException e) {
-			 * 
-			 * }
-			 */
+						 
+			try {
+	            Thread.sleep(2000);
+	        } catch (InterruptedException e) {
+	        }
 
 			// Message du debut
 			System.out.println(
 					"En plein repas de famille, le monde sombra dans le chaos.\nLa 3ème guerre mondiale éclata, ne laissant qu'un refuge:\nLe bunker, avec seulement 4 places.\n\n		=========Qui choisi tu ?========= \n		Patrick : le père sage,\n		Stéphanie : la mère protectrice,\n		Sarah : la soeur a l'esprit vif,\n		Mathéo : le frère courageux,\n		Paul : le médecin,\n		Amine : l'athlète,\n		Yacine : le cousin rusé,\n		ou Guilianetta : la cuisinière ingénieuse.\n\nQuatres personnes de ton choix vont affronter l'impensable.\nDans cette lutte pour la survie, chaque choix peseront lourd,\nchaque pas les rapprocheront du salut ou de la perte !");
 
-			/*
-			 * try {
-			 * Thread.sleep(30000);
-			 * } catch (InterruptedException e) {
-			 * 
-			 * }
-			 */
+			survivor.display_son();
 
 			// Choix des personnages
 			ArrayList<Personnages> tab_aide_perso = choix_perso();
@@ -286,11 +278,45 @@ public class Principale implements Serializable{
 
 		
 		if(!jeu_gagne) {
-			System.out.println("Perduuuuu!");
+			System.out.println("\u001B[31m" + "Tout le Monde est Mort Perduuu !" + "\u001B[0m");
+			System.out.println("\u001B[31m" + "___________ZZZZZZZZZZZZZZZZZZZZZ\n"
+					+ "__________ZZZZZ______________ZZZZZZ\n"
+					+ "________ZZZZZ____________________ZZZZ\n"
+					+ "______ZZZZZ_______________________ZZZZZ\n"
+					+ "____ZZZZZ___________________________ZZZZ\n"
+					+ "___ZZZZ______________________________ZZZZ\n"
+					+ "__ZZZ__________________________________ZZZ\n"
+					+ "_ZZZ____________________________________ZZZ\n"
+					+ "ZZZZ____________________________________ZZZ\n"
+					+ "ZZZ_____________________________________ZZZ\n"
+					+ "ZZZ_____________________________________ZZZ\n"
+					+ "ZZZ_____________________________________ZZZ\n"
+					+ "ZZZ_____________________________ZZ______ZZZ\n"
+					+ "ZZZ___________________________ZZZZZ_____ZZZ\n"
+					+ "ZZZ________________________ZZZZZZZZZ__ZZZZZ\n"
+					+ "ZZZZ____ZZZ______________ZZZZZZZZZZZZ_ZZZZ\n"
+					+ "ZZZZ___ZZZZZZ___________ZZZZZZZZZZZZZ_ZZZ\n"
+					+ "ZZZZ__ZZZZZZZZZZ_______ZZZZZZZZZZZZZ__ZZ\n"
+					+ "ZZZZ__ZZZZZZZZZZZ______ZZZZZZZZZZZZ___ZZ\n"
+					+ "_ZZZ___ZZZZZZZZZZZ______ZZZZZZZZZZ____ZZ\n"
+					+ "_ZZZ____ZZZZZZZZZ_ZZZZZ___ZZZZZZ____ZZZZ\n"
+					+ "__ZZZ____ZZZZZZZ__ZZZZZZ___________ZZZZ\n"
+					+ "___ZZZZZ__________Z__ZZZ_____ZZZZZZZZZ\n"
+					+ "____ZZZZZZZZ__________ZZ____ZZZZZZZZ\n"
+					+ "_____ZZZZZZZZ_____________ZZZZZ\n"
+					+ "__________ZZZ__Z___Z___Z__ZZZ\n"
+					+ "__________ZZZ_ZZZ_ZZZ_ZZZ_ZZZ\n"
+					+ "__________ZZZ_ZZZ_ZZZ_ZZZ_ZZZ\n"
+					+ "__________ZZZ_ZZZ_ZZZ_ZZZ_ZZZ\n"
+					+ "___________ZZZZZZZZZZZZZZZZZ\n"
+					+ "______________ZZZZZZZZZZZ"+ "\u001B[0m");
+			
+			
+			
 		}
 		else{
-			System.out.println("Gagné !!!");
-
+			System.out.println("Fin du Jeu");
+			System.out.println("Il y a des survivants, c'est incroyable !");
 		}
 
 		return 0;
