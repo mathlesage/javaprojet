@@ -1,24 +1,30 @@
 package Representation;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**Classe Abstraite Node
+ * */
 public abstract class Node implements Serializable {
     private int id;
     protected String histoire;
     protected Map<String, ArrayList<IntPair>> dico;
 
-    // Crée une histoire avec suite qui est contenue dans Map<String,
-    // ArrayList<IntPair>> dico
+
+    /**Constrcuteur Permettant de creer une histoire avec suite.
+     * @param dico Contient la suite de l'histoire
+     * */
     public Node(String histoire, int id, Map<String, ArrayList<IntPair>> dico) {
         this.id = id;
         this.histoire = histoire;
         this.dico = dico;
     }
 
-    // Crée une histoire sans suite
+    /**Constrcuteur Permettant de creer une histoire sans suite.
+     * 
+     * */
     public Node(String histoire, int id) {
         this.id = id;
         this.histoire = histoire;
@@ -29,14 +35,23 @@ public abstract class Node implements Serializable {
         dico.put("null", list1);
     }
 
+    
+    /**Getters
+     * @return chaine de caractere avec l'histoire
+     * */
     public String getHistoire() {
         return histoire;
     }
 
+    /**Getters
+     *@return Id du Node*/
     public int getId() {
         return id;
     }
 
+    
+    /**
+     */
     public void prochain_Scenario(ArrayList<ArrayList<Integer>> decisionNodes,
             ArrayList<ArrayList<Integer>> chanceNodes, int j) {
 
