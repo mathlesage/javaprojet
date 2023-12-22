@@ -8,12 +8,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+/**
+Classe, permettant de gerer le menu du jeu, ainsi que la sauvegarde des differentes parties.
+C'est cette classe qu'on va chercher a serialise.
+@author ABDELOUHAB Yacine
+*/
 public class Game implements Serializable {
 	
 	private ArrayList<Principale> tab_jeu_en_cours = new ArrayList<>();
 	private ArrayList<String> tab_nom_parti_en_cours = new ArrayList<>();
 	private int indice_jeu_en_cours = -1;
-		
+	
+	/**Permet d'afficher les parties sauvegarder
+	 * */
 	private void get_jeu_en_cours() {
 		String output = "0 ------> Nouvelle Game\n";
 		for(int i = 1;i<=tab_jeu_en_cours.size();i++){
@@ -24,11 +32,15 @@ public class Game implements Serializable {
 		System.out.println("\u001B[32m" + output + "\u001B[0m");
 	}
 
+	/**Permet de supprimer une partie terminer
+	 * */
 	private void fin_partie_en_cours() {
 		this.tab_jeu_en_cours.remove(indice_jeu_en_cours);
 		this.tab_nom_parti_en_cours.remove(indice_jeu_en_cours);
 	}
 	
+	/**Permet de sauvegarder une certaine parties non termine.
+	 * */
 	private void enregistrement_des_games(){
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("svgd_jeu.txt"))) {
             oos.writeObject(this);
@@ -36,6 +48,8 @@ public class Game implements Serializable {
         }
 	}
 	
+	/**Permet de recuperer les parties sauvegarder lorsqu'on reprend le jeu.
+	 * */
 	private void recup_des_games() {
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("svgd_jeu.txt"))) {
             Game g = (Game) ois.readObject();
@@ -46,6 +60,8 @@ public class Game implements Serializable {
         }
 	}
 	
+	/**Gere le menu du jeu.
+	 * */
 	public void lancer_menu() {
 		
 		this.recup_des_games();
