@@ -14,7 +14,9 @@ public abstract class Node implements Serializable {
 
 
     /**Constrcuteur Permettant de creer une histoire avec suite.
-     * @param dico Contient la suite de l'histoire
+     * @param histoire Histoire du Scenario (du Node)
+     * @param dico Contient la suite du scenario (Prochain Node)
+     * @param id du Scenario (du Node)
      * */
     public Node(String histoire, int id, Map<String, ArrayList<IntPair>> dico) {
         this.id = id;
@@ -23,7 +25,8 @@ public abstract class Node implements Serializable {
     }
 
     /**Constrcuteur Permettant de creer une histoire sans suite.
-     * 
+     * @param histoire Histoire du Scenario (du Node)
+     * @param id du Scenario (du Node)
      * */
     public Node(String histoire, int id) {
         this.id = id;
@@ -50,7 +53,11 @@ public abstract class Node implements Serializable {
     }
 
     
-    /**
+    /**Gerer les prochains Scenario
+     * @param decisionNodes Table des prochains decision Node
+     * @param chanceNodes Table des prochains chance Node
+     * @param tab_Terminale_Node Table des prochains Terminale Node
+     * @param j Jour ou on est dans le jeu
      */
     public void prochain_Scenario(ArrayList<ArrayList<Integer>> decisionNodes,
             ArrayList<ArrayList<Integer>> chanceNodes, ArrayList<Integer> tab_Terminale_Node, int j) {
