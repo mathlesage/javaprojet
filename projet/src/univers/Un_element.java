@@ -15,6 +15,8 @@ public class Un_element implements Serializable {
 
   /**
    * Constructeurs
+   * @param element element du jeu
+   * @param quantite Combien on en a ?
    * */
   public Un_element(Elements_du_jeu element, int quantite) {
     this.element = element;
@@ -49,7 +51,7 @@ public class Un_element implements Serializable {
 
   
   /**Setters
-   * @param quantite cmb veut tu rajouter?
+   * @param quantiter quantite cmb veut tu rajouter?
    */
   public void setQuantite(int quantiter) {
     int nouvelle = quantiter + this.quantite;
