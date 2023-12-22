@@ -449,6 +449,16 @@ public class ListeChancenode implements Serializable {
                                 "Vous avez gagnez",
                                 "Vous avez gagnez",
                                 609, 0, -1);
+
+                ChanceNode chance610 = new ChanceNode("Honte à vous d'avoir laisser un enfant mourir dehors.",
+                                "N'avez vous pas honte cette enfant va probablement mourir.", 610, 0, -1);
+
+                ChanceNode chance611 = new ChanceNode(
+                                "L'enfant vous remerice, et repart au petit matin en vous offrant :",
+                                "L'enfant va beaucoup mieux, il vous remerice, et repart au petit matin en vous offrant :",
+                                611, 0, -1);
+                liste.add(chance611);
+                liste.add(chance610);
                 liste.add(chance609);
                 liste.add(chance608);
                 liste.add(chance607);
