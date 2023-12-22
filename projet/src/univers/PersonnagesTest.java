@@ -22,7 +22,8 @@ class PersonnagesTest {
 	public void maj_naturelle_attributs_generaux_Personnages_Test_tjr_vivant(){
 		this.perso_test.maj_naturelle_attributs_generaux_Personnages();
 		boolean verif = false;
-		if(this.perso_test.get_barre_eau() == 67 && this.perso_test.get_barre_nourriture() == 80 && this.perso_test.get_barre_mentale() == 75 && this.perso_test.get_barre_energie() == 90 && this.perso_test.get_etat_global()== Etat_Personnages.Sain  ) {
+		
+		if(this.perso_test.get_barre_eau() == 75 && this.perso_test.get_barre_nourriture() == 80 && this.perso_test.get_barre_mentale() == 95 && this.perso_test.get_barre_energie() == 95 && this.perso_test.get_etat_global()== Etat_Personnages.Vigoureux  ) {
 			
 			verif = true;
 		}
