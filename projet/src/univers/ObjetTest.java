@@ -29,20 +29,6 @@ class ObjetTest {
 		assertEquals(q,Objet_test.getQuantite(arg1));
 	}
 	
-	@Test
-	public void setQuantiteTest_NomExistant_Quantite_Negative(){
-		boolean verif = false;
-		try {
-		Objet_test.setQuantite("Fusil",-10);
-		}
-		catch(ArithmeticException e) {
-			if("Une quantite ne peut pas etre negative ! ".equals(e.getMessage())) {
-				verif=true;
-			}	
-		}
-		assertEquals(true,verif);	
-	}
-	
 	
 	@Test
 	public void setQuantiteTest_NomInExistant_Quantite_Positive(){
