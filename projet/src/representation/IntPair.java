@@ -26,4 +26,5 @@ public class IntPair implements Serializable {
     public void setDeuxieme(int deuxieme) {
         this.deuxieme = deuxieme;
     }
+
 }
