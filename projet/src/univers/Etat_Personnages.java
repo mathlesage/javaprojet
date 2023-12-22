@@ -2,6 +2,12 @@ package univers;
 
 import java.io.Serializable;
 
+
+/**
+ * Enumeration des differents etats des personnages
+ * 
+ * @author ABDELOUHAB Yacine
+ */
 public enum Etat_Personnages implements Serializable{
 	
 	//Etat global
@@ -40,14 +46,20 @@ public enum Etat_Personnages implements Serializable{
 	}
 	
 	
+	/**Getters
+	 *@return la BorneInf pour avoir un certain etat. */
 	public int getBorne_Inf() {
 		return this.borne_inf;
 	}
 	
+	/**Getters
+	 *@return la BorneSup pour avoir un certain etat. */
 	public int getBorne_Sup() {
 		return this.borne_sup;
 	}
 	
+	/**Getters
+	 *@return la description de l'etat sous forme de chaine de caractere. */
 	public String getAttribut() {
 		return this.attribut;
 	}
