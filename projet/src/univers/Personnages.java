@@ -276,6 +276,9 @@ public class Personnages implements Serializable {
     return this.force;
   }
 
+  /**Getters
+   * @return Personnages_du_jeu
+   */
   public Personnages_du_jeu get_perso() {
     return this.perso;
   }
@@ -421,7 +424,11 @@ public class Personnages implements Serializable {
    * MAJ lorsque :
    * Le personnage mange ou bois.
    * Fait une activite qui boost le mentale.
-   * Autre contexte ?
+   * 
+   * @param eau On veut rajouter cmb d'eau ?
+   * @param nourriture On veut rajouter cmb de nourriture ?
+   * @param mentale On veut rajouter cmb de mentale?
+   * @param energie On veut rajouter cmb d'energie ?
    */
   public void maj_contextuelle_attributs_generaux_Personnages(int eau, int nourriture, int mentale, int energie) {
 
@@ -462,6 +469,11 @@ public class Personnages implements Serializable {
 
   /**
    * MAJ permettant de modifie les attributs specifique d'un personnage.
+   * @param force Maj du score de force
+   * @param conso_nourriture Maj du score de conso_nourriture
+   * @param intelligence Maj du score d'intelligence
+   * @param resistance Maj du score de resistance
+   * @param agilite Maj du score d'agilite
    */
   public void maj_contextuelle_attributs_specifique_Personnages(int force, int conso_nourriture, int intelligence,
       int resistance, int agilite) {
@@ -677,6 +689,12 @@ public class Personnages implements Serializable {
 
   /**
    * MAJ les attributs specifique du Perso
+   * @param nforce Combien de force on rajoute au perso
+   * @param nconso_nourriture Combien de conso_nourriture on rajoute au perso
+   * @param nintelligence Combien d'intelligence on rajoute au perso
+   * @param nresistance Combien de resistance on rajoute au perso
+   * @param nagilite Combien d'agilite on rajoute au perso
+   * 
    */
   public void maj_contextuelle_attributs_specifique_Personnages_ajout(int nforce, int nconso_nourriture,
       int nintelligence,
