@@ -406,7 +406,7 @@ public class Jour implements Serializable {
       case 110:
         // Le personnage devient fort partout
         if (personnages.get(node.getNum_perso()).get_vivant()) {
-          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages(20, 20, 20, 20, 20);
+          personnages.get(node.getNum_perso()).maj_contextuelle_attributs_specifique_Personnages(20, 0, 20, 20, 20);
         } else {
           System.out.println("Ah non il est mort");
         }
@@ -499,6 +499,14 @@ public class Jour implements Serializable {
         } else {
           System.out.println("Certe il revient, mais il est mort.");
         }
+        break;
+
+      case 121:
+        personnages.get(0).maj_contextuelle_attributs_generaux_Personnages(0, 0, 100, 0);
+        personnages.get(1).maj_contextuelle_attributs_generaux_Personnages(0, 0, 100, 0);
+        personnages.get(2).maj_contextuelle_attributs_generaux_Personnages(0, 0, 100, 0);
+        personnages.get(3).maj_contextuelle_attributs_generaux_Personnages(0, 0, 100, 0);
+
         break;
     }
   }
@@ -754,7 +762,6 @@ public class Jour implements Serializable {
     int bon_placement = place_du_perso * 20;
     int temps_expedition = 1;
 
-
     while (tab_scenario_impose_en_cours.size() <= (nombre_journee + temps_expedition)) {
       tab_scenario_impose_en_cours.add(new ArrayList<>());
     }
@@ -792,7 +799,6 @@ public class Jour implements Serializable {
         tab_scenario_impose_en_cours.get(nombre_journee + 1).add(236);
         tab_scenario_impose_en_cours.get(nombre_journee + 1).add(256);
       }
-
 
     } else if (notetoal < 1800) {
       tab_scenario_impose_en_cours.get(nombre_journee + 1).add(599);
@@ -893,7 +899,6 @@ public class Jour implements Serializable {
 
       }
 
-
     } else {
       tab_scenario_impose_en_cours.get(nombre_journee + 1).add(210 + bon_placement);
       tab_scenario_impose_en_cours.get(nombre_journee + 1).add(598);
@@ -906,86 +911,6 @@ public class Jour implements Serializable {
 
     }
 
-    /*
-     * 1. ChanceNode 1 : Perte d'une ration de pâte.
-     * 2. ChanceNode 2 : Perte de deux rations de pâte.
-     * 3. ChanceNode 3 : Disparition de trois rations de pâte.
-     * 5. ChanceNode 5 : Perte de toutes les rations de pâte.
-     * 6. ChanceNode 6 : Doublement des réserves de rations de pâte.
-     * 7. ChanceNode 7 : Ajout d'une ration de pâte.
-     * 8. ChanceNode 8 : Ajout de deux rations de pâte.
-     * 9. ChanceNode 9 : Ajout de trois nouvelles rations de pâte.
-     * 
-     * 11 : Perte d'une banane.
-     * 12 : Perte de deux bananes.
-     * 13 : Disparition de trois bananes.
-     * 15 : Perte de toutes les bananes.
-     * 16 : Doublement des réserves de bananes.
-     * 17 : Ajout d'une banane.
-     * 18 : Ajout de deux bananes.
-     * 19 : Ajout de trois nouvelles bananes.
-     * 
-     * 21 : Perte d'une friandise.
-     * 22 : Perte de deux friandises.
-     * 23 : Disparition de trois friandises.
-     * 25 : Perte de toutes les friandises.
-     * 26 : Doublement des réserves de friandises.
-     * 27 : Ajout d'une friandise.
-     * 28 : Ajout de deux friandises.
-     * 29 : Ajout de trois nouvelles friandises.
-     * 
-     * 31 : Perte d'une bouteille d'eau.
-     * 32 : Perte de deux bouteilles d'eau.
-     * 33 : Disparition de trois bouteilles d'eau.
-     * 35 : Perte de toutes les bouteilles d'eau.
-     * 36 : Doublement des réserves d'eau.
-     * 37 : Ajout d'une bouteille d'eau.
-     * 38 : Ajout de deux bouteilles d'eau.
-     * 39 : Ajout de trois nouvelles bouteilles d'eau.
-     * 
-     * 41 : Perte d'une canette de soda.
-     * 42 : Perte de deux canettes de soda.
-     * 43 : Disparition de trois canettes de soda.
-     * 45 : Perte de toutes les canettes de soda.
-     * 46 : Doublement des réserves de sodas.
-     * 47 : Ajout d'une canette de soda.
-     * 48 : Ajout de deux canettes de soda.
-     * 49 : Ajout de trois nouvelles canettes de soda.
-     * 
-     * 61 : Une boîte à outils est endommagée.
-     * 65 : Toutes les boîtes à outils sont devenues inutilisables.
-     * 67 : Ajout d'une nouvelle boîte à outils.
-     * 71 : Un katana est endommagé.
-     * 75 : Tous les katanas sont devenus inutilisables.
-     * 77 : Ajout d'un nouveau katana.
-     * 81 : Une carte de la ville est déchirée.
-     * 85 : Toutes les cartes de la ville sont devenues illisibles.
-     * 87 : Ajout d'une nouvelle carte de la ville.
-     * 91 : L'objet Échec est endommagé.
-     * 95 : Tous les objets Échec sont devenus inutilisables.
-     * 97 : Ajout d'un nouvel objet Échec.
-     * 101 : Une carte à jouer est abîmée.
-     * 105 : Toutes les cartes à jouer sont devenues illisibles.
-     * 107 : Ajout d'une nouvelle série de cartes à jouer.
-     * 111 : L'insecticide est presque vide.
-     * 115 : Tous les insecticides sont désormais vides.
-     * 117 : Ajout d'un nouvel insecticide.
-     * 121 : Une hache est endommagée.
-     * 125 : Toutes les haches sont désormais inutilisables.
-     * 127 : Ajout d'une nouvelle hache.
-     * 131 : Un sac est déchiré.
-     * 135 : Tous les sacs sont désormais inutilisables.
-     * 137 : Ajout d'un nouveau sac.
-     * 141 : Une trousse est abîmée.
-     * 145 : Toutes les trousses sont désormais inutilisables.
-     * 147 : Ajout d'une nouvelle trousse.
-     * 151 : La radio est endommagée.
-     * 155 : Toutes les radios sont désormais hors service.
-     * 157 : Ajout d'une nouvelle radio.
-     * 161 : La lampe est endommagée.
-     * 165 : Toutes les lampes sont désormais hors service.
-     * 167 : Ajout d'une nouvelle lampe.
-     */
     System.out.println("==============================================================\n");
 
     // Perso choisi ---> perso_expedition, la fonction s'arrete si pas de perso
@@ -1092,11 +1017,10 @@ public class Jour implements Serializable {
 
     System.out.println("Voici l'etat des personnages.\n");
     for (Personnages p : personnages) {
-      if(p.get_en_expedition()) {
-    	  p.to_String_en_expedition();
-      }
-      else {
-    	  p.to_String_Generaux();
+      if (p.get_en_expedition()) {
+        p.to_String_en_expedition();
+      } else {
+        p.to_String_Generaux();
       }
     }
 

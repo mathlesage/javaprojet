@@ -2,6 +2,7 @@ package Representation;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -79,6 +80,7 @@ public class DecisionNode extends Node implements Serializable {
         this.dico3 = dico3;
         this.id_peronnage_necessaire = id_peronnage_necessaire;
         this.numero_perso = numero_perso;
+
     }
 
     // Scenario sans stat
@@ -106,6 +108,40 @@ public class DecisionNode extends Node implements Serializable {
         this.dico3 = dico2;
         this.id_peronnage_necessaire = id_peronnage_necessaire;
         this.numero_perso = numero_perso;
+    }
+
+    public DecisionNode(int jour_Necessaire_debut, int jour_Necessaire_fin, String histoire, int id,
+            Map<String, ArrayList<IntPair>> dico2, String objet_nec) {
+
+        super(histoire, id, dico2);
+        this.jour_Necessaire_debut = jour_Necessaire_debut;
+        this.jour_Necessaire_fin = jour_Necessaire_fin;
+        this.scenario_Necessaire = new int[0];
+
+        this.variable_Aleatoire_debut = 0f;
+        this.variable_Aleatoire_fin = 0.5f;
+        this.nombre_Peronnage = 0;
+        this.totalmental = 0;
+        this.totalenergie = 0;
+        this.totalsante = 0;
+        this.totalforce = 0;
+        this.totalintelligence = 0;
+        this.totalresistance = 0;
+        this.totalagilite = 0;
+        this.nom_Objet_Necessaire = objet_nec;
+
+        ArrayList<IntPair> list1 = new ArrayList<>();
+        list1.add(new IntPair(0, 0));
+        list1.add(new IntPair(0, 0));
+        Map<String, ArrayList<IntPair>> dico_vide = new HashMap<String, ArrayList<IntPair>>();
+
+        dico_vide.put("null", list1);
+        this.dico1 = dico_vide;
+        this.dico2 = dico2;
+        this.dico3 = dico2;
+        this.id_peronnage_necessaire = -1;
+        this.numero_perso = -1;
+
     }
 
     // Scénario sur un personnage précis

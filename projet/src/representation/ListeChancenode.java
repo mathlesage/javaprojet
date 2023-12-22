@@ -406,7 +406,49 @@ public class ListeChancenode implements Serializable {
                                 599, 0, -1);
                 ChanceNode chance598 = new ChanceNode("Et grace à l'expédition il y a eu :",
                                 "L'expédition à porter ces fruit car:", 598, 0, -1);
+                ChanceNode chance600 = new ChanceNode("La petite fille était gentille, grace à elle:",
+                                "C'était belle est bien une petite fille très généreuse, grace à elle:", 600, 0, -1);
 
+                ChanceNode chance601 = new ChanceNode("Il est rentré dans la plièce à couru jusqu'au provisions et :",
+                                "C'était un voleur, un charlatant et malheureusement", 601, 0, -1);
+
+                ChanceNode chance602 = new ChanceNode(
+                                "Des personnes attendaient près du colis, une bataille éclata mais vous perdez et malheureusement :",
+                                "Des personnes attendaient près du colis, une bataille éclata mais vous perdez et malheureusement :",
+                                602, 0, -1);
+
+                ChanceNode chance603 = new ChanceNode(
+                                "Des personnes attendaient près du colis, une bataille éclata mais heureusement vous avez été plus fort de plus le colis était plein:",
+                                "Des personnes attendaient près du colis, une bataille éclata mais heureusement vous avez été plus fort de plus le colis était plein:",
+                                603, 0, -1);
+
+                ChanceNode chance604 = new ChanceNode(
+                                "Une idée extrêmement néfaste, cela se transforme en bain de sang, et tout le monde perd la vie.",
+                                "Une idée terrible qui a viré au massacre, entraînant la perte de toutes les vies.",
+                                604, 0, -1);
+
+                ChanceNode chance605 = new ChanceNode(
+                                "Le banquier vous fais un clin d'oeil",
+                                "Le banquier vous fais un clin d'oeil",
+                                605, 0, -1);
+
+                ChanceNode chance606 = new ChanceNode(
+                                "Le pillage c'est bien passer, attention au karma. Vous avez récuperé:",
+                                "Le pillage c'est bien passer, attention au karma. Vous avez récuperé:",
+                                606, 0, -1);
+
+                ChanceNode chance607 = new ChanceNode("Tous le monde se sent beaucoup mieux grace à cette activité",
+                                "L'activité a eu un effet positif sur tout le monde, améliorant nettement leur bien-être.",
+                                607, 121, -1);
+
+                ChanceNode chance608 = new ChanceNode(
+                                "a été mordu par un cafar, après une horrible nuit une force nouvelle apparait:",
+                                "a été mordu par un cafar, après une horrible nuit une force nouvelle apparait:",
+                                608, 0, 0);
+
+                liste.add(chance608);
+                liste.add(chance607);
+                liste.add(chance606);
                 liste.add(chance1);
                 liste.add(chance2);
                 liste.add(chance3);
@@ -577,6 +619,13 @@ public class ListeChancenode implements Serializable {
                 liste.add(chance281);
                 liste.add(chance282);
                 liste.add(chance283);
+                liste.add(chance600);
+                liste.add(chance601);
+                liste.add(chance602);
+                liste.add(chance603);
+                liste.add(chance604);
+                liste.add(chance605);
+
         }
 
         public ArrayList<ChanceNode> getListe() {

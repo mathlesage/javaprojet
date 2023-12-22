@@ -108,9 +108,9 @@ public class Personnages implements Serializable {
 
       case Frere:
         this.perso = perso;
-        this.force = 4;
-        this.conso_nourriture = 3;
-        this.intelligence = 6;
+        this.force = 10;
+        this.conso_nourriture = 1;
+        this.intelligence = 9;
         this.resistance = 8;
         this.agilite = 10;
         break;
@@ -199,6 +199,7 @@ public class Personnages implements Serializable {
    * Affichage si en expedition
    */
   public void to_String_en_expedition() {
+
 	  System.out.println("------------------------------");
 	    if (this.etat_global != Etat_Personnages.Mort) {
 	      System.out.println( this.perso.name() + " => " + this.perso.getPrenom() + " est en expedition.");
@@ -212,6 +213,7 @@ public class Personnages implements Serializable {
   
   /**Getters
    * @return vivant ou pas ?*/
+
   public boolean get_vivant() {
     if (this.etat_global != Etat_Personnages.Mort) {
       return true;
@@ -338,11 +340,14 @@ public class Personnages implements Serializable {
   public void maj_naturelle_attributs_generaux_Personnages() {
     // maj a faire tt les 1 jours en fin de journee
     if (this.etat_global != Etat_Personnages.Mort) {
-      this.barre_nourriture = this.barre_nourriture - 20; 
-      this.barre_eau = this.barre_eau - 25; 
+      this.barre_nourriture = this.barre_nourriture - 20;
+      this.barre_eau = this.barre_eau - 25;
       this.barre_mentale = this.barre_mentale - 5;
-      this.barre_energie = (this.barre_nourriture <= 20) ? this.barre_energie - 10 : this.barre_energie - 5; // perd plus d'energie si faim
-                                                                                                      
+      this.barre_energie = (this.barre_nourriture <= 20) ? this.barre_energie - 10 : this.barre_energie - 5; // perd
+                                                                                                             // plus
+                                                                                                             // d'energie
+                                                                                                             // si faim
+
       this.barre_sante = (this.barre_nourriture + this.barre_eau + this.barre_mentale + this.barre_energie) / 4;
     }
 
@@ -378,48 +383,39 @@ public class Personnages implements Serializable {
    * Autre contexte ?
    */
   public void maj_contextuelle_attributs_generaux_Personnages(int eau, int nourriture, int mentale, int energie) {
-	 
-	if(this.barre_eau + eau > 100) {
-		this.barre_eau = 100;
-	}
-	else if(this.barre_eau + eau < 0) {
-		this.barre_eau = 0;
-	}
-	else {
-		this.barre_eau = this.barre_eau + eau;
-	}
-	
-	if(this.barre_nourriture + nourriture > 100) {
-		this.barre_nourriture = 100;
-	}
-	else if(this.barre_nourriture + nourriture < 0) {
-		this.barre_nourriture = 0;
-	}
-	else {
-		this.barre_nourriture = this.barre_nourriture + nourriture;
-	}
-	
-	if(this.barre_mentale + mentale > 100) {
-		this.barre_mentale = 100;
-	}
-	else if(this.barre_mentale + mentale < 0) {
-		this.barre_mentale = 0;
-	}
-	else {
-		this.barre_mentale = this.barre_mentale + mentale;
-	}
-	
-	if(this.barre_energie + energie > 100) {
-		this.barre_energie = 100;
-	}
-	else if(this.barre_energie + energie < 0) {
-		this.barre_energie = 0;
-	}
-	else {
-		this.barre_energie = this.barre_energie + energie;
-	}
-	
-    
+
+    if (this.barre_eau + eau > 100) {
+      this.barre_eau = 100;
+    } else if (this.barre_eau + eau < 0) {
+      this.barre_eau = 0;
+    } else {
+      this.barre_eau = this.barre_eau + eau;
+    }
+
+    if (this.barre_nourriture + nourriture > 100) {
+      this.barre_nourriture = 100;
+    } else if (this.barre_nourriture + nourriture < 0) {
+      this.barre_nourriture = 0;
+    } else {
+      this.barre_nourriture = this.barre_nourriture + nourriture;
+    }
+
+    if (this.barre_mentale + mentale > 100) {
+      this.barre_mentale = 100;
+    } else if (this.barre_mentale + mentale < 0) {
+      this.barre_mentale = 0;
+    } else {
+      this.barre_mentale = this.barre_mentale + mentale;
+    }
+
+    if (this.barre_energie + energie > 100) {
+      this.barre_energie = 100;
+    } else if (this.barre_energie + energie < 0) {
+      this.barre_energie = 0;
+    } else {
+      this.barre_energie = this.barre_energie + energie;
+    }
+
     this.barre_sante = (this.barre_nourriture + this.barre_eau + this.barre_mentale + this.barre_energie) / 4;
   }
 
@@ -435,7 +431,7 @@ public class Personnages implements Serializable {
       this.force = force;
     }
 
-    if (conso_nourriture < 1) { //j'utilise en faisant une division 
+    if (conso_nourriture < 1) { // j'utilise en faisant une division
       this.conso_nourriture = 1;
     } else {
       this.conso_nourriture = conso_nourriture;
@@ -676,7 +672,7 @@ public class Personnages implements Serializable {
   /**Tuer un personages
    * */
   public void tuer_personnage() {
-	  this.etat_global = Etat_Personnages.Mort;
+    this.etat_global = Etat_Personnages.Mort;
   }
-  
+
 }
