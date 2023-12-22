@@ -172,7 +172,7 @@ public class Principale implements Serializable {
 		// Retourne un : on veut sauvegarder la partie
 
 		if (!this.deja_lance) {
-			Sound survivor = new Sound("survivor.wav");
+			Sound son = new Sound("survivor.wav");
 			this.deja_lance = true;
 
 			// On initialise une instance de Jour
@@ -190,7 +190,8 @@ public class Principale implements Serializable {
 			System.out.println(
 					"En plein repas de famille, le monde sombra dans le chaos.\nLa 3ème guerre mondiale éclata, ne laissant qu'un refuge:\nLe bunker, avec seulement 4 places.\n\n		=========Qui choisi tu ?========= \n		Patrick : le père sage,\n		Stéphanie : la mère protectrice,\n		Sarah : la soeur a l'esprit vif,\n		Mathéo : le frère courageux,\n		Paul : le médecin,\n		Amine : l'athlète,\n		Yacine : le cousin rusé,\n		ou Guilianetta : la cuisinière ingénieuse.\n\nQuatres personnes de ton choix vont affronter l'impensable.\nDans cette lutte pour la survie, chaque choix peseront lourd,\nchaque pas les rapprocheront du salut ou de la perte !");
 
-			survivor.display_son();
+			son.display_son();
+			
 
 			// Choix des personnages
 			ArrayList<Personnages> tab_aide_perso = choix_perso();
@@ -222,9 +223,10 @@ public class Principale implements Serializable {
 		// Au bout du jour 15 on a survecu !!
 		int jeu_info = 1;
 		boolean jeu_gagne = false;
-
+		Sound son_coq = new Sound("coq.wav");
 		while (jeu_info == 1) {
-
+			
+			son_coq.display_son();
 			System.out.println("Jours :" + this.jeu.get_nombre_journee());
 
 			if (this.jeu.get_nombre_journee() > 15) {
@@ -240,7 +242,7 @@ public class Principale implements Serializable {
 			}
 
 			System.out.println("Fin de la journee");
-			// Veut tu continuer a jouer au sauvegarder ?
+			// Veut tu continuer a jouer ou sauvegarder ?
 
 			System.out.println("Continuez la journee suivante ? ");
 
@@ -276,6 +278,8 @@ public class Principale implements Serializable {
 
 		
 		if(!jeu_gagne) {
+			Sound sonfin = new Sound("fin.wav");
+			
 			System.out.println("\u001B[31m" + "Tout le Monde est Mort Perduuu !" + "\u001B[0m");
 			System.out.println("\u001B[31m" + "___________ZZZZZZZZZZZZZZZZZZZZZ\n"
 					+ "__________ZZZZZ______________ZZZZZZ\n"
@@ -309,12 +313,15 @@ public class Principale implements Serializable {
 					+ "___________ZZZZZZZZZZZZZZZZZ\n"
 					+ "______________ZZZZZZZZZZZ"+ "\u001B[0m");
 			
+			sonfin.display_son();
 			
 			
 		}
 		else{
+			Sound sonfin = new Sound("fin2.wav");
 			System.out.println("Fin du Jeu");
 			System.out.println("Il y a des survivants, c'est incroyable !");
+			sonfin.display_son();
 		}
 
 		return 0;
