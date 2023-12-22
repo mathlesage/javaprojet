@@ -7,6 +7,12 @@ import java.util.Scanner;
 import Representation.*;
 
 
+
+/**
+Classe, permettant de lancer une partie. C'est la qu'on a les info du jeu : tout est conserve dans l'attribut jeu.
+
+@author ABDELOUHAB Yacine
+*/
 public class Principale implements Serializable{
 	
 	private final int id;
@@ -14,16 +20,29 @@ public class Principale implements Serializable{
 	private static int nbr_game = 0;
 	private boolean deja_lance = false;
 	
-	
+	/**
+	 * Constructeur
+	*/
 	Principale(){
 		nbr_game ++;
 		this.id = nbr_game;
 	}
 	
+	
+	/**
+	 * Guetters pour recup l'id de la game
+	 * @return id de la game
+	*/
 	public int principale_get_id(){
 		return this.id;
 	}
 	
+	
+	/**
+	 * Cette methode permet au debut du jeu la selection
+	 * des personnages.
+	 * @return un tableau des quatres personnages choisis
+	*/
 	private static ArrayList<Personnages> choix_perso() {
 
 		System.out.println("==============================================================\n");
@@ -132,6 +151,17 @@ public class Principale implements Serializable{
 		return tab_aide_perso;
 	}
 
+	
+	/**
+	 * Lance la partie et modifie l'attribut jeu tout le long.
+	 * Deux parties dans cette methode:
+	 * La premiere va gerer le debut de la game, le choix des personnages
+	 * et l'instanciation de l'attribut jeu. On y passera que une seul fois. (grace a l'attribut deja lancee)
+	 * La seconde contient, le deroulement de chaque jour, et chaque jour qui passe, demande si on veut 
+	 * continuer a jouer ou pas.
+	 * 
+	 * @return 0 si c'est la fin du jeu => on a donc pas besoin de sauvegarder, 1 si on veut continuer plus tard
+	*/
 	public int lancement_du_jeu() {
 		//Retourne zero : fin jeu
 		//Retourne un : on veut sauvegarder la partie
@@ -190,10 +220,10 @@ public class Principale implements Serializable{
 		
 		
 		//Au bout du jour 15 on a survecu !!
-		boolean jeu_tjr = true;
+		int jeu_info = 1;
 		boolean jeu_gagne = false;
 		
-		while (jeu_tjr && !(jeu_gagne)) {
+		while (jeu_info == 1) {
 			
 			
 			System.out.println("Jours :" + this.jeu.get_nombre_journee());
@@ -202,11 +232,16 @@ public class Principale implements Serializable{
 				jeu_gagne = true;
 				break;
 			}
-			jeu_tjr = this.jeu.deroulement_du_jour();
+			jeu_info = this.jeu.deroulement_du_jour();
 			
-			//Veut tu continuer a jouer au sauvegarder ?
+			if(jeu_info == 2) {
+				jeu_gagne = true;
+				break;
+			}
 			
 			System.out.println("Fin de la journee");
+			//Veut tu continuer a jouer au sauvegarder ?
+		
 			System.out.println("Continuez la journee suivante ? ");
 			
 			
@@ -240,11 +275,11 @@ public class Principale implements Serializable{
 		    
 		}
 		
-		if(!jeu_tjr) {
+		if(!jeu_gagne) {
 			System.out.println("Perduuuuu!");
 		}
-		else if(jeu_gagne) {
-			System.out.println("Incroyable il reste des survivants !!");
+		else{
+			System.out.println("Gagné !!!");
 		}
 		
 		return 0;
