@@ -3,6 +3,7 @@ package univers;
 
 /**
 Enumeration des personnages du jeu.
+Un attribut identifiant et un attribut prenom.
 @author ABDELOUHAB Yacine
 */
 public enum Personnages_du_jeu {
@@ -23,10 +24,16 @@ public enum Personnages_du_jeu {
 		this.prenom = prenom;
 	}
 	
+	/**Getters Identifiant
+	 * @return Identifiant
+	 * */
 	public int getIdentifiant() {
 		return this.identifiant;
 	}
 	
+	/**Getters Prenom
+	 * @return prenom
+	 * */
 	public String getPrenom() {
 		return this.prenom;
 	}
