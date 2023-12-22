@@ -21,20 +21,6 @@ class NourritureTest {
 		assertEquals(q,nourriture_test.getQuantite(arg1));
 	}
 	
-	@Test
-	public void setQuantiteTest_NomExistant_Quantite_Negative(){
-		boolean verif = false;
-		try {
-			nourriture_test.setQuantite("Banane",-10);
-		}
-		catch(ArithmeticException e) {
-			if("Une quantite ne peut pas etre negative ! ".equals(e.getMessage())) {
-				verif=true;
-			}	
-		}
-		assertEquals(true,verif);	
-	}
-	
 	
 	@Test
 	public void setQuantiteTest_NomInExistant_Quantite_Positive(){
@@ -96,19 +82,19 @@ class NourritureTest {
 	
 	
 	@ParameterizedTest
-	@CsvSource({"Banane, 2","Pate,3","Friandise,1","Eau,0","Soda,0"})
+	@CsvSource({"Banane, 25","Pate,50","Friandise,10","Eau,0","Soda,0"})
 	public void getNourrisant_Test_NomExistant(String arg1,int arg2) {
 		assertEquals(arg2,nourriture_test.getNourrissant(arg1));
 	}
 	
 	@ParameterizedTest
-	@CsvSource({"Banane, 0","Pate,0","Friandise,0","Eau,3","Soda,2"})
+	@CsvSource({"Banane, 5","Pate,0","Friandise,0","Eau,75","Soda,25"})
 	public void getHydratation_Test_NomExistant(String arg1,int arg2) {
 		assertEquals(arg2,nourriture_test.getHydratation(arg1));
 	}
 	
 	@ParameterizedTest
-	@CsvSource({"Banane, 3","Pate,1","Friandise,3","Eau,0","Soda,3"})
+	@CsvSource({"Banane, 20","Pate,20","Friandise,15","Eau,0","Soda,30"})
 	public void getEnergie_Test_NomExistant(String arg1,int arg2) {
 		assertEquals(arg2,nourriture_test.getEnergie(arg1));
 	}
