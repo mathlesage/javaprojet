@@ -3,7 +3,7 @@ import java.io.Serializable;
 
 
 
-/** Classe Utilitaire pour la gestion des scenarios
+/** Classe Utilitaire pour la gestion des scenarios 
  * @author QUATREBOEUFS Matheo
  * */
 public class IntPair implements Serializable {
@@ -11,6 +11,8 @@ public class IntPair implements Serializable {
     private int deuxieme;
 
     /**Constructeur
+     * @param premier premier int
+     * @param deuxieme second int
      * */
     public IntPair(int premier, int deuxieme) {
         this.premier = premier;
@@ -24,7 +26,7 @@ public class IntPair implements Serializable {
     }
 
     /**Setters
-     * @param premier_element*/
+     * @param premier premier_element*/
     public void setPremier(int premier) {
         this.premier = premier;
     }
@@ -36,7 +38,7 @@ public class IntPair implements Serializable {
     }
 
     /**Setters
-     * @param deuxieme_element*/
+     * @param deuxieme deuxieme_element*/
     public void setDeuxieme(int deuxieme) {
         this.deuxieme = deuxieme;
     }
