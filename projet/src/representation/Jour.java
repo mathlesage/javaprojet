@@ -102,6 +102,14 @@ public class Jour implements Serializable {
    * On ne l'appelera que une fois, pour indiquer les personnages, les objets et
    * les nourritures,
    * choisi, par le joueur.
+   * @param p1 Personnage 1
+   * @param p2 Personnage 2
+   * @param p3 Personnage 3
+   * @param p4 Personnage 4
+   * @param objet_possession Inventaire Objet
+   * @param nourriture_possession Inventaire Nourriture
+   * @param tab_DecisionNode Tous les decision Node
+   * @param tab_scenario_impose Tous les ChanceNode
    */
 
   public Jour(Personnages p1, Personnages p2, Personnages p3, Personnages p4, Objet objet_possession,
@@ -132,6 +140,7 @@ public class Jour implements Serializable {
 
   /**
    * Guetters nombre_journee
+   * @return numero du jour ou on est
    */
   public int get_nombre_journee() {
     return this.nombre_journee;
@@ -1016,13 +1025,13 @@ public class Jour implements Serializable {
         + "          		    A Table !! \n"
         + "		==================================\n" + "\u001B[0m");
 
-    /*
-     * try {
-     * Thread.sleep(2000);
-     * } catch (InterruptedException e) {
-     * 
-     * }
-     */
+    
+     try {
+      Thread.sleep(2000);
+     } catch (InterruptedException e) {
+      
+     }
+     
 
     if (!nourriture_possession.get_nourriture_dispo()) {
       System.out
@@ -1047,6 +1056,13 @@ public class Jour implements Serializable {
     System.out.println("\n\n" + "\u001B[34m"
         + "On va choisir les personnages a nourir. (Donner le numero de la personne que vous voulez nourir)"
         + "\u001B[0m");
+    
+    
+    try {
+        Thread.sleep(3000);
+       } catch (InterruptedException e) {
+        
+       }
 
     int[] tab_aide_verif = { 0, 0, 0, 0, 0 }; // Si persoi vivant alors on met a l'indice i la val 1, 0 sinon
 
@@ -1057,7 +1073,15 @@ public class Jour implements Serializable {
         tab_aide_verif[i] = 1;
       }
     }
+    
+    try {
+        Thread.sleep(000);
+       } catch (InterruptedException e) {
+        
+       }
     System.out.println();
+    
+    
 
     Scanner scanner = new Scanner(System.in);
     String input = "";
@@ -1099,7 +1123,7 @@ public class Jour implements Serializable {
       while (true) {
         System.out.print("\u001B[34m" + "Veux tu nourir quelqu'un d'autre (o/n) ?  " + "\u001B[0m");
         try {
-          input = scanner.nextLine();
+          input = scanner.next();
           if (!(input.equals("o") || input.equals("n"))) {
             throw new IllegalArgumentException("\u001B[31m" + "Inserer o pour oui ou n pour non !!!" + "\u001B[0m");
           }
