@@ -1,4 +1,4 @@
-**Jeu de Scénario et de Choix en Java**
+# Jeu de Scénario et de Choix en Java
 
 
 **Introduction**
